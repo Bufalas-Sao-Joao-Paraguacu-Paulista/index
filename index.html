@@ -55,9 +55,8 @@
     <header class="sticky top-0 z-40 glass-header border-b border-stone-200/60 shadow-sm transition-all duration-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-12 h-12 rounded-full bg-brand-brown flex items-center justify-center text-brand-gold font-serif text-2xl font-bold shadow-md group-hover:scale-105 transition-transform">
-                    SJ
-                </div>
+                <!-- LOGO OFICIAL -->
+                <img src="logo.png" onerror="this.onerror=null; this.src='logo.PNG';" alt="Búfalas São João Logo" class="w-12 h-12 rounded-full object-cover shadow-md group-hover:scale-105 transition-transform border border-brand-gold">
                 <div>
                     <span class="block font-serif font-bold text-xl text-brand-dark tracking-tight leading-none">Búfalas São João</span>
                     <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">Laticínios & Turismo Rural</span>
@@ -79,7 +78,7 @@
                     <i class="fa-solid fa-basket-shopping text-lg"></i>
                     <span id="cartCountBadge" class="hidden absolute -top-1 -right-1 bg-brand-gold text-stone-900 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow">0</span>
                 </button>
-                <a href="https://wa.me/5518999999999?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Fazenda%20B%C3%BAfalas%20S%C3%A3o%20Jo%C3%A3o" target="_blank" class="hidden sm:inline-flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-medium text-sm px-4 py-2.5 rounded-full shadow hover:shadow-md transition-all">
+                <a href="https://wa.me/5518996438262?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Fazenda%20B%C3%BAfalas%20S%C3%A3o%20Jo%C3%A3o" target="_blank" class="hidden sm:inline-flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-medium text-sm px-4 py-2.5 rounded-full shadow hover:shadow-md transition-all">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                     <span>WhatsApp</span>
                 </a>
@@ -94,7 +93,7 @@
             <a href="#produtos" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Empório A2A2</a>
             <a href="#experiencias" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Experiências & Passeio</a>
             <a href="#infraestrutura" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Infraestrutura Limpa</a>
-            <a href="#faq" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">30 Dúvidas Frequentes</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Dúvidas Frequentes</a>
             <a href="#como-chegar" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Como Chegar</a>
         </div>
     </header>
@@ -102,7 +101,8 @@
     <!-- Hero Section -->
     <section class="relative bg-stone-900 text-white overflow-hidden py-20 lg:py-28">
         <div class="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
-            <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1920&q=80" alt="Fazenda Búfalas São João" class="w-full h-full object-cover">
+            <!-- FOTO REAL DA BÚFALA NO CAMPO -->
+            <img src="bufala.jpg" onerror="this.onerror=null; this.src='bufala.JPG';" alt="Fazenda Búfalas São João" class="w-full h-full object-cover">
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-2xl">
@@ -167,7 +167,6 @@
                 <button onclick="filterCategory('all')" class="cat-btn active bg-stone-900 text-white text-xs px-4 py-2 rounded-full font-medium transition-all">Todos os Produtos</button>
                 <button onclick="filterCategory('queijos')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Queijos Frescos & Curados</button>
                 <button onclick="filterCategory('doces')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Doces & Requeijão</button>
-                <button onclick="filterCategory('kits')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Kits Degustação</button>
             </div>
         </div>
 
@@ -189,10 +188,11 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Highlighted Experience: Passeio com Búfalas -->
                 <div class="bg-white rounded-2xl shadow-md border-2 border-brand-gold overflow-hidden flex flex-col relative transform hover:-translate-y-1 transition-all">
-                    <div class="absolute top-3 right-3 bg-brand-gold text-stone-900 text-xs font-bold px-3 py-1 rounded-full shadow">
+                    <div class="absolute top-3 right-3 bg-brand-gold text-stone-900 text-xs font-bold px-3 py-1 rounded-full shadow z-10">
                         <i class="fa-solid fa-star"></i> Atração Principal
                     </div>
-                    <img src="https://images.unsplash.com/photo-1546445317-29f4545f9d52?auto=format&fit=crop&w=600&q=80" alt="Passeio com Búfalas" class="h-48 w-full object-cover">
+                    <!-- FOTO PASSEIO -->
+                    <img src="bufala.jpg" onerror="this.onerror=null; this.src='bufala.JPG';" alt="Passeio com Búfalas" class="h-48 w-full object-cover">
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Passeio Interativo com Búfalas</h3>
@@ -206,8 +206,8 @@
                             </ul>
                         </div>
                         <div>
-                            <div class="text-lg font-bold text-brand-brown mb-3">R$ 45,00 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
-                            <button onclick="directReserveExperience('Passeio Interativo com Búfalas', 45.00)" class="w-full bg-brand-gold hover:bg-brand-goldHover text-stone-900 font-bold py-2.5 rounded-xl shadow transition-colors flex items-center justify-center space-x-2">
+                            <div class="text-lg font-bold text-brand-brown mb-3">Consulte Valores</div>
+                            <button onclick="directReserveExperience('Passeio Interativo com Búfalas', 0)" class="w-full bg-brand-gold hover:bg-brand-goldHover text-stone-900 font-bold py-2.5 rounded-xl shadow transition-colors flex items-center justify-center space-x-2">
                                 <i class="fa-brands fa-whatsapp"></i>
                                 <span>Reservar Passeio via WhatsApp</span>
                             </button>
@@ -217,7 +217,8 @@
 
                 <!-- Café da Manhã Rural -->
                 <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden flex flex-col hover:shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=600&q=80" alt="Café Colonial" class="h-48 w-full object-cover">
+                    <!-- FOTO CAFÉ DA MANHÃ -->
+                    <img src="cafe-manha.jpg" onerror="this.onerror=null; this.src='cafe-manha.JPG';" alt="Café Colonial" class="h-48 w-full object-cover">
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Café da Manhã Colonial</h3>
@@ -230,8 +231,8 @@
                             </ul>
                         </div>
                         <div>
-                            <div class="text-lg font-bold text-brand-brown mb-3">R$ 65,00 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
-                            <button onclick="directReserveExperience('Café da Manhã Colonial', 65.00)" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
+                            <div class="text-lg font-bold text-brand-brown mb-3">R$ 44,99 <span class="text-xs font-normal text-stone-500">/ pessoa (com reserva)</span></div>
+                            <button onclick="directReserveExperience('Café da Manhã Colonial', 44.99)" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
                                 <i class="fa-brands fa-whatsapp"></i>
                                 <span>Reservar Café via WhatsApp</span>
                             </button>
@@ -241,7 +242,8 @@
 
                 <!-- Almoço da Fazenda -->
                 <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden flex flex-col hover:shadow-md transition-all">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Almoço no Fogão a Lenha" class="h-48 w-full object-cover">
+                    <!-- FOTO ALMOÇO -->
+                    <img src="almoco.jpg" onerror="this.onerror=null; this.src='almoco.JPG';" alt="Almoço na Fazenda" class="h-48 w-full object-cover">
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Almoço Comida da Roça</h3>
@@ -254,13 +256,48 @@
                             </ul>
                         </div>
                         <div>
-                            <div class="text-lg font-bold text-brand-brown mb-3">R$ 80,00 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
-                            <button onclick="directReserveExperience('Almoço Comida da Roça', 80.00)" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
+                            <div class="text-lg font-bold text-brand-brown mb-3">R$ 60,00 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
+                            <button onclick="directReserveExperience('Almoço Comida da Roça', 60.00)" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
                                 <i class="fa-brands fa-whatsapp"></i>
                                 <span>Reservar Almoço via WhatsApp</span>
                             </button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Funciona Nossas Entregas / Logística -->
+    <section class="py-16 bg-white border-t border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-brand-gold font-bold text-xs uppercase tracking-widest block mb-2">Logística Própria Refrigerada</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mb-4">Entregas Fresquinhas Diretamente na Sua Porta</h2>
+                    <p class="text-stone-600 text-sm leading-relaxed mb-6">
+                        Leve o sabor artesanal do campo diretamente para a sua mesa! Garantimos o transporte refrigerado mantendo toda a cremosidade, sabor e frescor dos nossos queijos e doces A2A2.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-truck-ramp-box text-brand-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Entregas Semanais Programadas</h4>
+                                <p class="text-stone-500 text-xs">Entregamos em Assis, Cândido Mota e Paraguaçu Paulista com horários facilitados.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-temperature-arrow-down text-brand-gold text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Cadeia de Frio Garantida</h4>
+                                <p class="text-stone-500 text-xs">Produtos mantidos na temperatura ideal do laticínio até a sua geladeira.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <!-- FOTO DA VAN DE ENTREGAS -->
+                    <img src="entregas.jpg" onerror="this.onerror=null; this.src='entregas.JPG';" alt="Como Funcionam Nossas Entregas" class="rounded-3xl shadow-lg border border-stone-200 w-full object-cover max-h-96">
                 </div>
             </div>
         </div>
@@ -344,11 +381,11 @@
                         </div>
                     </div>
                     <div class="space-y-3">
-                        <a href="https://maps.google.com/?q=Fazenda+Bufalas+Sao+Joao+Assis" target="_blank" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-xl shadow transition-colors flex items-center justify-center space-x-2 text-sm">
+                        <a href="https://maps.google.com/?q=-22.413900,-50.614201" target="_blank" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-xl shadow transition-colors flex items-center justify-center space-x-2 text-sm">
                             <i class="fa-solid fa-map-location-dot"></i>
                             <span>Abrir no Google Maps</span>
                         </a>
-                        <a href="https://waze.com/ul?q=Fazenda+Bufalas+Sao+Joao" target="_blank" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-medium py-3 px-4 rounded-xl shadow transition-colors flex items-center justify-center space-x-2 text-sm">
+                        <a href="https://waze.com/ul?ll=-22.413900,-50.614201&navigate=yes" target="_blank" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-medium py-3 px-4 rounded-xl shadow transition-colors flex items-center justify-center space-x-2 text-sm">
                             <i class="fa-solid fa-diamond-turn-right"></i>
                             <span>Abrir no Waze GPS</span>
                         </a>
@@ -357,17 +394,17 @@
 
                 <!-- Interactive Map Frame -->
                 <div class="lg:col-span-2 bg-stone-200 rounded-2xl overflow-hidden shadow-sm min-h-[320px] relative border border-stone-300">
-                    <iframe class="w-full h-full min-h-[350px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58682.49212001479!2d-50.4578125!3d-22.6644444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x949a200155555555%3A0x123456789abcdef!2sAssis%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1650000000000!5m2!1spt-BR!2sbr" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe class="w-full h-full min-h-[350px]" src="https://maps.google.com/maps?q=-22.413900,-50.614201&t=&z=15&ie=UTF8&iwloc=&output=embed" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 30 FAQs Accordion with Search -->
+    <!-- FAQs Accordion with Search -->
     <section id="faq" class="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
             <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Tire Suas Dúvidas</span>
-            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">30 Dúvidas Frequentes (FAQ)</h2>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Dúvidas Frequentes (FAQ)</h2>
             <p class="text-stone-600 text-sm mt-2">Pesquise abaixo qualquer dúvida sobre leite A2A2, entrega, passeios e estrutura.</p>
 
             <!-- Search input for FAQs -->
@@ -429,8 +466,8 @@
                         <input type="text" id="custBairro" placeholder="Bairro *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
                     </div>
                     <input type="text" id="custAddress" placeholder="Endereço Completo e Número *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
-                    <select id="custPayment" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
-                        <option value="Pix (5% de Desconto)">Pix (Com 5% de Desconto Especial)</option>
+                    <select id="custPayment" onchange="calculateCartTotal()" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
+                        <option value="Pix">Pix (5% de Desconto)</option>
                         <option value="Cartão de Crédito/Débito">Cartão na Entrega</option>
                         <option value="Dinheiro">Dinheiro</option>
                     </select>
@@ -469,7 +506,7 @@
             </div>
             <div>
                 <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Contato & Atendimento</h4>
-                <p class="text-xs text-stone-400 mb-2"><i class="fa-brands fa-whatsapp text-green-500 mr-1.5"></i> (18) 99999-9999</p>
+                <p class="text-xs text-stone-400 mb-2"><i class="fa-brands fa-whatsapp text-green-500 mr-1.5"></i> (18) 99643-8262</p>
                 <p class="text-xs text-stone-400"><i class="fa-solid fa-clock text-brand-gold mr-1.5"></i> Atendimento: Terça a Domingo, das 08h às 18h</p>
             </div>
         </div>
@@ -481,9 +518,9 @@
     <!-- JavaScript Application Logic -->
     <script>
         // Phone Number Configuration
-        const WHATSAPP_PHONE = "5518999999999";
+        const WHATSAPP_PHONE = "5518996438262";
 
-        // Products Catalog Data
+        // Products Catalog Data (COM AS FOTOS REAIS DA SUA PASTA)
         const products = [
             {
                 id: 'p1',
@@ -492,82 +529,68 @@
                 price: 35.00,
                 unit: 'un (aprox. 450g)',
                 desc: 'Suave, extremamente fresco e leve. Feito 100% com leite A2A2 de búfala de altíssima digestibilidade.',
-                img: 'https://images.unsplash.com/photo-1559561853-08451507cbe7?auto=format&fit=crop&w=500&q=80',
+                img: 'queijo-fresco.jpg',
+                fallbackImg: 'queijo-fresco.JPG',
                 badge: 'Mais Vendido'
             },
             {
                 id: 'p2',
-                name: 'Mozzarella de Búfala em Bola (Bocconcini)',
+                name: 'Mozzarella de Búfala',
                 category: 'queijos',
                 price: 38.00,
-                unit: 'pote 400g (massa suada)',
+                unit: 'pote 400g',
                 desc: 'Tradicional mozzarella no soro. Textura aveludada e macia, perfeita para saladas Caprese e pizzas gourmets.',
-                img: 'https://images.unsplash.com/photo-1592417817098-8f3d6ef23a81?auto=format&fit=crop&w=500&q=80',
+                img: 'mozzarella.jpg',
+                fallbackImg: 'mozzarella.JPG',
                 badge: 'Gourmet'
             },
             {
                 id: 'p3',
-                name: 'Requeijão Cremoso de Búfala A2A2',
-                category: 'doces',
-                price: 28.00,
-                unit: 'pote de vidro 250g',
-                desc: 'Cremosidade incomparável sem adição de amidos ou gorduras vegetais. 100% puro creme de búfala.',
-                img: 'https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=500&q=80',
-                badge: 'Destaque'
+                name: 'Burrata de Búfala A2A2',
+                category: 'queijos',
+                price: 45.00,
+                unit: 'un (300g)',
+                desc: 'Bolsa de mozzarella recheada com fios macios de massa e natas frescas de leite de búfala.',
+                img: 'burrata.jpg',
+                fallbackImg: 'burrata.JPG',
+                badge: 'Premium'
             },
             {
                 id: 'p4',
+                name: 'Tábua de Queijos Artesanais',
+                category: 'kits',
+                price: 75.00,
+                unit: 'Tábua Variada',
+                desc: 'Seleção especial de queijos curados e frescos para recepção e mesa de café.',
+                img: 'tábua-queijos.jpg',
+                fallbackImg: 'tábua-queijos.JPG',
+                badge: 'Kit Degustação'
+            },
+            {
+                id: 'p5',
                 name: 'Doce de Leite de Búfala Cremoso',
                 category: 'doces',
                 price: 32.00,
                 unit: 'pote de vidro 400g',
-                desc: 'Cozido lentamente em tacho de cobre. Sabor rico, menor teor de açúcar e consistência incrível.',
-                img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=500&q=80',
+                desc: 'Cozido lentamente com leite de búfala puro. Sabor rico e consistência incrível.',
+                img: 'doce-leite.jpg',
+                fallbackImg: 'doce-leite.JPG',
                 badge: 'Artesanal'
             },
             {
-                id: 'p5',
-                name: 'Queijo Manta de Mozzarella de Búfala',
-                category: 'queijos',
-                price: 42.00,
-                unit: 'un (aprox. 500g)',
-                desc: 'Manta recheável dobrada artesanalmente. Ideal para rocamboles recheados com tomate seco e manjericão.',
-                img: 'https://images.unsplash.com/photo-1626957341926-98752fc2ba90?auto=format&fit=crop&w=500&q=80',
-                badge: 'Especial'
-            },
-            {
                 id: 'p6',
-                name: 'Burrata de Búfala A2A2 Tradicional',
-                category: 'queijos',
-                price: 45.00,
-                unit: 'un (300g com creme stracciatella)',
-                desc: 'Bolsa de mozzarella recheada com fios macios de massa e natas frescas de leite de búfala.',
-                img: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=500&q=80',
-                badge: 'Premium'
-            },
-            {
-                id: 'p7',
-                name: 'Kit Degustação Família Búfalas São João',
-                category: 'kits',
-                price: 135.00,
-                unit: 'Kit Completo com 4 produtos',
-                desc: 'Contém: 1 Frescal, 1 Pote de Mozzarella em Bola, 1 Requeijão Cremoso e 1 Doce de Leite de Búfala.',
-                img: 'https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=500&q=80',
-                badge: 'Melhor Custo-Benefício'
-            },
-            {
-                id: 'p8',
-                name: 'Ricota Fresca de Búfala A2A2',
-                category: 'queijos',
-                price: 24.00,
-                unit: 'un (aprox. 350g)',
-                desc: 'Ultra leve, rica em soroproteínas de alto valor biológico e baixíssimo teor de gordura.',
-                img: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=500&q=80',
-                badge: 'Leve & Saudável'
+                name: 'Doces Caseiros (Bolos)',
+                category: 'doces',
+                price: 22.00,
+                unit: 'unidade',
+                desc: 'Bolos e doces feitos com carinho no fogão a lenha da fazenda.',
+                img: 'doces.jpg',
+                fallbackImg: 'doces.JPG',
+                badge: 'Fresquinho'
             }
         ];
 
-        // 30 Complete FAQs
+        // FAQs
         const faqList = [
             { q: "O que é leite A2A2 e por que ele é melhor para a digestão?", a: "O leite A2A2 contém apenas a proteína beta-caseína A2. Diferente do leite convencional (A1), ele não produz o peptídeo BCM-7 durante a digestão, evitando estufamento, dores e desconfortos abdominais." },
             { q: "Quem tem intolerância à lactose pode consumir derivados de búfala?", a: "O leite de búfala possui proteína A2A2 que elimina desconfortos proteicos. Embora contenha uma taxa natural menor de lactose, pessoas com lactose severa devem avaliar a tolerância individual ou optar por enzimas." },
@@ -578,27 +601,7 @@
             { q: "Quais cidades recebem a entrega dos produtos A2A2?", a: "Realizamos entregas refrigeradas semanais diretamente em residências nas cidades de Assis, Cândido Mota e Paraguaçu Paulista." },
             { q: "Qual é o valor da taxa de frete para entregas?", a: "Entregas em Assis e Cândido Mota possuem frete de R$ 8,00. Em Paraguaçu Paulista é R$ 12,00. Você também pode escolher retirar diretamente na fazenda gratuitamente." },
             { q: "Como é calculado o valor final do meu pedido no WhatsApp?", a: "Nosso sistema calcula automaticamente a somatória item a item (quantidade x valor unitário), adiciona o frete da cidade e aplica eventuais descontos do método de pagamento." },
-            { q: "Quais as formas de pagamento aceitas?", a: "Aceitamos Pix (com 5% de desconto automático na compra), Cartão de Crédito, Débito e Dinheiro." },
-            { q: "Como devo armazenar o Queijo Frescal e a Mozzarella?", a: "Devem ser mantidos sob refrigeração entre 1°C e 8°C. A mozzarella em bola deve ser mantida imersa em seu próprio soro até o consumo." },
-            { q: "A fazenda possui estacionamento próprio?", a: "Sim! Dispomos de estacionamento amplo, gratuito e fechado com capacidade para carros e ônibus de excursão." },
-            { q: "É necessário reservar o Passeio com Búfalas com antecedência?", a: "Sim, recomendamos a reserva prévia pelo WhatsApp para garantirmos a melhor recepção e limitar o número de visitantes por horário." },
-            { q: "O que está incluso no Café da Manhã Colonial?", a: "Inclui mesa farta com queijos A2A2 frescos e curados, requeijão de raspa, geleias, sucos naturais, bolos e café passado na hora no fogão a lenha." },
-            { q: "O Almoço Caipira oferece opções para vegetarianos?", a: "Sim! O buffet do fogão a lenha oferece ampla variedade de saladas orgânicas, pratos à base de legumes e queijos de búfala grelhados." },
-            { q: "Crianças pagam pelo passeio e refeições?", a: "Crianças até 5 anos não pagam. De 6 a 10 anos pagam meia-entrada nas refeições e passeios." },
-            { q: "Posso levar meu pet para a fazenda (Pet Friendly)?", a: "Sim, somos Pet Friendly! Pedimos apenas que cães fiquem na coleira nas áreas comuns e próximas aos animais da fazenda." },
-            { q: "Os produtos são inspecionados pelos órgãos de saúde?", a: "Sim! Todos os nossos laticínios possuem registro e inspeção sanitária oficial, seguindo rigorosos padrões de higiene." },
-            { q: "A fazenda tem espaço para eventos privados ou festas?", a: "Sim! Realizamos festas de aniversário, eventos corporativos e passeios escolares com agendamento prévio de data." },
-            { q: "O doce de leite de búfala é muito doce?", a: "Não, ele é conhecido pelo sabor suave e caramelizado sem ser enjoativo, pois o leite de búfala é naturalmente mais encorpado e cremoso." },
-            { q: "O que é o Requeijão de Raspa de Búfala?", a: "É um requeijão tradicionalíssimo feito com as raspas do tacho de cozimento, entregando um toque levemente defumado e textura incomparável." },
-            { q: "É possível comprar os produtos diretamente na fazenda?", a: "Sim! Nosso empório físico na fazenda funciona no mesmo horário de visitação para você levar produtos frescos para casa." },
-            { q: "Qual a durabilidade (validade) dos queijos frescos?", a: "Os queijos frescos duram em média 15 a 20 dias bem refrigerados. Queijos curados e doces possuem durabilidade maior de até 60 dias." },
-            { q: "Em quais dias são feitas as entregas nas cidades vizinhas?", a: "Fazemos entregas em Assis e Cândido Mota de terça a sábado. Em Paraguaçu Paulista, as entregas ocorrem às quartas e sextas-feiras." },
-            { q: "Existe quantidade mínima para fazer pedido para entrega?", a: "Apenas um pedido mínimo de R$ 30,00 para viabilizar a rota refrigerada de entregas." },
-            { q: "Como chegar na fazenda a partir de Assis?", a: "Basta seguir pela Rodovia Raposo Tavares sentido Cândido Mota/Paraguaçu por cerca de 15 min. Há placas sinalizadoras no acesso rural." },
-            { q: "A fazenda possui área coberta em caso de chuva?", a: "Sim! Toda a área do restaurante, empório, banheiros e deque de recepção é coberta e protegida do tempo." },
-            { q: "Posso encomendar tábuas de queijos personalizadas?", a: "Com certeza! Montamos tábuas de frios e queijos A2A2 personalizadas para eventos e reuniões sob encomenda prévia." },
-            { q: "Qual o benefício do soro da mozzarella de búfala?", a: "O soro conserva a umidade e o sal na medida certa, mantendo a bola de mozzarella macia por muito mais tempo na geladeira." },
-            { q: "Como entrar em contato diretamente com o proprietário?", a: "Você pode clicar em qualquer botão de WhatsApp deste site para falar diretamente com nossa equipe de atendimento familiar!" }
+            { q: "Quais as formas de pagamento aceitas?", a: "Aceitamos Pix (com 5% de desconto automático na compra), Cartão de Crédito, Débito e Dinheiro." }
         ];
 
         // Shopping Cart State
@@ -617,14 +620,17 @@
             grid.innerHTML = '';
 
             items.forEach(p => {
-                const itemTotalQuick = p.price; // initial 1x sum
+                // Configura a imagem principal e a de fallback (caso a extensão esteja em maiúsculo)
+                const imgSrc = p.img;
+                const fallbackAttr = p.fallbackImg ? `onerror="this.onerror=null; this.src='${p.fallbackImg}';"` : '';
+                
                 const cardHtml = `
                     <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                         <div class="relative cursor-pointer" onclick="openProductModal('${p.id}')">
                             <span class="absolute top-3 left-3 z-10 bg-stone-900/80 backdrop-blur text-brand-gold text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
                                 ${p.badge}
                             </span>
-                            <img src="${p.img}" alt="${p.name}" class="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="${imgSrc}" ${fallbackAttr} alt="${p.name}" class="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-5 flex-1 flex flex-col justify-between">
                             <div>
@@ -686,13 +692,14 @@
             window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // Direct WhatsApp Booking for Experiences (Buffalo Ride, Breakfast, Lunch)
+        // Direct WhatsApp Booking for Experiences
         function directReserveExperience(title, price) {
+            let priceText = price > 0 ? `(R$ ${price.toFixed(2).replace('.', ',')} por pessoa) = *R$ ${price.toFixed(2).replace('.', ',')}*` : '(Consultar valor)';
+            
             const message = `*RESERVA DE EXPERIÊNCIA - BÚFALAS SÃO JOÃO*\n` +
                 `----------------------------------------\n` +
-                `• 1x ${title} (R$ ${price.toFixed(2).replace('.', ',')} por pessoa) = *R$ ${price.toFixed(2).replace('.', ',')}*\n` +
-                `----------------------------------------\n` +
-                `*TOTAL DA RESERVA (1 PESSOA): R$ ${price.toFixed(2).replace('.', ',')}*\n\n` +
+                `• 1x ${title} ${priceText}\n` +
+                `----------------------------------------\n\n` +
                 `Olá! Gostaria de agendar esta experiência para a minha família. Como funcionam os horários para este fim de semana?`;
 
             window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
@@ -703,9 +710,10 @@
             const p = products.find(item => item.id === id);
             if (!p) return;
 
+            const fallbackAttr = p.fallbackImg ? `onerror="this.onerror=null; this.src='${p.fallbackImg}';"` : '';
             const modalContent = document.getElementById('modalContent');
             modalContent.innerHTML = `
-                <img src="${p.img}" alt="${p.name}" class="h-56 w-full object-cover">
+                <img src="${p.img}" ${fallbackAttr} alt="${p.name}" class="h-56 w-full object-cover">
                 <div class="p-6">
                     <span class="bg-brand-gold/20 text-stone-900 border border-brand-gold/40 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2 inline-block">
                         ${p.badge} • Leite A2A2
@@ -808,7 +816,7 @@
                 const itemSum = item.price * item.qty;
                 container.innerHTML += `
                     <div class="flex items-center justify-between bg-stone-50 p-3 rounded-xl border border-stone-200">
-                        <img src="${item.img}" alt="${item.name}" class="w-12 h-12 rounded-lg object-cover">
+                        <img src="${item.img}" onerror="this.src='${item.fallbackImg}'" alt="${item.name}" class="w-12 h-12 rounded-lg object-cover">
                         <div class="flex-1 px-3">
                             <h4 class="font-bold text-xs text-stone-900 line-clamp-1">${item.name}</h4>
                             <p class="text-[11px] text-stone-500">R$ ${item.price.toFixed(2).replace('.', ',')} un</p>
@@ -837,7 +845,7 @@
             if (city === 'Retirada') freight = 0.00;
 
             let discount = 0;
-            if (payment.includes('Pix')) {
+            if (payment === 'Pix') {
                 discount = subtotal * 0.05; // 5% discount
             }
 
