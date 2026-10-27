@@ -55,7 +55,6 @@
     <header class="sticky top-0 z-40 glass-header border-b border-stone-200/60 shadow-sm transition-all duration-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-3 group">
-                <!-- LOGO -->
                 <img src="logo.png" onerror="this.onerror=null; this.src='logo.PNG';" alt="Búfalas São João Logo" class="w-12 h-12 rounded-full object-cover shadow-md group-hover:scale-105 transition-transform border border-brand-gold">
                 <div>
                     <span class="block font-serif font-bold text-xl text-brand-dark tracking-tight leading-none">Búfalas São João</span>
@@ -101,7 +100,6 @@
     <!-- Hero Section -->
     <section class="relative bg-stone-900 text-white overflow-hidden py-20 lg:py-28">
         <div class="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
-            <!-- FOTO BÚFALA -->
             <img src="bufala.jpg" onerror="this.onerror=null; this.src='bufala.JPG';" alt="Fazenda Búfalas São João" class="w-full h-full object-cover">
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -155,7 +153,7 @@
         </div>
     </section>
 
-    <!-- E-Commerce Section (CATÁLOGO COMPLETO) -->
+    <!-- E-Commerce Section -->
     <section id="produtos" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
             <div>
@@ -165,7 +163,7 @@
             <!-- Category Filters -->
             <div class="mt-4 md:mt-0 flex flex-wrap gap-2" id="categoryFilters">
                 <button onclick="filterCategory('all')" class="cat-btn active bg-stone-900 text-white text-xs px-4 py-2 rounded-full font-medium transition-all">Todos os Produtos</button>
-                <button onclick="filterCategory('queijos')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Queijos</button>
+                <button onclick="filterCategory('queijos')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Queijos Frescos & Curados</button>
                 <button onclick="filterCategory('doces')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Doces & Requeijão</button>
             </div>
         </div>
@@ -176,7 +174,7 @@
         </div>
     </section>
 
-    <!-- Experiências & Passeio com Búfalas (TURISMO) -->
+    <!-- Experiências & Passeio com Búfalas -->
     <section id="experiencias" class="py-16 bg-stone-100 border-t border-stone-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
@@ -412,7 +410,7 @@
         </div>
     </section>
 
-    <!-- FAQs Accordion with Search (30 PERGUNTAS) -->
+    <!-- FAQs Accordion with Search -->
     <section id="faq" class="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
             <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Tire Suas Dúvidas</span>
@@ -548,10 +546,10 @@
             },
             {
                 id: 'p2',
-                name: 'Mozzarella de Búfala',
+                name: 'Mozzarella de Búfala em Bola (Bocconcini)',
                 category: 'queijos',
                 price: 38.00,
-                unit: 'pote 400g',
+                unit: 'pote 400g (massa suada)',
                 desc: 'Tradicional mozzarella no soro. Textura aveludada e macia, perfeita para saladas Caprese e pizzas gourmets.',
                 img: 'mozzarella.jpg',
                 fallbackImg: 'mozzarella.JPG',
@@ -559,47 +557,66 @@
             },
             {
                 id: 'p3',
-                name: 'Burrata de Búfala A2A2',
+                name: 'Requeijão Cremoso de Búfala A2A2',
+                category: 'doces',
+                price: 28.00,
+                unit: 'pote de vidro 250g',
+                desc: 'Cremosidade incomparável sem adição de amidos ou gorduras vegetais. 100% puro creme de búfala.',
+                img: 'https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=500&q=80',
+                badge: 'Destaque'
+            },
+            {
+                id: 'p4',
+                name: 'Doce de Leite de Búfala Cremoso',
+                category: 'doces',
+                price: 32.00,
+                unit: 'pote de vidro 400g',
+                desc: 'Cozido lentamente em tacho de cobre com leite de búfala puro. Sabor rico e consistência incrível.',
+                img: 'doce-leite.jpg',
+                fallbackImg: 'doce-leite.JPG',
+                badge: 'Artesanal'
+            },
+            {
+                id: 'p5',
+                name: 'Queijo Manta de Mozzarella de Búfala',
+                category: 'queijos',
+                price: 42.00,
+                unit: 'un (aprox. 500g)',
+                desc: 'Manta recheável dobrada artesanalmente. Ideal para rocamboles recheados com tomate seco e manjericão.',
+                img: 'https://images.unsplash.com/photo-1626957341926-98752fc2ba90?auto=format&fit=crop&w=500&q=80',
+                badge: 'Especial'
+            },
+            {
+                id: 'p6',
+                name: 'Burrata de Búfala A2A2 Tradicional',
                 category: 'queijos',
                 price: 45.00,
-                unit: 'un (300g)',
+                unit: 'un (300g com creme stracciatella)',
                 desc: 'Bolsa de mozzarella recheada com fios macios de massa e natas frescas de leite de búfala.',
                 img: 'burrata.jpg',
                 fallbackImg: 'burrata.JPG',
                 badge: 'Premium'
             },
             {
-                id: 'p4',
-                name: 'Tábua de Queijos Artesanais',
+                id: 'p7',
+                name: 'Kit Degustação Família Búfalas São João',
                 category: 'kits',
-                price: 75.00,
-                unit: 'Tábua Variada',
-                desc: 'Seleção especial de queijos curados e frescos para recepção e mesa de café.',
+                price: 135.00,
+                unit: 'Kit Completo com 4 produtos',
+                desc: 'Contém: 1 Frescal, 1 Pote de Mozzarella em Bola, 1 Requeijão Cremoso e 1 Doce de Leite de Búfala.',
                 img: 'tabua-queijos.jpg',
                 fallbackImg: 'tábua-queijos.JPG',
-                badge: 'Kit Degustação'
+                badge: 'Melhor Custo-Benefício'
             },
             {
-                id: 'p5',
-                name: 'Doce de Leite de Búfala Cremoso',
-                category: 'doces',
-                price: 32.00,
-                unit: 'pote de vidro 400g',
-                desc: 'Cozido lentamente com leite de búfala puro. Sabor rico e consistência incrível.',
-                img: 'doce-leite.jpg',
-                fallbackImg: 'doce-leite.JPG',
-                badge: 'Artesanal'
-            },
-            {
-                id: 'p6',
-                name: 'Doces Caseiros (Bolos)',
-                category: 'doces',
-                price: 22.00,
-                unit: 'unidade',
-                desc: 'Bolos e doces feitos com carinho no fogão a lenha da fazenda.',
-                img: 'doces.jpg',
-                fallbackImg: 'doces.JPG',
-                badge: 'Fresquinho'
+                id: 'p8',
+                name: 'Ricota Fresca de Búfala A2A2',
+                category: 'queijos',
+                price: 24.00,
+                unit: 'un (aprox. 350g)',
+                desc: 'Ultra leve, rica em soroproteínas de alto valor biológico e baixíssimo teor de gordura.',
+                img: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=500&q=80',
+                badge: 'Leve & Saudável'
             }
         ];
 
