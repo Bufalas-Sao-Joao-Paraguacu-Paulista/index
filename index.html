@@ -45,9 +45,9 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col justify-between relative overflow-x-hidden">
 
-    <!-- BARRA DE AVISO NO TOPO -->
+    <!-- BARRA DE AVISO NO TOPO (ATUALIZADA) -->
     <div class="bg-brand-brown text-amber-100 text-xs py-2 px-4 text-center font-medium tracking-wide z-50 relative">
-        <i class="fa-solid fa-truck-fast text-brand-gold mr-1.5"></i> Entregas Semanais Fresquinhas em <strong>Assis, Cândido Mota e Paraguaçu Paulista!</strong>
+        <i class="fa-solid fa-calendar-check text-brand-gold mr-1.5"></i> <strong>Visitas e Restaurante:</strong> Apenas Sábados e Domingos! | <strong>Loja Online:</strong> Pedidos 24h com entregas na região.
     </div>
 
     <!-- CABEÇALHO -->
@@ -103,14 +103,16 @@
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-2xl">
-                <span class="inline-flex items-center space-x-2 bg-brand-gold/20 text-brand-gold border border-brand-gold/40 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
-                    <i class="fa-solid fa-shield-halved"></i> 100% Leite A2A2 de Búfala
-                </span>
+                <!-- SELO DE FIM DE SEMANA -->
+                <div class="inline-flex items-center space-x-2 bg-brand-gold text-stone-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 shadow-lg">
+                    <i class="fa-solid fa-calendar-star"></i> Visitação Apenas Sábados e Domingos
+                </div>
+                
                 <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
                     Pureza Artesanal & Experiência Inesquecível
                 </h1>
                 <p class="text-stone-300 text-base sm:text-lg mb-8 font-light leading-relaxed">
-                    Saboreie queijos e doces artesanais de leite A2A2 e venha vivenciar nosso famoso <strong>Passeio com Búfalas</strong> em uma estrutura completa e higienizada para toda a família.
+                    Saboreie queijos e doces artesanais de leite A2A2 e venha vivenciar nosso famoso <strong>Passeio com Búfalas</strong> nos finais de semana em uma estrutura completa e higienizada para toda a família.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="#produtos" class="inline-flex items-center justify-center space-x-2 gold-gradient hover:opacity-95 text-stone-900 font-bold px-7 py-3.5 rounded-full shadow-lg transition-all text-center">
@@ -135,9 +137,9 @@
                 <p class="text-xs text-stone-300">Fácil digestão</p>
             </div>
             <div class="space-y-1">
-                <i class="fa-solid fa-hand-holding-heart text-brand-gold text-2xl mb-1"></i>
-                <h3 class="font-semibold text-sm">Passeio com Búfalas</h3>
-                <p class="text-xs text-stone-300">Diversão para a família</p>
+                <i class="fa-solid fa-calendar-days text-brand-gold text-2xl mb-1"></i>
+                <h3 class="font-semibold text-sm">Aberto Finais de Semana</h3>
+                <p class="text-xs text-stone-300">Sábados e Domingos</p>
             </div>
             <div class="space-y-1">
                 <i class="fa-solid fa-sparkles text-brand-gold text-2xl mb-1"></i>
@@ -156,7 +158,7 @@
     <section id="produtos" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
             <div>
-                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Loja Virtual</span>
+                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Loja Virtual (Pedidos 24h)</span>
                 <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Nossos Laticínios</h2>
             </div>
             <!-- Filtros -->
@@ -177,9 +179,9 @@
     <section id="experiencias" class="py-16 bg-stone-100 border-t border-stone-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Turismo Rural</span>
+                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Turismo Rural (Sábados e Domingos)</span>
                 <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Viva o Campo</h2>
-                <p class="text-stone-600 mt-3">Venha vivenciar um dia inesquecível na fazenda, interagir com nosso rebanho e saborear a culinária local.</p>
+                <p class="text-stone-600 mt-3">Venha vivenciar um dia inesquecível na fazenda aos finais de semana, interagir com nosso rebanho e saborear a culinária local.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -192,7 +194,7 @@
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Passeio com Búfalas</h3>
-                            <p class="text-stone-600 text-sm mb-4">Conheça de perto, tire fotos e faça o passeio montado em nossas búfalas dóceis.</p>
+                            <p class="text-stone-600 text-sm mb-4">Conheça de perto, tire fotos e faça o passeio montado em nossas búfalas dóceis. (Sábados e Domingos).</p>
                         </div>
                         <button onclick="directReserveExperience('Passeio Interativo com Búfalas')" class="w-full bg-brand-gold hover:bg-brand-goldHover text-stone-900 font-bold py-2.5 rounded-xl shadow transition-colors flex items-center justify-center space-x-2">
                             <i class="fa-brands fa-whatsapp"></i> <span>Reservar Passeio</span>
@@ -206,7 +208,7 @@
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Café da Manhã Colonial</h3>
-                            <p class="text-stone-600 text-sm mb-4">Mesa farta com queijos A2A2, bolos caseiros, sucos e café no fogão a lenha.</p>
+                            <p class="text-stone-600 text-sm mb-4">Mesa farta com queijos A2A2, bolos caseiros, sucos e café no fogão a lenha. (Sábados e Domingos).</p>
                         </div>
                         <div>
                             <div class="text-lg font-bold text-brand-brown mb-3">R$ 44,99 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
@@ -223,7 +225,7 @@
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Almoço na Roça</h3>
-                            <p class="text-stone-600 text-sm mb-4">Comida caipira no fogão a lenha com saladas orgânicas e sobremesas inclusas.</p>
+                            <p class="text-stone-600 text-sm mb-4">Comida caipira no fogão a lenha com saladas orgânicas e sobremesas inclusas. (Sábados e Domingos).</p>
                         </div>
                         <div>
                             <div class="text-lg font-bold text-brand-brown mb-3">R$ 60,00 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
@@ -245,7 +247,7 @@
                     <span class="text-brand-gold font-bold text-xs uppercase tracking-widest block mb-2">Conforto & Respeito</span>
                     <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-6">Infraestrutura Completa</h2>
                     <p class="text-stone-300 font-light mb-6 leading-relaxed">
-                        Prezamos pelo seu bem-estar. Além de amplas áreas verdes e estacionamento gratuito, garantimos uma experiência acolhedora com <strong>banheiros higienizados</strong> e adaptados.
+                        Prezamos pelo seu bem-estar. Além de amplas áreas verdes e estacionamento gratuito, garantimos uma experiência acolhedora com <strong>banheiros higienizados</strong> e adaptados durante todo o final de semana.
                     </p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="flex items-start space-x-3 bg-stone-800/80 p-3.5 rounded-xl border border-stone-700">
@@ -333,9 +335,7 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
     <!-- CARRINHO LATERAL (WHATSAPP SUSPENSO) -->
-    <!-- ========================================== -->
     <div id="cartModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex justify-end transition-opacity">
         <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between overflow-hidden">
             
@@ -365,11 +365,14 @@
                             <option value="Assis">Assis-SP (Frete R$ 8)</option>
                             <option value="Cândido Mota">Cândido Mota-SP (Frete R$ 8)</option>
                             <option value="Paraguaçu Paulista">Paraguaçu P. (Frete R$ 12)</option>
-                            <option value="Retirada">Retirar na Fazenda (Grátis)</option>
+                            <option value="Retirada">Retirar na Fazenda (Grátis)*</option>
                         </select>
                         <input type="text" id="custBairro" placeholder="Bairro *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-brand-gold">
                     </div>
                     <input type="text" id="custAddress" placeholder="Endereço Completo e Número *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-brand-gold">
+                    
+                    <p class="text-[10px] text-stone-500 mt-1">*Retirada na fazenda disponível apenas aos Sábados e Domingos.</p>
+
                     <select id="custPayment" onchange="calculateCartTotal()" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-brand-gold">
                         <option value="Pix">Pix (5% de Desconto)</option>
                         <option value="Cartão de Crédito/Débito">Cartão na Entrega</option>
@@ -409,9 +412,10 @@
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Contato</h4>
+                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Contato & Horários</h4>
                 <p class="text-xs text-stone-400 mb-2"><i class="fa-brands fa-whatsapp text-green-500 mr-1.5"></i> Lary: (18) 99643-8262</p>
                 <p class="text-xs text-stone-400 mb-2"><i class="fa-brands fa-whatsapp text-green-500 mr-1.5"></i> Juliano: (18) 99623-2661</p>
+                <p class="text-xs text-brand-gold font-bold mt-3"><i class="fa-solid fa-clock mr-1.5"></i> Visitação: Sábados e Domingos, das 08h às 18h</p>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-stone-800 pt-6 text-center text-xs text-stone-500">
@@ -435,22 +439,22 @@
             { id: 'p6', name: 'Doces Caseiros (Bolos)', category: 'doces', price: 22.00, unit: 'unidade', desc: 'Bolos feitos no fogão a lenha.', img: 'doces.jpg', fallbackImg: 'doces.JPG', badge: 'Fresquinho' }
         ];
 
-        // 30 FAQs
+        // 30 FAQs (Atualizadas com a informação de fim de semana)
         const faqList = [
+            { q: "Qual o horário e dias de funcionamento da fazenda?", a: "A fazenda abre para visitação, restaurante e passeios APENAS aos SÁBADOS E DOMINGOS, das 08h às 18h. Durante a semana, a equipe foca na produção e entregas." },
+            { q: "Como funciona o Passeio com Búfalas?", a: "O Passeio com Búfalas é uma experiência imersiva aos finais de semana, onde os visitantes interagem diretamente com o rebanho, podem acariciar, tirar fotos e fazer passeios guiados montando em búfalas dóceis sob supervisão." },
             { q: "O que é leite A2A2?", a: "É o leite que contém apenas a proteína beta-caseína A2, de mais fácil digestão, evitando estufamento e desconfortos." },
             { q: "Intolerantes à lactose podem consumir?", a: "O leite de búfala tem menor teor de lactose e proteína A2A2, mas intolerantes severos devem avaliar o consumo." },
-            { q: "Como funciona o Passeio com Búfalas?", a: "Uma experiência imersiva para conhecer, acariciar, tirar fotos e montar nas búfalas dóceis com supervisão." },
             { q: "As búfalas são seguras para crianças?", a: "Sim! Nosso rebanho é adestrado com carinho e o passeio é monitorado para total segurança." },
             { q: "Como são os banheiros?", a: "Possuímos banheiros higienizados constantemente, com fraldário e acessibilidade." },
-            { q: "Qual o horário de funcionamento?", a: "De terça a domingo, das 08h às 18h. Reservas para café e passeios via WhatsApp." },
             { q: "Quais cidades recebem entrega?", a: "Assis, Cândido Mota e Paraguaçu Paulista, com entregas semanais." },
-            { q: "Qual o valor do frete?", a: "Assis e Cândido Mota: R$ 8,00. Paraguaçu: R$ 12,00. Retirada na fazenda é grátis." },
+            { q: "Qual o valor do frete?", a: "Assis e Cândido Mota: R$ 8,00. Paraguaçu: R$ 12,00. Retirada na fazenda (sáb/dom) é grátis." },
             { q: "Como é calculado o pedido?", a: "O sistema soma os itens, adiciona o frete da cidade e aplica desconto se for Pix." },
             { q: "Quais formas de pagamento?", a: "Pix (5% de desconto), Cartão de Crédito, Débito ou Dinheiro." },
             { q: "Como armazenar o queijo fresco?", a: "Sob refrigeração entre 1°C e 8°C." },
             { q: "Tem estacionamento?", a: "Sim, amplo, gratuito e seguro." },
-            { q: "Precisa reservar o passeio?", a: "Recomendamos reservar via WhatsApp para garantir o horário." },
-            { q: "O que tem no Café Colonial?", a: "Queijos A2A2, bolos, sucos, pães e café no fogão a lenha." },
+            { q: "Precisa reservar o passeio?", a: "Recomendamos reservar via WhatsApp para garantir o horário de sábado ou domingo." },
+            { q: "O que tem no Café Colonial?", a: "Queijos A2A2, bolos, sucos, pães e café no fogão a lenha. Servido sábados e domingos." },
             { q: "Tem opção vegetariana no almoço?", a: "Sim, saladas orgânicas e pratos com queijos grelhados." },
             { q: "Crianças pagam?", a: "Até 5 anos não pagam. De 6 a 10 anos pagam meia." },
             { q: "É Pet Friendly?", a: "Sim, com coleira nas áreas comuns." },
@@ -458,7 +462,7 @@
             { q: "Fazem eventos privados?", a: "Sim, aniversários e eventos corporativos com agendamento." },
             { q: "O doce de leite é muito doce?", a: "Não, é suave e cremoso." },
             { q: "O que é Requeijão de Raspa?", a: "Feito das raspas do tacho, sabor levemente defumado." },
-            { q: "Vende na fazenda?", a: "Sim, no empório físico durante o horário de visitação." },
+            { q: "Vende na fazenda?", a: "Sim, no empório físico durante o horário de visitação (Sábados e Domingos)." },
             { q: "Durabilidade dos queijos?", a: "Frescos: 15 a 20 dias. Curados e doces: até 60 dias." },
             { q: "Dias de entrega?", a: "Assis e Cândido: Terça a Sábado. Paraguaçu: Quartas e Sextas." },
             { q: "Pedido mínimo?", a: "R$ 30,00 para viabilizar a entrega." },
@@ -537,7 +541,6 @@
             
             updateCartBadge();
             showToast('Produto adicionado ao carrinho!');
-            // Abre o carrinho automaticamente ao adicionar um item
             document.getElementById('cartModal').classList.remove('hidden');
             renderCartItems();
         }
@@ -666,7 +669,7 @@
         }
 
         function directReserveExperience(title) {
-            const msg = `*RESERVA DE EXPERIÊNCIA - BÚFALAS SÃO JOÃO*%0A%0AGostaria de agendar: *${title}*%0A%0A*Nome:* %0A*Data:* %0A*Pessoas:* `;
+            const msg = `*RESERVA DE EXPERIÊNCIA - BÚFALAS SÃO JOÃO*%0A%0AGostaria de agendar: *${title}* (Sábado ou Domingo)%0A%0A*Nome:* %0A*Data Escolhida:* %0A*Pessoas:* `;
             window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
