@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Búfalas São João - Laticínios A2A2 & Turismo Rural Premium</title>
+    <title>Búfalas São João - Laticínios A2A2 & Turismo Rural</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -36,44 +36,43 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #FAFAF7; color: #1C1917; }
         .font-serif { font-family: 'Playfair Display', serif; }
-        .glass-header { background: rgba(250, 250, 247, 0.88); backdrop-filter: blur(12px); }
-        .badge-a2 { background: linear-gradient(135deg, #15803D 0%, #166534 100%); }
+        .glass-header { background: rgba(250, 250, 247, 0.9); backdrop-filter: blur(12px); }
         .gold-gradient { background: linear-gradient(135deg, #E5B80B 0%, #B89200 100%); }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #E5B80B; border-radius: 4px; }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col justify-between">
+<body class="antialiased min-h-screen flex flex-col justify-between relative overflow-x-hidden">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-brand-brown text-amber-100 text-xs py-2 px-4 text-center font-medium tracking-wide">
+    <!-- BARRA DE AVISO NO TOPO -->
+    <div class="bg-brand-brown text-amber-100 text-xs py-2 px-4 text-center font-medium tracking-wide z-50 relative">
         <i class="fa-solid fa-truck-fast text-brand-gold mr-1.5"></i> Entregas Semanais Fresquinhas em <strong>Assis, Cândido Mota e Paraguaçu Paulista!</strong>
     </div>
 
-    <!-- Header Navigation -->
+    <!-- CABEÇALHO -->
     <header class="sticky top-0 z-40 glass-header border-b border-stone-200/60 shadow-sm transition-all duration-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-3 group">
                 <img src="logo.png" onerror="this.onerror=null; this.src='logo.PNG';" alt="Búfalas São João Logo" class="w-12 h-12 rounded-full object-cover shadow-md group-hover:scale-105 transition-transform border border-brand-gold">
                 <div>
                     <span class="block font-serif font-bold text-xl text-brand-dark tracking-tight leading-none">Búfalas São João</span>
-                    <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">Laticínios & Turismo Rural</span>
+                    <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">Laticínios & Turismo</span>
                 </div>
             </a>
 
-            <!-- Desktop Nav -->
+            <!-- Navegação Desktop -->
             <nav class="hidden md:flex items-center space-x-8 font-medium text-stone-700 text-sm">
                 <a href="#produtos" class="hover:text-brand-gold transition-colors">Empório A2A2</a>
-                <a href="#experiencias" class="hover:text-brand-gold transition-colors">Experiências & Passeio</a>
-                <a href="#infraestrutura" class="hover:text-brand-gold transition-colors">Infraestrutura</a>
-                <a href="#faq" class="hover:text-brand-gold transition-colors">Dúvidas Frequentes</a>
-                <a href="#como-chegar" class="hover:text-brand-gold transition-colors">Como Chegar</a>
+                <a href="#experiencias" class="hover:text-brand-gold transition-colors">Passeios & Turismo</a>
+                <a href="#infraestrutura" class="hover:text-brand-gold transition-colors">Estrutura</a>
+                <a href="#faq" class="hover:text-brand-gold transition-colors">Dúvidas</a>
+                <a href="#como-chegar" class="hover:text-brand-gold transition-colors">Localização</a>
             </nav>
 
-            <!-- Actions & Cart trigger -->
+            <!-- Ações e Carrinho -->
             <div class="flex items-center space-x-3">
-                <button id="cartBtn" onclick="toggleCartModal()" class="relative p-3 rounded-full bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors">
+                <button onclick="toggleCartModal()" class="relative p-3 rounded-full bg-stone-100 text-stone-800 hover:bg-stone-200 transition-colors">
                     <i class="fa-solid fa-basket-shopping text-lg"></i>
                     <span id="cartCountBadge" class="hidden absolute -top-1 -right-1 bg-brand-gold text-stone-900 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow">0</span>
                 </button>
@@ -87,17 +86,17 @@
             </div>
         </div>
 
-        <!-- Mobile Navigation Drawer -->
+        <!-- Menu Mobile -->
         <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-stone-200 px-4 pt-3 pb-6 space-y-3">
             <a href="#produtos" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Empório A2A2</a>
-            <a href="#experiencias" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Experiências & Passeio</a>
-            <a href="#infraestrutura" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Infraestrutura Limpa</a>
-            <a href="#faq" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Dúvidas Frequentes</a>
-            <a href="#como-chegar" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Como Chegar</a>
+            <a href="#experiencias" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Passeios & Turismo</a>
+            <a href="#infraestrutura" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Estrutura</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Dúvidas</a>
+            <a href="#como-chegar" onclick="toggleMobileMenu()" class="block font-medium text-stone-800 hover:text-brand-gold py-1">Localização</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- CAPA (HERO) -->
     <section class="relative bg-stone-900 text-white overflow-hidden py-20 lg:py-28">
         <div class="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
             <img src="bufala.jpg" onerror="this.onerror=null; this.src='bufala.JPG';" alt="Fazenda Búfalas São João" class="w-full h-full object-cover">
@@ -105,86 +104,86 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-2xl">
                 <span class="inline-flex items-center space-x-2 bg-brand-gold/20 text-brand-gold border border-brand-gold/40 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
-                    <i class="fa-solid fa-shield-halved"></i> 100% Leite A2A2 Hipoalergênico
+                    <i class="fa-solid fa-shield-halved"></i> 100% Leite A2A2 de Búfala
                 </span>
                 <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
-                    Pureza Artesanal & Experiência Inesquecível do Campo
+                    Pureza Artesanal & Experiência Inesquecível
                 </h1>
                 <p class="text-stone-300 text-base sm:text-lg mb-8 font-light leading-relaxed">
-                    Saboreie queijos e doces artesanais de leite A2A2 de búfala e venha vivenciar nosso famoso <strong>Passeio com Búfalas</strong> em uma estrutura completa com <strong>banheiros super higienizados</strong> para toda a sua família.
+                    Saboreie queijos e doces artesanais de leite A2A2 e venha vivenciar nosso famoso <strong>Passeio com Búfalas</strong> em uma estrutura completa e higienizada para toda a família.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="#produtos" class="inline-flex items-center justify-center space-x-2 gold-gradient hover:opacity-95 text-stone-900 font-bold px-7 py-3.5 rounded-full shadow-lg transition-all text-center">
                         <i class="fa-solid fa-cheese"></i>
-                        <span>Ver Empório de Queijos</span>
+                        <span>Comprar no Empório</span>
                     </a>
                     <a href="#experiencias" class="inline-flex items-center justify-center space-x-2 bg-stone-800 hover:bg-stone-700 text-white border border-stone-600 font-medium px-7 py-3.5 rounded-full transition-all text-center">
                         <i class="fa-solid fa-hippo"></i>
-                        <span>Agendar Passeio com Búfalas</span>
+                        <span>Agendar Passeio</span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Highlight Banner / Benefits Bar -->
+    <!-- BARRA DE BENEFÍCIOS -->
     <section class="bg-brand-brown text-amber-50 py-6 border-y border-amber-950/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div class="space-y-1">
                 <i class="fa-solid fa-heart-pulse text-brand-gold text-2xl mb-1"></i>
                 <h3 class="font-semibold text-sm">Proteína A2A2</h3>
-                <p class="text-xs text-stone-300">Fácil digestão e sem desconforto</p>
+                <p class="text-xs text-stone-300">Fácil digestão</p>
             </div>
             <div class="space-y-1">
                 <i class="fa-solid fa-hand-holding-heart text-brand-gold text-2xl mb-1"></i>
-                <h3 class="font-semibold text-sm">Passeio Interativo</h3>
-                <p class="text-xs text-stone-300">Monte, acaricie e tire fotos</p>
+                <h3 class="font-semibold text-sm">Passeio com Búfalas</h3>
+                <p class="text-xs text-stone-300">Diversão para a família</p>
             </div>
             <div class="space-y-1">
                 <i class="fa-solid fa-sparkles text-brand-gold text-2xl mb-1"></i>
                 <h3 class="font-semibold text-sm">Higiene Impecável</h3>
-                <p class="text-xs text-stone-300">Banheiros limpos e climatizados</p>
+                <p class="text-xs text-stone-300">Banheiros Limpos</p>
             </div>
             <div class="space-y-1">
                 <i class="fa-solid fa-truck-ramp-box text-brand-gold text-2xl mb-1"></i>
                 <h3 class="font-semibold text-sm">Entrega Regional</h3>
-                <p class="text-xs text-stone-300">Assis, Cândido Mota e Paraguaçu</p>
+                <p class="text-xs text-stone-300">Assis, Cândido e Paraguaçu</p>
             </div>
         </div>
     </section>
 
-    <!-- E-Commerce Section -->
+    <!-- E-COMMERCE (CATÁLOGO) -->
     <section id="produtos" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
             <div>
-                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Nosso Empório Fresco</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Laticínio Artesanal A2A2</h2>
+                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Loja Virtual</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Nossos Laticínios</h2>
             </div>
-            <!-- Category Filters -->
-            <div class="mt-4 md:mt-0 flex flex-wrap gap-2" id="categoryFilters">
-                <button onclick="filterCategory('all')" class="cat-btn active bg-stone-900 text-white text-xs px-4 py-2 rounded-full font-medium transition-all">Todos os Produtos</button>
-                <button onclick="filterCategory('queijos')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Queijos Frescos & Curados</button>
-                <button onclick="filterCategory('doces')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Doces & Requeijão</button>
+            <!-- Filtros -->
+            <div class="mt-4 md:mt-0 flex flex-wrap gap-2">
+                <button onclick="filterCategory('all')" class="cat-btn active bg-stone-900 text-white text-xs px-4 py-2 rounded-full font-medium transition-all">Todos</button>
+                <button onclick="filterCategory('queijos')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Queijos</button>
+                <button onclick="filterCategory('doces')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Doces</button>
             </div>
         </div>
 
-        <!-- Product Grid -->
+        <!-- Grid de Produtos -->
         <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Rendered by JS -->
+            <!-- Preenchido via JavaScript -->
         </div>
     </section>
 
-    <!-- Experiências & Passeio com Búfalas -->
+    <!-- EXPERIÊNCIAS / TURISMO -->
     <section id="experiencias" class="py-16 bg-stone-100 border-t border-stone-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Turismo Rural & Vivência</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Experiências no Campo</h2>
-                <p class="text-stone-600 mt-3">Venha vivenciar um dia inesquecível na fazenda, interagir com nosso rebanho dóceis A2A2 e saborear um café rural completo.</p>
+                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Turismo Rural</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Viva o Campo</h2>
+                <p class="text-stone-600 mt-3">Venha vivenciar um dia inesquecível na fazenda, interagir com nosso rebanho e saborear a culinária local.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Highlighted Experience: Passeio com Búfalas -->
+                <!-- Passeio -->
                 <div class="bg-white rounded-2xl shadow-md border-2 border-brand-gold overflow-hidden flex flex-col relative transform hover:-translate-y-1 transition-all">
                     <div class="absolute top-3 right-3 bg-brand-gold text-stone-900 text-xs font-bold px-3 py-1 rounded-full shadow z-10">
                         <i class="fa-solid fa-star"></i> Atração Principal
@@ -192,69 +191,44 @@
                     <img src="bufala.jpg" onerror="this.onerror=null; this.src='bufala.JPG';" alt="Passeio com Búfalas" class="h-48 w-full object-cover">
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Passeio Interativo com Búfalas</h3>
-                            <p class="text-stone-600 text-sm mb-4 leading-relaxed">
-                                Uma vivência única! Conheça de perto, acarinhe, tire fotos incríveis e faça o passeio guiado montado em nossas búfalas dóceis e treinadas para adultos e crianças.
-                            </p>
-                            <ul class="text-xs text-stone-600 space-y-2 mb-6">
-                                <li class="flex items-center"><i class="fa-solid fa-check text-green-600 mr-2"></i> Passeio Guiado e Monitorado</li>
-                                <li class="flex items-center"><i class="fa-solid fa-check text-green-600 mr-2"></i> Sessão de Fotos no Campo</li>
-                                <li class="flex items-center"><i class="fa-solid fa-check text-green-600 mr-2"></i> Alimentação das búfalas com as crianças</li>
-                            </ul>
+                            <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Passeio com Búfalas</h3>
+                            <p class="text-stone-600 text-sm mb-4">Conheça de perto, tire fotos e faça o passeio montado em nossas búfalas dóceis.</p>
                         </div>
-                        <div>
-                            <div class="text-lg font-bold text-brand-brown mb-3">Consulte Valores</div>
-                            <button onclick="directReserveExperience('Passeio Interativo com Búfalas', 0)" class="w-full bg-brand-gold hover:bg-brand-goldHover text-stone-900 font-bold py-2.5 rounded-xl shadow transition-colors flex items-center justify-center space-x-2">
-                                <i class="fa-brands fa-whatsapp"></i>
-                                <span>Reservar Passeio via WhatsApp</span>
-                            </button>
-                        </div>
+                        <button onclick="directReserveExperience('Passeio Interativo com Búfalas')" class="w-full bg-brand-gold hover:bg-brand-goldHover text-stone-900 font-bold py-2.5 rounded-xl shadow transition-colors flex items-center justify-center space-x-2">
+                            <i class="fa-brands fa-whatsapp"></i> <span>Reservar Passeio</span>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Café da Manhã Rural -->
+                <!-- Café -->
                 <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden flex flex-col hover:shadow-md transition-all">
                     <img src="cafe-manha.jpg" onerror="this.onerror=null; this.src='cafe-manha.JPG';" alt="Café Colonial" class="h-48 w-full object-cover">
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Café da Manhã Colonial</h3>
-                            <p class="text-stone-600 text-sm mb-4 leading-relaxed">
-                                Mesa farta com queijos frescos A2A2, requeijão de raspa, bolos caseiros, sucos naturais, pães artesanais e café ferveante feito no fogão a lenha.
-                            </p>
-                            <ul class="text-xs text-stone-600 space-y-2 mb-6">
-                                <li class="flex items-center"><i class="fa-solid fa-check text-green-600 mr-2"></i> Mais de 20 itens artesanais inclusos</li>
-                                <li class="flex items-center"><i class="fa-solid fa-check text-green-600 mr-2"></i> Degustação ilimitada de derivados A2A2</li>
-                            </ul>
+                            <p class="text-stone-600 text-sm mb-4">Mesa farta com queijos A2A2, bolos caseiros, sucos e café no fogão a lenha.</p>
                         </div>
                         <div>
                             <div class="text-lg font-bold text-brand-brown mb-3">R$ 44,99 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
-                            <button onclick="directReserveExperience('Café da Manhã Colonial', 44.99)" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
-                                <i class="fa-brands fa-whatsapp"></i>
-                                <span>Reservar Café via WhatsApp</span>
+                            <button onclick="directReserveExperience('Café da Manhã Colonial')" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
+                                <i class="fa-brands fa-whatsapp"></i> <span>Reservar Café</span>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Almoço da Fazenda -->
+                <!-- Almoço -->
                 <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden flex flex-col hover:shadow-md transition-all">
                     <img src="almoco.jpg" onerror="this.onerror=null; this.src='almoco.JPG';" alt="Almoço na Fazenda" class="h-48 w-full object-cover">
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Almoço Comida da Roça</h3>
-                            <p class="text-stone-600 text-sm mb-4 leading-relaxed">
-                                Comida caipira tradicional preparada no fogão a lenha em panelas de ferro, com saladas orgânicas e sobremesas de doces de búfala inclusos.
-                            </p>
-                            <ul class="text-xs text-stone-600 space-y-2 mb-6">
-                                <li class="flex items-center"><i class="fa-solid fa-check text-green-600 mr-2"></i> Buffet livre no fogão a lenha</li>
-                                <li class="flex items-center"><i class="fa-solid fa-check text-green-600 mr-2"></i> Sobremesas de Leite de Búfala inclusas</li>
-                            </ul>
+                            <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Almoço na Roça</h3>
+                            <p class="text-stone-600 text-sm mb-4">Comida caipira no fogão a lenha com saladas orgânicas e sobremesas inclusas.</p>
                         </div>
                         <div>
                             <div class="text-lg font-bold text-brand-brown mb-3">R$ 60,00 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
-                            <button onclick="directReserveExperience('Almoço Comida da Roça', 60.00)" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
-                                <i class="fa-brands fa-whatsapp"></i>
-                                <span>Reservar Almoço via WhatsApp</span>
+                            <button onclick="directReserveExperience('Almoço Comida da Roça')" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
+                                <i class="fa-brands fa-whatsapp"></i> <span>Reservar Almoço</span>
                             </button>
                         </div>
                     </div>
@@ -263,146 +237,70 @@
         </div>
     </section>
 
-    <!-- Como Funciona Nossas Entregas / Logística -->
-    <section class="py-16 bg-white border-t border-stone-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <span class="text-brand-gold font-bold text-xs uppercase tracking-widest block mb-2">Logística Própria Refrigerada</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mb-4">Entregas Fresquinhas Diretamente na Sua Porta</h2>
-                    <p class="text-stone-600 text-sm leading-relaxed mb-6">
-                        Leve o sabor artesanal do campo diretamente para a sua mesa! Garantimos o transporte refrigerado mantendo toda a cremosidade, sabor e frescor dos nossos queijos e doces A2A2.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <i class="fa-solid fa-truck-ramp-box text-brand-gold text-xl mt-1"></i>
-                            <div>
-                                <h4 class="font-bold text-stone-900 text-sm">Entregas Semanais Programadas</h4>
-                                <p class="text-stone-500 text-xs">Entregamos em Assis, Cândido Mota e Paraguaçu Paulista com horários facilitados.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <i class="fa-solid fa-temperature-arrow-down text-brand-gold text-xl mt-1"></i>
-                            <div>
-                                <h4 class="font-bold text-stone-900 text-sm">Cadeia de Frio Garantida</h4>
-                                <p class="text-stone-500 text-xs">Produtos mantidos na temperatura ideal do laticínio até a sua geladeira.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <img src="entregas.jpg" onerror="this.onerror=null; this.src='entregas.JPG';" alt="Como Funcionam Nossas Entregas" class="rounded-3xl shadow-lg border border-stone-200 w-full object-cover max-h-96">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Infraestrutura e Banheiros Higienizados -->
+    <!-- INFRAESTRUTURA -->
     <section id="infraestrutura" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-stone-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                 <div>
-                    <span class="text-brand-gold font-bold text-xs uppercase tracking-widest block mb-2">Conforto & Respeito ao Visitante</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-6">Infraestrutura Completa com Banheiros Impecáveis</h2>
+                    <span class="text-brand-gold font-bold text-xs uppercase tracking-widest block mb-2">Conforto & Respeito</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-6">Infraestrutura Completa</h2>
                     <p class="text-stone-300 font-light mb-6 leading-relaxed">
-                        Prezamos pelo seu bem-estar absoluto. Além de amplas áreas verdes arborizadas e estacionamento gratuito, garantimos uma experiência acolhedora com <strong>banheiros higienizados de padrão superior</strong>.
+                        Prezamos pelo seu bem-estar. Além de amplas áreas verdes e estacionamento gratuito, garantimos uma experiência acolhedora com <strong>banheiros higienizados</strong> e adaptados.
                     </p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="flex items-start space-x-3 bg-stone-800/80 p-3.5 rounded-xl border border-stone-700">
                             <i class="fa-solid fa-pump-soap text-brand-gold text-xl mt-0.5"></i>
                             <div>
                                 <h4 class="font-semibold text-sm">Banheiros Sanitizados</h4>
-                                <p class="text-xs text-stone-400">Limpeza e higienização contínuas durante todo o evento.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3 bg-stone-800/80 p-3.5 rounded-xl border border-stone-700">
-                            <i class="fa-solid fa-baby text-brand-gold text-xl mt-0.5"></i>
-                            <div>
-                                <h4 class="font-semibold text-sm">Fraldário e Acessibilidade</h4>
-                                <p class="text-xs text-stone-400">Ambiente adaptado para bebês, idosos e PWD.</p>
+                                <p class="text-xs text-stone-400">Limpeza contínua.</p>
                             </div>
                         </div>
                         <div class="flex items-start space-x-3 bg-stone-800/80 p-3.5 rounded-xl border border-stone-700">
                             <i class="fa-solid fa-square-parking text-brand-gold text-xl mt-0.5"></i>
                             <div>
                                 <h4 class="font-semibold text-sm">Estacionamento Amplo</h4>
-                                <p class="text-xs text-stone-400">Área privativa e segura para carros e ônibus.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3 bg-stone-800/80 p-3.5 rounded-xl border border-stone-700">
-                            <i class="fa-solid fa-tree text-brand-gold text-xl mt-0.5"></i>
-                            <div>
-                                <h4 class="font-semibold text-sm">Área de Lazer Arborizada</h4>
-                                <p class="text-xs text-stone-400">Redários, sombra de árvores nativas e parquinho.</p>
+                                <p class="text-xs text-stone-400">Seguro e gratuito.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Banheiros e Estrutura Limpa" class="rounded-2xl shadow-xl object-cover h-80 sm:h-96 w-full border border-stone-700">
-                    <div class="absolute bottom-4 left-4 right-4 bg-stone-900/90 backdrop-blur p-4 rounded-xl border border-stone-700 text-center">
-                        <p class="text-xs text-stone-300 font-medium">✨ "Lugar maravilhosamente limpo e banheiros impecáveis para toda a família." — Avaliação do Visitante</p>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Estrutura Limpa" class="rounded-2xl shadow-xl object-cover h-80 w-full border border-stone-700">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Como Chegar Section -->
+    <!-- LOCALIZAÇÃO -->
     <section id="como-chegar" class="py-16 bg-stone-100 border-t border-stone-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Localização Privilegiada</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Onde Nos Achar</h2>
-                <p class="text-stone-600 mt-2">Estamos localizados bem pertinho de Assis, Cândido Mota e Paraguaçu Paulista.</p>
+                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Onde Nos Achar</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Localização Privilegiada</h2>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-                <!-- Direct Routing Options & Contacts -->
                 <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between">
                     <div>
                         <h3 class="font-serif text-xl font-bold text-stone-900 mb-4"><i class="fa-solid fa-route text-brand-gold mr-2"></i>Contato Rápido</h3>
-                        
-                        <!-- Informações de Telefone -->
                         <div class="space-y-3 mb-6 bg-stone-50 p-4 rounded-xl border border-stone-100">
                             <p class="text-sm font-semibold text-stone-800 flex items-center gap-2">
-                                <i class="fa-brands fa-whatsapp text-green-600"></i> 
-                                Lary: <a href="https://wa.me/5518996438262" target="_blank" class="hover:underline text-stone-600">(18) 99643-8262</a>
+                                <i class="fa-brands fa-whatsapp text-green-600"></i> Lary: <a href="https://wa.me/5518996438262" target="_blank" class="hover:underline text-stone-600">(18) 99643-8262</a>
                             </p>
                             <p class="text-sm font-semibold text-stone-800 flex items-center gap-2">
-                                <i class="fa-brands fa-whatsapp text-green-600"></i> 
-                                Juliano Barbaresco: <a href="https://wa.me/5518996232661" target="_blank" class="hover:underline text-stone-600">(18) 99623-2661</a>
+                                <i class="fa-brands fa-whatsapp text-green-600"></i> Juliano: <a href="https://wa.me/5518996232661" target="_blank" class="hover:underline text-stone-600">(18) 99623-2661</a>
                             </p>
                         </div>
-
-                        <!-- Distâncias -->
-                        <div class="space-y-3 text-xs text-stone-700 mb-6">
-                            <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
-                                <strong>De Assis-SP:</strong> ~18 km (20 min)
-                            </div>
-                            <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
-                                <strong>De Cândido Mota-SP:</strong> ~12 km (15 min)
-                            </div>
-                            <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
-                                <strong>De Paraguaçu Paulista-SP:</strong> ~32 km (30 min)
-                            </div>
-                        </div>
                     </div>
-                    
-                    <!-- Botões de GPS -->
                     <div class="space-y-3">
-                        <a href="https://maps.google.com/?q=-22.413900,-50.614201" target="_blank" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-xl shadow transition-colors flex items-center justify-center space-x-2 text-sm">
-                            <i class="fa-solid fa-map-location-dot"></i>
-                            <span>Traçar Rota no Google Maps</span>
+                        <a href="https://maps.google.com/?q=-22.413900,-50.614201" target="_blank" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl shadow transition-colors flex items-center justify-center space-x-2 text-sm">
+                            <i class="fa-solid fa-map-location-dot"></i> <span>Google Maps</span>
                         </a>
-                        <a href="https://waze.com/ul?ll=-22.413900,-50.614201&navigate=yes" target="_blank" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-medium py-3 px-4 rounded-xl shadow transition-colors flex items-center justify-center space-x-2 text-sm">
-                            <i class="fa-solid fa-diamond-turn-right"></i>
-                            <span>Traçar Rota no Waze</span>
+                        <a href="https://waze.com/ul?ll=-22.413900,-50.614201&navigate=yes" target="_blank" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-medium py-3 rounded-xl shadow transition-colors flex items-center justify-center space-x-2 text-sm">
+                            <i class="fa-solid fa-diamond-turn-right"></i> <span>Waze GPS</span>
                         </a>
                     </div>
                 </div>
-
-                <!-- Interactive Map Frame -->
                 <div class="lg:col-span-2 bg-stone-200 rounded-2xl overflow-hidden shadow-sm min-h-[320px] relative border border-stone-300">
                     <iframe class="w-full h-full min-h-[400px]" src="https://maps.google.com/maps?q=-22.413900,-50.614201&t=&z=15&ie=UTF8&iwloc=&output=embed" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
@@ -410,94 +308,90 @@
         </div>
     </section>
 
-    <!-- FAQs Accordion with Search -->
+    <!-- FAQ (30 DÚVIDAS) -->
     <section id="faq" class="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
             <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Tire Suas Dúvidas</span>
-            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Dúvidas Frequentes (FAQ)</h2>
-            <p class="text-stone-600 text-sm mt-2">Pesquise abaixo qualquer dúvida sobre leite A2A2, entrega, passeios e estrutura.</p>
-
-            <!-- Search input for FAQs -->
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-1">Dúvidas Frequentes</h2>
             <div class="mt-6 max-w-md mx-auto relative">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-stone-400"></i>
-                <input type="text" id="faqSearchInput" onkeyup="filterFAQs()" placeholder="Pesquisar pergunta (ex: A2A2, entrega, passeio, banheiro...)" class="w-full pl-11 pr-4 py-3 bg-white border border-stone-300 rounded-full text-sm focus:outline-none focus:border-brand-gold shadow-sm">
+                <input type="text" id="faqSearchInput" onkeyup="filterFAQs()" placeholder="Pesquisar dúvida..." class="w-full pl-11 pr-4 py-3 bg-white border border-stone-300 rounded-full text-sm focus:outline-none focus:border-brand-gold shadow-sm">
             </div>
         </div>
-
-        <!-- FAQ Container -->
         <div id="faqContainer" class="space-y-3">
-            <!-- Rendered by JS -->
+            <!-- Preenchido via JS -->
         </div>
     </section>
 
-    <!-- Quick View / Product Modal -->
+    <!-- MODAL DE PRODUTO (QUICK VIEW) -->
     <div id="productModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transform transition-all relative">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative">
             <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-9 h-9 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-full flex items-center justify-center">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-            <div id="modalContent">
-                <!-- Rendered dynamically -->
-            </div>
+            <div id="modalContent"></div>
         </div>
     </div>
 
-    <!-- Floating Interactive Shopping Cart Drawer -->
+    <!-- ========================================== -->
+    <!-- CARRINHO LATERAL (WHATSAPP SUSPENSO) -->
+    <!-- ========================================== -->
     <div id="cartModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex justify-end transition-opacity">
         <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between overflow-hidden">
-            <!-- Header -->
+            
+            <!-- Header do Carrinho -->
             <div class="p-5 border-b border-stone-200 bg-stone-900 text-white flex items-center justify-between">
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-basket-shopping text-brand-gold text-xl"></i>
-                    <h3 class="font-serif font-bold text-lg">Seu Carrinho A2A2</h3>
+                    <h3 class="font-serif font-bold text-lg">Seu Pedido A2A2</h3>
                 </div>
                 <button onclick="toggleCartModal()" class="text-stone-400 hover:text-white">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
 
-            <!-- Items List -->
+            <!-- Lista de Itens -->
             <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar">
-                <!-- Populated via JS -->
+                <!-- Preenchido via JS -->
             </div>
 
-            <!-- Order Details Form & Checkout -->
+            <!-- Formulário e Finalização -->
             <div class="p-5 border-t border-stone-200 bg-stone-50 space-y-4">
                 <div class="space-y-3">
-                    <h4 class="font-bold text-xs uppercase tracking-wider text-stone-500">Dados para Entrega / Retirada</h4>
-                    <input type="text" id="custName" placeholder="Seu Nome Completo *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-stone-500">Dados para Entrega</h4>
+                    <input type="text" id="custName" placeholder="Seu Nome Completo *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-brand-gold">
                     <div class="grid grid-cols-2 gap-2">
-                        <select id="custCity" onchange="calculateCartTotal()" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
+                        <select id="custCity" onchange="calculateCartTotal()" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-brand-gold">
                             <option value="Assis">Assis-SP (Frete R$ 8)</option>
                             <option value="Cândido Mota">Cândido Mota-SP (Frete R$ 8)</option>
                             <option value="Paraguaçu Paulista">Paraguaçu P. (Frete R$ 12)</option>
-                            <option value="Retirada">Retirar na Fazenda (Frete Grátis)</option>
+                            <option value="Retirada">Retirar na Fazenda (Grátis)</option>
                         </select>
-                        <input type="text" id="custBairro" placeholder="Bairro *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
+                        <input type="text" id="custBairro" placeholder="Bairro *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-brand-gold">
                     </div>
-                    <input type="text" id="custAddress" placeholder="Endereço Completo e Número *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
-                    <select id="custPayment" onchange="calculateCartTotal()" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
+                    <input type="text" id="custAddress" placeholder="Endereço Completo e Número *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-brand-gold">
+                    <select id="custPayment" onchange="calculateCartTotal()" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-brand-gold">
                         <option value="Pix">Pix (5% de Desconto)</option>
                         <option value="Cartão de Crédito/Débito">Cartão na Entrega</option>
                         <option value="Dinheiro">Dinheiro</option>
                     </select>
-                    <textarea id="custNotes" placeholder="Observações do pedido (opcional)..." class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg h-14"></textarea>
                 </div>
 
-                <!-- Price Breakdown Summary -->
+                <!-- Resumo de Valores -->
                 <div id="cartSummary" class="border-t border-stone-200 pt-3 space-y-1 text-xs">
-                    <!-- Populated via JS -->
+                    <!-- Preenchido via JS -->
                 </div>
 
+                <!-- Botão de Envio -->
                 <button onclick="sendCartToWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-sm">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span>Enviar Pedido com Somatória via WhatsApp</span>
+                    <span>Enviar Pedido no WhatsApp</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- RODAPÉ -->
     <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800 text-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
@@ -507,7 +401,7 @@
                 </p>
             </div>
             <div>
-                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Cidades Atendidas com Entrega</h4>
+                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Cidades Atendidas</h4>
                 <ul class="text-xs space-y-1 text-stone-400">
                     <li><i class="fa-solid fa-location-dot text-brand-gold mr-1.5"></i> Assis - SP</li>
                     <li><i class="fa-solid fa-location-dot text-brand-gold mr-1.5"></i> Cândido Mota - SP</li>
@@ -515,169 +409,85 @@
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Contato & Atendimento</h4>
+                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Contato</h4>
                 <p class="text-xs text-stone-400 mb-2"><i class="fa-brands fa-whatsapp text-green-500 mr-1.5"></i> Lary: (18) 99643-8262</p>
                 <p class="text-xs text-stone-400 mb-2"><i class="fa-brands fa-whatsapp text-green-500 mr-1.5"></i> Juliano: (18) 99623-2661</p>
-                <p class="text-xs text-stone-400"><i class="fa-solid fa-clock text-brand-gold mr-1.5"></i> Atendimento: Terça a Domingo, das 08h às 18h</p>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-stone-800 pt-6 text-center text-xs text-stone-500">
-            &copy; 2026 Fazenda Búfalas São João. Todos os direitos reservados. Laticínios A2A2 & Turismo Rural.
+            &copy; 2024 Fazenda Búfalas São João. Todos os direitos reservados.
         </div>
     </footer>
 
-    <!-- JavaScript Application Logic -->
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT (LÓGICA E-COMMERCE) -->
+    <!-- ========================================== -->
     <script>
-        // Phone Number Configuration (Lary)
         const WHATSAPP_PHONE = "5518996438262";
 
-        // Products Catalog Data (COM AS FOTOS REAIS DA SUA PASTA)
+        // Catálogo de Produtos (Com caminhos das imagens locais)
         const products = [
-            {
-                id: 'p1',
-                name: 'Queijo Frescal A2A2 Búfala',
-                category: 'queijos',
-                price: 35.00,
-                unit: 'un (aprox. 450g)',
-                desc: 'Suave, extremamente fresco e leve. Feito 100% com leite A2A2 de búfala de altíssima digestibilidade.',
-                img: 'queijo-fresco.jpg',
-                fallbackImg: 'queijo-fresco.JPG',
-                badge: 'Mais Vendido'
-            },
-            {
-                id: 'p2',
-                name: 'Mozzarella de Búfala em Bola (Bocconcini)',
-                category: 'queijos',
-                price: 38.00,
-                unit: 'pote 400g (massa suada)',
-                desc: 'Tradicional mozzarella no soro. Textura aveludada e macia, perfeita para saladas Caprese e pizzas gourmets.',
-                img: 'mozzarella.jpg',
-                fallbackImg: 'mozzarella.JPG',
-                badge: 'Gourmet'
-            },
-            {
-                id: 'p3',
-                name: 'Requeijão Cremoso de Búfala A2A2',
-                category: 'doces',
-                price: 28.00,
-                unit: 'pote de vidro 250g',
-                desc: 'Cremosidade incomparável sem adição de amidos ou gorduras vegetais. 100% puro creme de búfala.',
-                img: 'https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=500&q=80',
-                badge: 'Destaque'
-            },
-            {
-                id: 'p4',
-                name: 'Doce de Leite de Búfala Cremoso',
-                category: 'doces',
-                price: 32.00,
-                unit: 'pote de vidro 400g',
-                desc: 'Cozido lentamente em tacho de cobre com leite de búfala puro. Sabor rico e consistência incrível.',
-                img: 'doce-leite.jpg',
-                fallbackImg: 'doce-leite.JPG',
-                badge: 'Artesanal'
-            },
-            {
-                id: 'p5',
-                name: 'Queijo Manta de Mozzarella de Búfala',
-                category: 'queijos',
-                price: 42.00,
-                unit: 'un (aprox. 500g)',
-                desc: 'Manta recheável dobrada artesanalmente. Ideal para rocamboles recheados com tomate seco e manjericão.',
-                img: 'https://images.unsplash.com/photo-1626957341926-98752fc2ba90?auto=format&fit=crop&w=500&q=80',
-                badge: 'Especial'
-            },
-            {
-                id: 'p6',
-                name: 'Burrata de Búfala A2A2 Tradicional',
-                category: 'queijos',
-                price: 45.00,
-                unit: 'un (300g com creme stracciatella)',
-                desc: 'Bolsa de mozzarella recheada com fios macios de massa e natas frescas de leite de búfala.',
-                img: 'burrata.jpg',
-                fallbackImg: 'burrata.JPG',
-                badge: 'Premium'
-            },
-            {
-                id: 'p7',
-                name: 'Kit Degustação Família Búfalas São João',
-                category: 'kits',
-                price: 135.00,
-                unit: 'Kit Completo com 4 produtos',
-                desc: 'Contém: 1 Frescal, 1 Pote de Mozzarella em Bola, 1 Requeijão Cremoso e 1 Doce de Leite de Búfala.',
-                img: 'tabua-queijos.jpg',
-                fallbackImg: 'tábua-queijos.JPG',
-                badge: 'Melhor Custo-Benefício'
-            },
-            {
-                id: 'p8',
-                name: 'Ricota Fresca de Búfala A2A2',
-                category: 'queijos',
-                price: 24.00,
-                unit: 'un (aprox. 350g)',
-                desc: 'Ultra leve, rica em soroproteínas de alto valor biológico e baixíssimo teor de gordura.',
-                img: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=500&q=80',
-                badge: 'Leve & Saudável'
-            }
+            { id: 'p1', name: 'Queijo Frescal A2A2', category: 'queijos', price: 35.00, unit: 'un (450g)', desc: 'Macio e leve, perfeito para o café.', img: 'queijo-fresco.jpg', fallbackImg: 'queijo-fresco.JPG', badge: 'Mais Vendido' },
+            { id: 'p2', name: 'Mozzarella de Búfala', category: 'queijos', price: 38.00, unit: 'pote 400g', desc: 'Elástica e saborosa, ideal para saladas.', img: 'mozzarella.jpg', fallbackImg: 'mozzarella.JPG', badge: 'Gourmet' },
+            { id: 'p3', name: 'Burrata Artesanal', category: 'queijos', price: 45.00, unit: 'un (300g)', desc: 'Cremosa por dentro, deliciosa com tomates.', img: 'burrata.jpg', fallbackImg: 'burrata.JPG', badge: 'Premium' },
+            { id: 'p4', name: 'Tábua de Queijos', category: 'kits', price: 75.00, unit: 'Tábua Variada', desc: 'Seleção especial de queijos curados.', img: 'tabua-queijos.jpg', fallbackImg: 'tábua-queijos.JPG', badge: 'Kit' },
+            { id: 'p5', name: 'Doce de Leite Cremoso', category: 'doces', price: 32.00, unit: 'pote 400g', desc: 'Cozido lentamente, sabor rico.', img: 'doce-leite.jpg', fallbackImg: 'doce-leite.JPG', badge: 'Artesanal' },
+            { id: 'p6', name: 'Doces Caseiros (Bolos)', category: 'doces', price: 22.00, unit: 'unidade', desc: 'Bolos feitos no fogão a lenha.', img: 'doces.jpg', fallbackImg: 'doces.JPG', badge: 'Fresquinho' }
         ];
 
-        // 30 FAQs COMPLETAS
+        // 30 FAQs
         const faqList = [
-            { q: "O que é leite A2A2 e por que ele é melhor para a digestão?", a: "O leite A2A2 contém apenas a proteína beta-caseína A2. Diferente do leite convencional (A1), ele não produz o peptídeo BCM-7 durante a digestão, evitando estufamento, dores e desconfortos abdominais." },
-            { q: "Quem tem intolerância à lactose pode consumir derivados de búfala?", a: "O leite de búfala possui proteína A2A2 que elimina desconfortos proteicos. Embora contenha uma taxa natural menor de lactose, pessoas com lactose severa devem avaliar a tolerância individual ou optar por enzimas." },
-            { q: "Como funciona o Passeio com Búfalas?", a: "O Passeio com Búfalas é uma experiência imersiva onde os visitantes interagem diretamente com o rebanho, podem acariciar, tirar fotos e fazer passeios guiados montando em búfalas dóceis sob supervisão." },
-            { q: "As búfalas são dóceis e seguras para crianças montarem?", a: "Sim! Nosso rebanho voltado ao turismo é selecionado e adestrado com carinho desde o nascimento. O passeio é monitorado para total segurança de adultos e crianças." },
-            { q: "Como é a infraestrutura de banheiros da fazenda?", a: "Possuímos banheiros higienizados e sanitizados constantemente durante todo o período de atendimento, com fraldário e acessibilidade para idosos e PWD." },
-            { q: "Qual o horário e dias de funcionamento da fazenda?", a: "Funcionamos de terça a domingo, das 08h às 18h. Para o café da manhã e passeios com búfalas, recomendamos o agendamento prévio via WhatsApp." },
-            { q: "Quais cidades recebem a entrega dos produtos A2A2?", a: "Realizamos entregas refrigeradas semanais diretamente em residências nas cidades de Assis, Cândido Mota e Paraguaçu Paulista." },
-            { q: "Qual é o valor da taxa de frete para entregas?", a: "Entregas em Assis e Cândido Mota possuem frete de R$ 8,00. Em Paraguaçu Paulista é R$ 12,00. Você também pode escolher retirar diretamente na fazenda gratuitamente." },
-            { q: "Como é calculado o valor final do meu pedido no WhatsApp?", a: "Nosso sistema calcula automaticamente a somatória item a item (quantidade x valor unitário), adiciona o frete da cidade e aplica eventuais descontos do método de pagamento." },
-            { q: "Quais as formas de pagamento aceitas?", a: "Aceitamos Pix (com 5% de desconto automático na compra), Cartão de Crédito, Débito e Dinheiro." },
-            { q: "Como devo armazenar o Queijo Frescal e a Mozzarella?", a: "Devem ser mantidos sob refrigeração entre 1°C e 8°C. A mozzarella em bola deve ser mantida imersa em seu próprio soro até o consumo." },
-            { q: "A fazenda possui estacionamento próprio?", a: "Sim! Dispomos de estacionamento amplo, gratuito e fechado com capacidade para carros e ônibus de excursão." },
-            { q: "É necessário reservar o Passeio com Búfalas com antecedência?", a: "Sim, recomendamos a reserva prévia pelo WhatsApp para garantirmos a melhor recepção e limitar o número de visitantes por horário." },
-            { q: "O que está incluso no Café da Manhã Colonial?", a: "Inclui mesa farta com queijos A2A2 frescos e curados, requeijão de raspa, geleias, sucos naturais, bolos e café passado na hora no fogão a lenha." },
-            { q: "O Almoço Caipira oferece opções para vegetarianos?", a: "Sim! O buffet do fogão a lenha oferece ampla variedade de saladas orgânicas, pratos à base de legumes e queijos de búfala grelhados." },
-            { q: "Crianças pagam pelo passeio e refeições?", a: "Crianças até 5 anos não pagam. De 6 a 10 anos pagam meia-entrada nas refeições e passeios." },
-            { q: "Posso levar meu pet para a fazenda (Pet Friendly)?", a: "Sim, somos Pet Friendly! Pedimos apenas que cães fiquem na coleira nas áreas comuns e próximas aos animais da fazenda." },
-            { q: "Os produtos são inspecionados pelos órgãos de saúde?", a: "Sim! Todos os nossos laticínios possuem registro e inspeção sanitária oficial, seguindo rigorosos padrões de higiene." },
-            { q: "A fazenda tem espaço para eventos privados ou festas?", a: "Sim! Realizamos festas de aniversário, eventos corporativos e passeios escolares com agendamento prévio de data." },
-            { q: "O doce de leite de búfala é muito doce?", a: "Não, ele é conhecido pelo sabor suave e caramelizado sem ser enjoativo, pois o leite de búfala é naturalmente mais encorpado e cremoso." },
-            { q: "O que é o Requeijão de Raspa de Búfala?", a: "É um requeijão tradicionalíssimo feito com as raspas do tacho de cozimento, entregando um toque levemente defumado e textura incomparável." },
-            { q: "É possível comprar os produtos diretamente na fazenda?", a: "Sim! Nosso empório físico na fazenda funciona no mesmo horário de visitação para você levar produtos frescos para casa." },
-            { q: "Qual a durabilidade (validade) dos queijos frescos?", a: "Os queijos frescos duram em média 15 a 20 dias bem refrigerados. Queijos curados e doces possuem durabilidade maior de até 60 dias." },
-            { q: "Em quais dias são feitas as entregas nas cidades vizinhas?", a: "Fazemos entregas em Assis e Cândido Mota de terça a sábado. Em Paraguaçu Paulista, as entregas ocorrem às quartas e sextas-feiras." },
-            { q: "Existe quantidade mínima para fazer pedido para entrega?", a: "Apenas um pedido mínimo de R$ 30,00 para viabilizar a rota refrigerada de entregas." },
-            { q: "Como chegar na fazenda a partir de Assis?", a: "Basta seguir pela Rodovia Raposo Tavares sentido Cândido Mota/Paraguaçu por cerca de 15 min. Há placas sinalizadoras no acesso rural." },
-            { q: "A fazenda possui área coberta em caso de chuva?", a: "Sim! Toda a área do restaurante, empório, banheiros e deque de recepção é coberta e protegida do tempo." },
-            { q: "Posso encomendar tábuas de queijos personalizadas?", a: "Com certeza! Montamos tábuas de frios e queijos A2A2 personalizadas para eventos e reuniões sob encomenda prévia." },
-            { q: "Qual o benefício do soro da mozzarella de búfala?", a: "O soro conserva a umidade e o sal na medida certa, mantendo a bola de mozzarella macia por muito mais tempo na geladeira." },
-            { q: "Como entrar em contato diretamente com o proprietário?", a: "Você pode clicar em qualquer botão de WhatsApp deste site para falar diretamente com nossa equipe de atendimento familiar!" }
+            { q: "O que é leite A2A2?", a: "É o leite que contém apenas a proteína beta-caseína A2, de mais fácil digestão, evitando estufamento e desconfortos." },
+            { q: "Intolerantes à lactose podem consumir?", a: "O leite de búfala tem menor teor de lactose e proteína A2A2, mas intolerantes severos devem avaliar o consumo." },
+            { q: "Como funciona o Passeio com Búfalas?", a: "Uma experiência imersiva para conhecer, acariciar, tirar fotos e montar nas búfalas dóceis com supervisão." },
+            { q: "As búfalas são seguras para crianças?", a: "Sim! Nosso rebanho é adestrado com carinho e o passeio é monitorado para total segurança." },
+            { q: "Como são os banheiros?", a: "Possuímos banheiros higienizados constantemente, com fraldário e acessibilidade." },
+            { q: "Qual o horário de funcionamento?", a: "De terça a domingo, das 08h às 18h. Reservas para café e passeios via WhatsApp." },
+            { q: "Quais cidades recebem entrega?", a: "Assis, Cândido Mota e Paraguaçu Paulista, com entregas semanais." },
+            { q: "Qual o valor do frete?", a: "Assis e Cândido Mota: R$ 8,00. Paraguaçu: R$ 12,00. Retirada na fazenda é grátis." },
+            { q: "Como é calculado o pedido?", a: "O sistema soma os itens, adiciona o frete da cidade e aplica desconto se for Pix." },
+            { q: "Quais formas de pagamento?", a: "Pix (5% de desconto), Cartão de Crédito, Débito ou Dinheiro." },
+            { q: "Como armazenar o queijo fresco?", a: "Sob refrigeração entre 1°C e 8°C." },
+            { q: "Tem estacionamento?", a: "Sim, amplo, gratuito e seguro." },
+            { q: "Precisa reservar o passeio?", a: "Recomendamos reservar via WhatsApp para garantir o horário." },
+            { q: "O que tem no Café Colonial?", a: "Queijos A2A2, bolos, sucos, pães e café no fogão a lenha." },
+            { q: "Tem opção vegetariana no almoço?", a: "Sim, saladas orgânicas e pratos com queijos grelhados." },
+            { q: "Crianças pagam?", a: "Até 5 anos não pagam. De 6 a 10 anos pagam meia." },
+            { q: "É Pet Friendly?", a: "Sim, com coleira nas áreas comuns." },
+            { q: "Produtos são inspecionados?", a: "Sim, possuem registro sanitário oficial." },
+            { q: "Fazem eventos privados?", a: "Sim, aniversários e eventos corporativos com agendamento." },
+            { q: "O doce de leite é muito doce?", a: "Não, é suave e cremoso." },
+            { q: "O que é Requeijão de Raspa?", a: "Feito das raspas do tacho, sabor levemente defumado." },
+            { q: "Vende na fazenda?", a: "Sim, no empório físico durante o horário de visitação." },
+            { q: "Durabilidade dos queijos?", a: "Frescos: 15 a 20 dias. Curados e doces: até 60 dias." },
+            { q: "Dias de entrega?", a: "Assis e Cândido: Terça a Sábado. Paraguaçu: Quartas e Sextas." },
+            { q: "Pedido mínimo?", a: "R$ 30,00 para viabilizar a entrega." },
+            { q: "Como chegar de Assis?", a: "Rodovia Raposo Tavares, cerca de 15 min." },
+            { q: "Área coberta se chover?", a: "Sim, restaurante e loja são cobertos." },
+            { q: "Fazem tábuas personalizadas?", a: "Sim, sob encomenda para eventos." },
+            { q: "Qual benefício do soro da mozzarella?", a: "Conserva a umidade e o sal, mantendo-a macia." },
+            { q: "Como falar com o dono?", a: "Clique em qualquer botão de WhatsApp do site." }
         ];
 
-        // Shopping Cart State
         let cart = [];
 
-        // Application Initialization
         window.onload = function() {
             renderProducts(products);
             renderFAQs(faqList);
             updateCartBadge();
         };
 
-        // Render Product Cards
+        // RENDERIZAR PRODUTOS
         function renderProducts(items) {
             const grid = document.getElementById('productGrid');
             grid.innerHTML = '';
-
             items.forEach(p => {
-                const fallbackAttr = p.fallbackImg ? `onerror="this.onerror=null; this.src='${p.fallbackImg}';"` : '';
-                const cardHtml = `
+                const fallback = p.fallbackImg ? `onerror="this.onerror=null; this.src='${p.fallbackImg}';"` : '';
+                grid.innerHTML += `
                     <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                         <div class="relative cursor-pointer" onclick="openProductModal('${p.id}')">
-                            <span class="absolute top-3 left-3 z-10 bg-stone-900/80 backdrop-blur text-brand-gold text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                                ${p.badge}
-                            </span>
-                            <img src="${p.img}" ${fallbackAttr} alt="${p.name}" class="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 z-10 bg-stone-900/80 backdrop-blur text-brand-gold text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">${p.badge}</span>
+                            <img src="${p.img}" ${fallback} alt="${p.name}" class="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="p-5 flex-1 flex flex-col justify-between">
                             <div>
@@ -691,23 +501,19 @@
                                 </div>
                                 <div class="grid grid-cols-2 gap-2">
                                     <button onclick="addToCart('${p.id}')" class="bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold py-2.5 px-3 rounded-xl transition-colors flex items-center justify-center space-x-1">
-                                        <i class="fa-solid fa-cart-plus"></i>
-                                        <span>+ Carrinho</span>
+                                        <i class="fa-solid fa-cart-plus"></i> <span>+ Add</span>
                                     </button>
                                     <button onclick="quickWhatsAppOrder('${p.id}')" class="bg-green-600 hover:bg-green-700 text-white text-xs font-semibold py-2.5 px-3 rounded-xl transition-colors flex items-center justify-center space-x-1 shadow-sm">
-                                        <i class="fa-brands fa-whatsapp text-sm"></i>
-                                        <span>Comprar</span>
+                                        <i class="fa-brands fa-whatsapp text-sm"></i> <span>Comprar</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 `;
-                grid.innerHTML += cardHtml;
             });
         }
 
-        // Category Filtering
         function filterCategory(cat) {
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 btn.classList.remove('bg-stone-900', 'text-white');
@@ -715,122 +521,41 @@
             });
             event.target.classList.remove('bg-stone-200', 'text-stone-800');
             event.target.classList.add('bg-stone-900', 'text-white');
-
-            if (cat === 'all') {
-                renderProducts(products);
-            } else {
-                const filtered = products.filter(p => p.category === cat);
-                renderProducts(filtered);
-            }
+            renderProducts(cat === 'all' ? products : products.filter(p => p.category === cat));
         }
 
-        // Quick WhatsApp Direct Order for Single Product
-        function quickWhatsAppOrder(productId) {
-            const prod = products.find(p => p.id === productId);
-            if (!prod) return;
-
-            const message = `*NOVO PEDIDO RÁPIDO - BÚFALAS SÃO JOÃO*\n` +
-                `----------------------------------------\n` +
-                `• 1x ${prod.name} (R$ ${prod.price.toFixed(2).replace('.', ',')} un) = *R$ ${prod.price.toFixed(2).replace('.', ',')}*\n` +
-                `----------------------------------------\n` +
-                `*TOTAL DO ITEM: R$ ${prod.price.toFixed(2).replace('.', ',')}*\n\n` +
-                `Olá! Gostaria de pedir este item. Poderia me informar a taxa de entrega para a minha região?`;
-
-            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
-        // Direct WhatsApp Booking for Experiences (Buffalo Ride, Breakfast, Lunch)
-        function directReserveExperience(title, price) {
-            let priceText = price > 0 ? `(R$ ${price.toFixed(2).replace('.', ',')} por pessoa) = *R$ ${price.toFixed(2).replace('.', ',')}*` : '(Consultar valor)';
-            
-            const message = `*RESERVA DE EXPERIÊNCIA - BÚFALAS SÃO JOÃO*\n` +
-                `----------------------------------------\n` +
-                `• 1x ${title} ${priceText}\n` +
-                `----------------------------------------\n\n` +
-                `Olá! Gostaria de agendar esta experiência para a minha família. Como funcionam os horários para este fim de semana?`;
-
-            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
-        // Modal View for Product Details
-        function openProductModal(id) {
-            const p = products.find(item => item.id === id);
-            if (!p) return;
-
-            const fallbackAttr = p.fallbackImg ? `onerror="this.onerror=null; this.src='${p.fallbackImg}';"` : '';
-            const modalContent = document.getElementById('modalContent');
-            modalContent.innerHTML = `
-                <img src="${p.img}" ${fallbackAttr} alt="${p.name}" class="h-56 w-full object-cover">
-                <div class="p-6">
-                    <span class="bg-brand-gold/20 text-stone-900 border border-brand-gold/40 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2 inline-block">
-                        ${p.badge} • Leite A2A2
-                    </span>
-                    <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2">${p.name}</h3>
-                    <p class="text-stone-600 text-sm mb-4 leading-relaxed">${p.desc}</p>
-                    <div class="flex items-center justify-between border-t border-stone-200 pt-4 mb-6">
-                        <div>
-                            <span class="text-xs text-stone-400 block">Preço Unitário</span>
-                            <span class="text-2xl font-bold text-brand-brown">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
-                        </div>
-                        <span class="text-xs font-semibold text-stone-500 bg-stone-100 px-3 py-1 rounded-full">${p.unit}</span>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <button onclick="addToCart('${p.id}'); closeProductModal();" class="bg-stone-900 hover:bg-stone-800 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center space-x-2 text-sm">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span>Adicionar ao Carrinho</span>
-                        </button>
-                        <button onclick="quickWhatsAppOrder('${p.id}')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center space-x-2 text-sm shadow">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <span>Comprar Direto</span>
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('productModal').classList.remove('hidden');
-        }
-
-        function closeProductModal() {
-            document.getElementById('productModal').classList.add('hidden');
-        }
-
-        // Cart Drawer Logic
+        // CARRINHO LÓGICA
         function toggleCartModal() {
-            const modal = document.getElementById('cartModal');
-            modal.classList.toggle('hidden');
+            document.getElementById('cartModal').classList.toggle('hidden');
             renderCartItems();
         }
 
-        function addToCart(productId) {
-            const existing = cart.find(item => item.id === productId);
-            if (existing) {
-                existing.qty++;
-            } else {
-                const prod = products.find(p => p.id === productId);
-                if (prod) {
-                    cart.push({ ...prod, qty: 1 });
-                }
-            }
-            updateCartBadge();
+        function addToCart(id) {
+            const item = cart.find(i => i.id === id);
+            if (item) { item.qty++; } 
+            else { cart.push({ ...products.find(p => p.id === id), qty: 1 }); }
             
-            // Toast notification feedback
-            const toast = document.createElement('div');
-            toast.className = 'fixed bottom-4 right-4 z-50 bg-stone-900 text-white px-4 py-3 rounded-xl shadow-lg border border-brand-gold text-xs font-medium flex items-center space-x-2';
-            toast.innerHTML = `<i class="fa-solid fa-circle-check text-brand-gold"></i><span>Produto adicionado ao carrinho!</span>`;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2500);
+            updateCartBadge();
+            showToast('Produto adicionado ao carrinho!');
+            // Abre o carrinho automaticamente ao adicionar um item
+            document.getElementById('cartModal').classList.remove('hidden');
+            renderCartItems();
         }
 
         function updateQuantity(id, change) {
             const item = cart.find(i => i.id === id);
             if (!item) return;
-
             item.qty += change;
-            if (item.qty <= 0) {
-                cart = cart.filter(i => i.id !== id);
-            }
+            if (item.qty <= 0) { cart = cart.filter(i => i.id !== id); }
             renderCartItems();
             updateCartBadge();
+        }
+
+        function removeItem(id) {
+            cart = cart.filter(i => i.id !== id);
+            renderCartItems();
+            updateCartBadge();
+            showToast('Item removido.');
         }
 
         function updateCartBadge() {
@@ -851,39 +576,42 @@
                     <div class="text-center py-12 text-stone-400 space-y-3">
                         <i class="fa-solid fa-basket-shopping text-4xl text-stone-300"></i>
                         <p class="text-sm">Seu carrinho está vazio.</p>
-                        <button onclick="toggleCartModal()" class="text-xs text-brand-gold font-bold underline">Explorar Nossos Queijos A2A2</button>
-                    </div>
-                `;
+                        <button onclick="toggleCartModal()" class="text-xs text-brand-gold font-bold underline">Explorar Produtos</button>
+                    </div>`;
                 calculateCartTotal();
                 return;
             }
 
             container.innerHTML = '';
             cart.forEach(item => {
-                const itemSum = item.price * item.qty;
                 container.innerHTML += `
-                    <div class="flex items-center justify-between bg-stone-50 p-3 rounded-xl border border-stone-200">
+                    <div class="flex items-center justify-between bg-stone-50 p-3 rounded-xl border border-stone-200 relative group">
                         <img src="${item.img}" alt="${item.name}" class="w-12 h-12 rounded-lg object-cover">
                         <div class="flex-1 px-3">
-                            <h4 class="font-bold text-xs text-stone-900 line-clamp-1">${item.name}</h4>
+                            <h4 class="font-bold text-xs text-stone-900 line-clamp-1 pr-6">${item.name}</h4>
                             <p class="text-[11px] text-stone-500">R$ ${item.price.toFixed(2).replace('.', ',')} un</p>
-                            <span class="text-xs font-bold text-brand-brown">Subtotal: R$ ${itemSum.toFixed(2).replace('.', ',')}</span>
+                            <span class="text-xs font-bold text-brand-brown">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</span>
                         </div>
-                        <div class="flex items-center space-x-2 bg-white border border-stone-300 rounded-lg p-1">
-                            <button onclick="updateQuantity('${item.id}', -1)" class="w-6 h-6 flex items-center justify-center text-stone-600 hover:bg-stone-100 rounded">-</button>
-                            <span class="text-xs font-bold text-stone-800 px-1">${item.qty}</span>
-                            <button onclick="updateQuantity('${item.id}', 1)" class="w-6 h-6 flex items-center justify-center text-stone-600 hover:bg-stone-100 rounded">+</button>
+                        
+                        <div class="flex flex-col items-end gap-2">
+                            <button onclick="removeItem('${item.id}')" class="text-stone-300 hover:text-red-500 transition-colors" title="Remover item">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                            <div class="flex items-center space-x-1 bg-white border border-stone-300 rounded-lg p-1">
+                                <button onclick="updateQuantity('${item.id}', -1)" class="w-5 h-5 flex items-center justify-center text-stone-600 hover:bg-stone-100 rounded">-</button>
+                                <span class="text-xs font-bold text-stone-800 px-1">${item.qty}</span>
+                                <button onclick="updateQuantity('${item.id}', 1)" class="w-5 h-5 flex items-center justify-center text-stone-600 hover:bg-stone-100 rounded">+</button>
+                            </div>
                         </div>
                     </div>
                 `;
             });
-
             calculateCartTotal();
         }
 
         function calculateCartTotal() {
-            const city = document.getElementById('custCity')?.value || 'Assis';
-            const payment = document.getElementById('custPayment')?.value || '';
+            const city = document.getElementById('custCity').value;
+            const payment = document.getElementById('custPayment').value;
 
             let subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
 
@@ -891,139 +619,117 @@
             if (city === 'Paraguaçu Paulista') freight = 12.00;
             if (city === 'Retirada') freight = 0.00;
 
-            let discount = 0;
-            if (payment === 'Pix') {
-                discount = subtotal * 0.05; // 5% discount
-            }
-
+            let discount = (payment === 'Pix') ? subtotal * 0.05 : 0;
             const total = subtotal + freight - discount;
 
-            const summaryEl = document.getElementById('cartSummary');
-            if (summaryEl) {
-                summaryEl.innerHTML = `
-                    <div class="flex justify-between text-stone-600">
-                        <span>Subtotal dos Produtos:</span>
-                        <span>R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
-                    </div>
-                    <div class="flex justify-between text-stone-600">
-                        <span>Frete (${city}):</span>
-                        <span>${freight === 0 ? 'GRÁTIS' : 'R$ ' + freight.toFixed(2).replace('.', ',')}</span>
-                    </div>
-                    ${discount > 0 ? `
-                    <div class="flex justify-between text-green-700 font-medium">
-                        <span>Desconto Pix (5%):</span>
-                        <span>- R$ ${discount.toFixed(2).replace('.', ',')}</span>
-                    </div>` : ''}
-                    <div class="flex justify-between text-stone-900 font-bold text-sm pt-2 border-t border-stone-200">
-                        <span>VALOR TOTAL DO PEDIDO:</span>
-                        <span class="text-brand-brown">R$ ${total.toFixed(2).replace('.', ',')}</span>
-                    </div>
-                `;
-            }
-
+            document.getElementById('cartSummary').innerHTML = `
+                <div class="flex justify-between text-stone-600"><span>Subtotal:</span><span>R$ ${subtotal.toFixed(2).replace('.', ',')}</span></div>
+                <div class="flex justify-between text-stone-600"><span>Frete (${city}):</span><span>${freight === 0 ? 'GRÁTIS' : 'R$ ' + freight.toFixed(2).replace('.', ',')}</span></div>
+                ${discount > 0 ? `<div class="flex justify-between text-green-700 font-medium"><span>Desconto Pix (5%):</span><span>- R$ ${discount.toFixed(2).replace('.', ',')}</span></div>` : ''}
+                <div class="flex justify-between text-stone-900 font-bold text-sm pt-2 border-t border-stone-200"><span>TOTAL:</span><span class="text-brand-brown">R$ ${total.toFixed(2).replace('.', ',')}</span></div>
+            `;
             return { subtotal, freight, discount, total };
         }
 
-        // WhatsApp Order Dispatch with Line-by-Line Sum Calculation
         function sendCartToWhatsApp() {
-            if (cart.length === 0) {
-                alert('Seu carrinho está vazio! Adicione produtos antes de finalizar.');
-                return;
-            }
-
+            if (cart.length === 0) { alert('Carrinho vazio!'); return; }
             const name = document.getElementById('custName').value.trim();
             const city = document.getElementById('custCity').value;
             const bairro = document.getElementById('custBairro').value.trim();
             const address = document.getElementById('custAddress').value.trim();
             const payment = document.getElementById('custPayment').value;
-            const notes = document.getElementById('custNotes').value.trim();
 
-            if (!name || !bairro || !address) {
-                alert('Por favor, preencha seu Nome Completo, Bairro e Endereço com número.');
-                return;
-            }
+            if (!name || !bairro || !address) { alert('Preencha Nome, Bairro e Endereço.'); return; }
 
             const { subtotal, freight, discount, total } = calculateCartTotal();
-
-            // Construct Itemized Message with individual total calculations
-            let msg = `*NOVO PEDIDO COMPLETO - BÚFALAS SÃO JOÃO*\n`;
-            msg += `----------------------------------------\n`;
-            msg += `*ITENS DO PEDIDO (SOMATÓRIA DETALHADA):*\n\n`;
-
-            cart.forEach((item, idx) => {
-                const itemTotal = item.price * item.qty;
-                msg += `• ${item.qty}x ${item.name}\n`;
-                msg += `   (R$ ${item.price.toFixed(2).replace('.', ',')} un) = *R$ ${itemTotal.toFixed(2).replace('.', ',')}*\n`;
+            let msg = `*NOVO PEDIDO - BÚFALAS SÃO JOÃO*%0A----------------------------------------%0A*ITENS:*%0A`;
+            
+            cart.forEach(item => {
+                msg += `• ${item.qty}x ${item.name} (R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')})%0A`;
             });
 
-            msg += `----------------------------------------\n`;
-            msg += `*RESUMO DA SOMATÓRIA:*\n`;
-            msg += `• Subtotal Produtos: R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
-            msg += `• Taxa de Entrega (${city}): ${freight === 0 ? 'GRÁTIS' : 'R$ ' + freight.toFixed(2).replace('.', ',')}\n`;
-            if (discount > 0) {
-                msg += `• Desconto Pix (5%): - R$ ${discount.toFixed(2).replace('.', ',')}\n`;
-            }
-            msg += `----------------------------------------\n`;
-            msg += `*VALOR TOTAL A PAGAR: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
-            msg += `----------------------------------------\n\n`;
-
-            msg += `*DADOS DE ENTREGA:* \n`;
-            msg += `👤 *Nome:* ${name}\n`;
-            msg += `📍 *Cidade:* ${city}\n`;
-            msg += `🏡 *Bairro:* ${bairro}\n`;
-            msg += `🏠 *Endereço:* ${address}\n`;
-            msg += `💳 *Forma de Pagamento:* ${payment}\n`;
-            if (notes) {
-                msg += `📝 *Observações:* ${notes}\n`;
-            }
+            msg += `----------------------------------------%0A*RESUMO:*%0A`;
+            msg += `Subtotal: R$ ${subtotal.toFixed(2).replace('.', ',')}%0A`;
+            msg += `Frete (${city}): ${freight === 0 ? 'Grátis' : 'R$ ' + freight.toFixed(2).replace('.', ',')}%0A`;
+            if (discount > 0) msg += `Desconto Pix: - R$ ${discount.toFixed(2).replace('.', ',')}%0A`;
+            msg += `*TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*%0A----------------------------------------%0A`;
+            msg += `*DADOS DE ENTREGA:*%0A👤 Nome: ${name}%0A📍 Cidade: ${city}%0A🏡 Bairro: ${bairro}%0A🏠 Endereço: ${address}%0A💳 Pagamento: ${payment}`;
 
             window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        // Render FAQs
-        function renderFAQs(faqs) {
-            const container = document.getElementById('faqContainer');
-            container.innerHTML = '';
+        // DIRETOS DO WHATSAPP
+        function quickWhatsAppOrder(id) {
+            const p = products.find(x => x.id === id);
+            const msg = `*PEDIDO RÁPIDO - BÚFALAS SÃO JOÃO*%0A%0A• 1x ${p.name} (R$ ${p.price.toFixed(2).replace('.', ',')})%0A%0AGostaria de saber a taxa de entrega para minha região.`;
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
 
-            faqs.forEach((faq, index) => {
-                container.innerHTML += `
-                    <div class="faq-item bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
-                        <button onclick="toggleFAQ(${index})" class="w-full text-left p-4 sm:p-5 font-semibold text-stone-900 text-sm flex items-center justify-between hover:bg-stone-50 transition-colors">
-                            <span class="pr-2"><span class="text-brand-gold font-bold mr-2">Q${index + 1}.</span>${faq.q}</span>
-                            <i id="faqIcon-${index}" class="fa-solid fa-chevron-down text-stone-400 transition-transform"></i>
-                        </button>
-                        <div id="faqAns-${index}" class="hidden p-4 sm:p-5 pt-0 text-stone-600 text-xs sm:text-sm border-t border-stone-100 bg-stone-50/50 leading-relaxed">
-                            ${faq.a}
-                        </div>
+        function directReserveExperience(title) {
+            const msg = `*RESERVA DE EXPERIÊNCIA - BÚFALAS SÃO JOÃO*%0A%0AGostaria de agendar: *${title}*%0A%0A*Nome:* %0A*Data:* %0A*Pessoas:* `;
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // MODAL DE PRODUTO
+        function openProductModal(id) {
+            const p = products.find(x => x.id === id);
+            document.getElementById('modalContent').innerHTML = `
+                <img src="${p.img}" alt="${p.name}" class="h-56 w-full object-cover">
+                <div class="p-6">
+                    <span class="bg-brand-gold/20 text-stone-900 border border-brand-gold/40 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2 inline-block">${p.badge} • Leite A2A2</span>
+                    <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2">${p.name}</h3>
+                    <p class="text-stone-600 text-sm mb-4">${p.desc}</p>
+                    <div class="flex items-center justify-between border-t border-stone-200 pt-4 mb-6">
+                        <span class="text-2xl font-bold text-brand-brown">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
+                        <span class="text-xs font-semibold text-stone-500 bg-stone-100 px-3 py-1 rounded-full">${p.unit}</span>
                     </div>
-                `;
-            });
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="addToCart('${p.id}'); closeProductModal();" class="bg-stone-900 hover:bg-stone-800 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center space-x-2 text-sm">
+                            <i class="fa-solid fa-basket-shopping"></i> <span>Adicionar ao Carrinho</span>
+                        </button>
+                        <button onclick="quickWhatsAppOrder('${p.id}')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center space-x-2 text-sm">
+                            <i class="fa-brands fa-whatsapp"></i> <span>Comprar Direto</span>
+                        </button>
+                    </div>
+                </div>`;
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        function closeProductModal() { document.getElementById('productModal').classList.add('hidden'); }
+
+        // FAQ E UTILITÁRIOS
+        function renderFAQs(faqs) {
+            document.getElementById('faqContainer').innerHTML = faqs.map((f, i) => `
+                <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
+                    <button onclick="toggleFAQ(${i})" class="w-full text-left p-4 font-semibold text-stone-900 text-sm flex items-center justify-between hover:bg-stone-50 transition-colors">
+                        <span class="pr-2"><span class="text-brand-gold font-bold mr-2">Q${i + 1}.</span>${f.q}</span>
+                        <i id="faqIcon-${i}" class="fa-solid fa-chevron-down text-stone-400 transition-transform"></i>
+                    </button>
+                    <div id="faqAns-${i}" class="hidden p-4 pt-0 text-stone-600 text-xs border-t border-stone-100 bg-stone-50/50 leading-relaxed">${f.a}</div>
+                </div>
+            `).join('');
         }
 
         function toggleFAQ(index) {
             const ans = document.getElementById(`faqAns-${index}`);
             const icon = document.getElementById(`faqIcon-${index}`);
-
-            if (ans.classList.contains('hidden')) {
-                ans.classList.remove('hidden');
-                icon.classList.add('rotate-180');
-            } else {
-                ans.classList.add('hidden');
-                icon.classList.remove('rotate-180');
-            }
+            ans.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
         }
 
         function filterFAQs() {
-            const query = document.getElementById('faqSearchInput').value.toLowerCase();
-            const filtered = faqList.filter(item => 
-                item.q.toLowerCase().includes(query) || item.a.toLowerCase().includes(query)
-            );
-            renderFAQs(filtered);
+            const q = document.getElementById('faqSearchInput').value.toLowerCase();
+            renderFAQs(faqList.filter(f => f.q.toLowerCase().includes(q) || f.a.toLowerCase().includes(q)));
         }
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
+        function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-4 right-4 z-[9999] bg-stone-900 text-white px-4 py-3 rounded-xl shadow-lg border border-brand-gold text-xs font-medium flex items-center space-x-2 animate-bounce';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-brand-gold"></i><span>${msg}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
         }
     </script>
 </body>
