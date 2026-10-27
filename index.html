@@ -55,7 +55,8 @@
     <header class="sticky top-0 z-40 glass-header border-b border-stone-200/60 shadow-sm transition-all duration-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-3 group">
-                <img src="empresa.jpg" onerror="this.onerror=null; this.src='empresa.JPG';" alt="Búfalas São João Logo" class="w-12 h-12 rounded-full object-cover shadow-md group-hover:scale-105 transition-transform border border-brand-gold">
+                <!-- LOGO -->
+                <img src="logo.png" onerror="this.onerror=null; this.src='logo.PNG';" alt="Búfalas São João Logo" class="w-12 h-12 rounded-full object-cover shadow-md group-hover:scale-105 transition-transform border border-brand-gold">
                 <div>
                     <span class="block font-serif font-bold text-xl text-brand-dark tracking-tight leading-none">Búfalas São João</span>
                     <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">Laticínios & Turismo Rural</span>
@@ -100,6 +101,7 @@
     <!-- Hero Section -->
     <section class="relative bg-stone-900 text-white overflow-hidden py-20 lg:py-28">
         <div class="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
+            <!-- FOTO BÚFALA -->
             <img src="bufala.jpg" onerror="this.onerror=null; this.src='bufala.JPG';" alt="Fazenda Búfalas São João" class="w-full h-full object-cover">
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -153,7 +155,7 @@
         </div>
     </section>
 
-    <!-- E-Commerce Section -->
+    <!-- E-Commerce Section (CATÁLOGO COMPLETO) -->
     <section id="produtos" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
             <div>
@@ -163,7 +165,7 @@
             <!-- Category Filters -->
             <div class="mt-4 md:mt-0 flex flex-wrap gap-2" id="categoryFilters">
                 <button onclick="filterCategory('all')" class="cat-btn active bg-stone-900 text-white text-xs px-4 py-2 rounded-full font-medium transition-all">Todos os Produtos</button>
-                <button onclick="filterCategory('queijos')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Queijos Frescos & Curados</button>
+                <button onclick="filterCategory('queijos')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Queijos</button>
                 <button onclick="filterCategory('doces')" class="cat-btn bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs px-4 py-2 rounded-full font-medium transition-all">Doces & Requeijão</button>
             </div>
         </div>
@@ -174,7 +176,7 @@
         </div>
     </section>
 
-    <!-- Experiências & Passeio com Búfalas -->
+    <!-- Experiências & Passeio com Búfalas (TURISMO) -->
     <section id="experiencias" class="py-16 bg-stone-100 border-t border-stone-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
@@ -203,8 +205,8 @@
                             </ul>
                         </div>
                         <div>
-                            <div class="text-lg font-bold text-brand-brown mb-3">R$ 45,00 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
-                            <button onclick="directReserveExperience('Passeio Interativo com Búfalas', 45.00)" class="w-full bg-brand-gold hover:bg-brand-goldHover text-stone-900 font-bold py-2.5 rounded-xl shadow transition-colors flex items-center justify-center space-x-2">
+                            <div class="text-lg font-bold text-brand-brown mb-3">Consulte Valores</div>
+                            <button onclick="directReserveExperience('Passeio Interativo com Búfalas', 0)" class="w-full bg-brand-gold hover:bg-brand-goldHover text-stone-900 font-bold py-2.5 rounded-xl shadow transition-colors flex items-center justify-center space-x-2">
                                 <i class="fa-brands fa-whatsapp"></i>
                                 <span>Reservar Passeio via WhatsApp</span>
                             </button>
@@ -214,7 +216,7 @@
 
                 <!-- Café da Manhã Rural -->
                 <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden flex flex-col hover:shadow-md transition-all">
-                    <img src="cafe da manha.jpg" onerror="this.onerror=null; this.src='cafe da manha rural.jpg';" alt="Café Colonial" class="h-48 w-full object-cover">
+                    <img src="cafe-manha.jpg" onerror="this.onerror=null; this.src='cafe-manha.JPG';" alt="Café Colonial" class="h-48 w-full object-cover">
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Café da Manhã Colonial</h3>
@@ -227,8 +229,8 @@
                             </ul>
                         </div>
                         <div>
-                            <div class="text-lg font-bold text-brand-brown mb-3">R$ 65,00 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
-                            <button onclick="directReserveExperience('Café da Manhã Colonial', 65.00)" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
+                            <div class="text-lg font-bold text-brand-brown mb-3">R$ 44,99 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
+                            <button onclick="directReserveExperience('Café da Manhã Colonial', 44.99)" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
                                 <i class="fa-brands fa-whatsapp"></i>
                                 <span>Reservar Café via WhatsApp</span>
                             </button>
@@ -238,7 +240,7 @@
 
                 <!-- Almoço da Fazenda -->
                 <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden flex flex-col hover:shadow-md transition-all">
-                    <img src="almoço.JPG" onerror="this.onerror=null; this.src='Almoco2.JPG';" alt="Almoço na Fazenda" class="h-48 w-full object-cover">
+                    <img src="almoco.jpg" onerror="this.onerror=null; this.src='almoco.JPG';" alt="Almoço na Fazenda" class="h-48 w-full object-cover">
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Almoço Comida da Roça</h3>
@@ -251,8 +253,8 @@
                             </ul>
                         </div>
                         <div>
-                            <div class="text-lg font-bold text-brand-brown mb-3">R$ 80,00 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
-                            <button onclick="directReserveExperience('Almoço Comida da Roça', 80.00)" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
+                            <div class="text-lg font-bold text-brand-brown mb-3">R$ 60,00 <span class="text-xs font-normal text-stone-500">/ pessoa</span></div>
+                            <button onclick="directReserveExperience('Almoço Comida da Roça', 60.00)" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-2.5 rounded-xl transition-colors flex items-center justify-center space-x-2">
                                 <i class="fa-brands fa-whatsapp"></i>
                                 <span>Reservar Almoço via WhatsApp</span>
                             </button>
@@ -348,7 +350,7 @@
         </div>
     </section>
 
-    <!-- Como Chegar Section ATUALIZADA -->
+    <!-- Como Chegar Section -->
     <section id="como-chegar" class="py-16 bg-stone-100 border-t border-stone-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
@@ -361,7 +363,7 @@
                 <!-- Direct Routing Options & Contacts -->
                 <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <h3 class="font-serif text-xl font-bold text-stone-900 mb-4"><i class="fa-solid fa-route text-brand-gold mr-2"></i>Distâncias e Contato</h3>
+                        <h3 class="font-serif text-xl font-bold text-stone-900 mb-4"><i class="fa-solid fa-route text-brand-gold mr-2"></i>Contato Rápido</h3>
                         
                         <!-- Informações de Telefone -->
                         <div class="space-y-3 mb-6 bg-stone-50 p-4 rounded-xl border border-stone-100">
@@ -410,7 +412,7 @@
         </div>
     </section>
 
-    <!-- FAQs Accordion with Search -->
+    <!-- FAQs Accordion with Search (30 PERGUNTAS) -->
     <section id="faq" class="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
             <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Tire Suas Dúvidas</span>
@@ -531,7 +533,7 @@
         // Phone Number Configuration (Lary)
         const WHATSAPP_PHONE = "5518996438262";
 
-        // Products Catalog Data
+        // Products Catalog Data (COM AS FOTOS REAIS DA SUA PASTA)
         const products = [
             {
                 id: 'p1',
@@ -540,83 +542,68 @@
                 price: 35.00,
                 unit: 'un (aprox. 450g)',
                 desc: 'Suave, extremamente fresco e leve. Feito 100% com leite A2A2 de búfala de altíssima digestibilidade.',
-                img: 'https://images.unsplash.com/photo-1559561853-08451507cbe7?auto=format&fit=crop&w=500&q=80',
+                img: 'queijo-fresco.jpg',
+                fallbackImg: 'queijo-fresco.JPG',
                 badge: 'Mais Vendido'
             },
             {
                 id: 'p2',
-                name: 'Mozzarella de Búfala em Bola (Bocconcini)',
+                name: 'Mozzarella de Búfala',
                 category: 'queijos',
                 price: 38.00,
-                unit: 'pote 400g (massa suada)',
+                unit: 'pote 400g',
                 desc: 'Tradicional mozzarella no soro. Textura aveludada e macia, perfeita para saladas Caprese e pizzas gourmets.',
-                img: 'https://images.unsplash.com/photo-1592417817098-8f3d6ef23a81?auto=format&fit=crop&w=500&q=80',
+                img: 'mozzarella.jpg',
+                fallbackImg: 'mozzarella.JPG',
                 badge: 'Gourmet'
             },
             {
                 id: 'p3',
-                name: 'Requeijão Cremoso de Búfala A2A2',
-                category: 'doces',
-                price: 28.00,
-                unit: 'pote de vidro 250g',
-                desc: 'Cremosidade incomparável sem adição de amidos ou gorduras vegetais. 100% puro creme de búfala.',
-                img: 'https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=500&q=80',
-                badge: 'Destaque'
+                name: 'Burrata de Búfala A2A2',
+                category: 'queijos',
+                price: 45.00,
+                unit: 'un (300g)',
+                desc: 'Bolsa de mozzarella recheada com fios macios de massa e natas frescas de leite de búfala.',
+                img: 'burrata.jpg',
+                fallbackImg: 'burrata.JPG',
+                badge: 'Premium'
             },
             {
                 id: 'p4',
+                name: 'Tábua de Queijos Artesanais',
+                category: 'kits',
+                price: 75.00,
+                unit: 'Tábua Variada',
+                desc: 'Seleção especial de queijos curados e frescos para recepção e mesa de café.',
+                img: 'tabua-queijos.jpg',
+                fallbackImg: 'tábua-queijos.JPG',
+                badge: 'Kit Degustação'
+            },
+            {
+                id: 'p5',
                 name: 'Doce de Leite de Búfala Cremoso',
                 category: 'doces',
                 price: 32.00,
                 unit: 'pote de vidro 400g',
-                desc: 'Cozido lentamente em tacho de cobre com leite de búfala puro. Sabor rico e consistência incrível.',
-                img: 'doce de leite.JPG',
-                fallbackImg: 'doce de leite.jpg',
+                desc: 'Cozido lentamente com leite de búfala puro. Sabor rico e consistência incrível.',
+                img: 'doce-leite.jpg',
+                fallbackImg: 'doce-leite.JPG',
                 badge: 'Artesanal'
             },
             {
-                id: 'p5',
-                name: 'Queijo Manta de Mozzarella de Búfala',
-                category: 'queijos',
-                price: 42.00,
-                unit: 'un (aprox. 500g)',
-                desc: 'Manta recheável dobrada artesanalmente. Ideal para rocamboles recheados com tomate seco e manjericão.',
-                img: 'https://images.unsplash.com/photo-1626957341926-98752fc2ba90?auto=format&fit=crop&w=500&q=80',
-                badge: 'Especial'
-            },
-            {
                 id: 'p6',
-                name: 'Burrata de Búfala A2A2 Tradicional',
-                category: 'queijos',
-                price: 45.00,
-                unit: 'un (300g com creme stracciatella)',
-                desc: 'Bolsa de mozzarella recheada com fios macios de massa e natas frescas de leite de búfala.',
-                img: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=500&q=80',
-                badge: 'Premium'
-            },
-            {
-                id: 'p7',
-                name: 'Kit Degustação Família Búfalas São João',
-                category: 'kits',
-                price: 135.00,
-                unit: 'Kit Completo com 4 produtos',
-                desc: 'Contém: 1 Frescal, 1 Pote de Mozzarella em Bola, 1 Requeijão Cremoso e 1 Doce de Leite de Búfala.',
-                img: 'https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=500&q=80',
-                badge: 'Melhor Custo-Benefício'
-            },
-            {
-                id: 'p8',
-                name: 'Ricota Fresca de Búfala A2A2',
-                category: 'queijos',
-                price: 24.00,
-                unit: 'un (aprox. 350g)',
-                desc: 'Ultra leve, rica em soroproteínas de alto valor biológico e baixíssimo teor de gordura.',
-                img: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=500&q=80',
-                badge: 'Leve & Saudável'
+                name: 'Doces Caseiros (Bolos)',
+                category: 'doces',
+                price: 22.00,
+                unit: 'unidade',
+                desc: 'Bolos e doces feitos com carinho no fogão a lenha da fazenda.',
+                img: 'doces.jpg',
+                fallbackImg: 'doces.JPG',
+                badge: 'Fresquinho'
             }
         ];
 
-        // 30 Complete FAQs
+        // 30 FAQs COMPLETAS
         const faqList = [
             { q: "O que é leite A2A2 e por que ele é melhor para a digestão?", a: "O leite A2A2 contém apenas a proteína beta-caseína A2. Diferente do leite convencional (A1), ele não produz o peptídeo BCM-7 durante a digestão, evitando estufamento, dores e desconfortos abdominais." },
             { q: "Quem tem intolerância à lactose pode consumir derivados de búfala?", a: "O leite de búfala possui proteína A2A2 que elimina desconfortos proteicos. Embora contenha uma taxa natural menor de lactose, pessoas com lactose severa devem avaliar a tolerância individual ou optar por enzimas." },
@@ -737,11 +724,12 @@
 
         // Direct WhatsApp Booking for Experiences (Buffalo Ride, Breakfast, Lunch)
         function directReserveExperience(title, price) {
+            let priceText = price > 0 ? `(R$ ${price.toFixed(2).replace('.', ',')} por pessoa) = *R$ ${price.toFixed(2).replace('.', ',')}*` : '(Consultar valor)';
+            
             const message = `*RESERVA DE EXPERIÊNCIA - BÚFALAS SÃO JOÃO*\n` +
                 `----------------------------------------\n` +
-                `• 1x ${title} (R$ ${price.toFixed(2).replace('.', ',')} por pessoa) = *R$ ${price.toFixed(2).replace('.', ',')}*\n` +
-                `----------------------------------------\n` +
-                `*TOTAL DA RESERVA (1 PESSOA): R$ ${price.toFixed(2).replace('.', ',')}*\n\n` +
+                `• 1x ${title} ${priceText}\n` +
+                `----------------------------------------\n\n` +
                 `Olá! Gostaria de agendar esta experiência para a minha família. Como funcionam os horários para este fim de semana?`;
 
             window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
