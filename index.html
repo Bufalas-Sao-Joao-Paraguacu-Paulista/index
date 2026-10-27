@@ -432,4 +432,594 @@
 
     <!-- Quick View / Product Modal -->
     <div id="productModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transform transition-all relative">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-9 h-9 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modalContent">
+                <!-- Rendered dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Interactive Shopping Cart Drawer -->
+    <div id="cartModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex justify-end transition-opacity">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between overflow-hidden">
+            <!-- Header -->
+            <div class="p-5 border-b border-stone-200 bg-stone-900 text-white flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-basket-shopping text-brand-gold text-xl"></i>
+                    <h3 class="font-serif font-bold text-lg">Seu Carrinho A2A2</h3>
+                </div>
+                <button onclick="toggleCartModal()" class="text-stone-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Items List -->
+            <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar">
+                <!-- Populated via JS -->
+            </div>
+
+            <!-- Order Details Form & Checkout -->
+            <div class="p-5 border-t border-stone-200 bg-stone-50 space-y-4">
+                <div class="space-y-3">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-stone-500">Dados para Entrega / Retirada</h4>
+                    <input type="text" id="custName" placeholder="Seu Nome Completo *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
+                    <div class="grid grid-cols-2 gap-2">
+                        <select id="custCity" onchange="calculateCartTotal()" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
+                            <option value="Assis">Assis-SP (Frete R$ 8)</option>
+                            <option value="Cândido Mota">Cândido Mota-SP (Frete R$ 8)</option>
+                            <option value="Paraguaçu Paulista">Paraguaçu P. (Frete R$ 12)</option>
+                            <option value="Retirada">Retirar na Fazenda (Frete Grátis)</option>
+                        </select>
+                        <input type="text" id="custBairro" placeholder="Bairro *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
+                    </div>
+                    <input type="text" id="custAddress" placeholder="Endereço Completo e Número *" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
+                    <select id="custPayment" onchange="calculateCartTotal()" class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg">
+                        <option value="Pix">Pix (5% de Desconto)</option>
+                        <option value="Cartão de Crédito/Débito">Cartão na Entrega</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                    </select>
+                    <textarea id="custNotes" placeholder="Observações do pedido (opcional)..." class="w-full text-xs p-2.5 bg-white border border-stone-300 rounded-lg h-14"></textarea>
+                </div>
+
+                <!-- Price Breakdown Summary -->
+                <div id="cartSummary" class="border-t border-stone-200 pt-3 space-y-1 text-xs">
+                    <!-- Populated via JS -->
+                </div>
+
+                <button onclick="sendCartToWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Enviar Pedido com Somatória via WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <span class="font-serif font-bold text-xl text-white block mb-2">Búfalas São João</span>
+                <p class="text-xs text-stone-400 leading-relaxed">
+                    Produção artesanal de laticínios A2A2 de leite de búfala e turismo rural familiar com atendimento acolhedor e infraestrutura higienizada.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Cidades Atendidas com Entrega</h4>
+                <ul class="text-xs space-y-1 text-stone-400">
+                    <li><i class="fa-solid fa-location-dot text-brand-gold mr-1.5"></i> Assis - SP</li>
+                    <li><i class="fa-solid fa-location-dot text-brand-gold mr-1.5"></i> Cândido Mota - SP</li>
+                    <li><i class="fa-solid fa-location-dot text-brand-gold mr-1.5"></i> Paraguaçu Paulista - SP</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Contato & Atendimento</h4>
+                <p class="text-xs text-stone-400 mb-2"><i class="fa-brands fa-whatsapp text-green-500 mr-1.5"></i> Lary: (18) 99643-8262</p>
+                <p class="text-xs text-stone-400 mb-2"><i class="fa-brands fa-whatsapp text-green-500 mr-1.5"></i> Juliano: (18) 99623-2661</p>
+                <p class="text-xs text-stone-400"><i class="fa-solid fa-clock text-brand-gold mr-1.5"></i> Atendimento: Terça a Domingo, das 08h às 18h</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-stone-800 pt-6 text-center text-xs text-stone-500">
+            &copy; 2026 Fazenda Búfalas São João. Todos os direitos reservados. Laticínios A2A2 & Turismo Rural.
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Phone Number Configuration (Lary)
+        const WHATSAPP_PHONE = "5518996438262";
+
+        // Products Catalog Data
+        const products = [
+            {
+                id: 'p1',
+                name: 'Queijo Frescal A2A2 Búfala',
+                category: 'queijos',
+                price: 35.00,
+                unit: 'un (aprox. 450g)',
+                desc: 'Suave, extremamente fresco e leve. Feito 100% com leite A2A2 de búfala de altíssima digestibilidade.',
+                img: 'https://images.unsplash.com/photo-1559561853-08451507cbe7?auto=format&fit=crop&w=500&q=80',
+                badge: 'Mais Vendido'
+            },
+            {
+                id: 'p2',
+                name: 'Mozzarella de Búfala em Bola (Bocconcini)',
+                category: 'queijos',
+                price: 38.00,
+                unit: 'pote 400g (massa suada)',
+                desc: 'Tradicional mozzarella no soro. Textura aveludada e macia, perfeita para saladas Caprese e pizzas gourmets.',
+                img: 'https://images.unsplash.com/photo-1592417817098-8f3d6ef23a81?auto=format&fit=crop&w=500&q=80',
+                badge: 'Gourmet'
+            },
+            {
+                id: 'p3',
+                name: 'Requeijão Cremoso de Búfala A2A2',
+                category: 'doces',
+                price: 28.00,
+                unit: 'pote de vidro 250g',
+                desc: 'Cremosidade incomparável sem adição de amidos ou gorduras vegetais. 100% puro creme de búfala.',
+                img: 'https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=500&q=80',
+                badge: 'Destaque'
+            },
+            {
+                id: 'p4',
+                name: 'Doce de Leite de Búfala Cremoso',
+                category: 'doces',
+                price: 32.00,
+                unit: 'pote de vidro 400g',
+                desc: 'Cozido lentamente em tacho de cobre com leite de búfala puro. Sabor rico e consistência incrível.',
+                img: 'doce de leite.JPG',
+                fallbackImg: 'doce de leite.jpg',
+                badge: 'Artesanal'
+            },
+            {
+                id: 'p5',
+                name: 'Queijo Manta de Mozzarella de Búfala',
+                category: 'queijos',
+                price: 42.00,
+                unit: 'un (aprox. 500g)',
+                desc: 'Manta recheável dobrada artesanalmente. Ideal para rocamboles recheados com tomate seco e manjericão.',
+                img: 'https://images.unsplash.com/photo-1626957341926-98752fc2ba90?auto=format&fit=crop&w=500&q=80',
+                badge: 'Especial'
+            },
+            {
+                id: 'p6',
+                name: 'Burrata de Búfala A2A2 Tradicional',
+                category: 'queijos',
+                price: 45.00,
+                unit: 'un (300g com creme stracciatella)',
+                desc: 'Bolsa de mozzarella recheada com fios macios de massa e natas frescas de leite de búfala.',
+                img: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=500&q=80',
+                badge: 'Premium'
+            },
+            {
+                id: 'p7',
+                name: 'Kit Degustação Família Búfalas São João',
+                category: 'kits',
+                price: 135.00,
+                unit: 'Kit Completo com 4 produtos',
+                desc: 'Contém: 1 Frescal, 1 Pote de Mozzarella em Bola, 1 Requeijão Cremoso e 1 Doce de Leite de Búfala.',
+                img: 'https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=500&q=80',
+                badge: 'Melhor Custo-Benefício'
+            },
+            {
+                id: 'p8',
+                name: 'Ricota Fresca de Búfala A2A2',
+                category: 'queijos',
+                price: 24.00,
+                unit: 'un (aprox. 350g)',
+                desc: 'Ultra leve, rica em soroproteínas de alto valor biológico e baixíssimo teor de gordura.',
+                img: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=500&q=80',
+                badge: 'Leve & Saudável'
+            }
+        ];
+
+        // 30 Complete FAQs
+        const faqList = [
+            { q: "O que é leite A2A2 e por que ele é melhor para a digestão?", a: "O leite A2A2 contém apenas a proteína beta-caseína A2. Diferente do leite convencional (A1), ele não produz o peptídeo BCM-7 durante a digestão, evitando estufamento, dores e desconfortos abdominais." },
+            { q: "Quem tem intolerância à lactose pode consumir derivados de búfala?", a: "O leite de búfala possui proteína A2A2 que elimina desconfortos proteicos. Embora contenha uma taxa natural menor de lactose, pessoas com lactose severa devem avaliar a tolerância individual ou optar por enzimas." },
+            { q: "Como funciona o Passeio com Búfalas?", a: "O Passeio com Búfalas é uma experiência imersiva onde os visitantes interagem diretamente com o rebanho, podem acariciar, tirar fotos e fazer passeios guiados montando em búfalas dóceis sob supervisão." },
+            { q: "As búfalas são dóceis e seguras para crianças montarem?", a: "Sim! Nosso rebanho voltado ao turismo é selecionado e adestrado com carinho desde o nascimento. O passeio é monitorado para total segurança de adultos e crianças." },
+            { q: "Como é a infraestrutura de banheiros da fazenda?", a: "Possuímos banheiros higienizados e sanitizados constantemente durante todo o período de atendimento, com fraldário e acessibilidade para idosos e PWD." },
+            { q: "Qual o horário e dias de funcionamento da fazenda?", a: "Funcionamos de terça a domingo, das 08h às 18h. Para o café da manhã e passeios com búfalas, recomendamos o agendamento prévio via WhatsApp." },
+            { q: "Quais cidades recebem a entrega dos produtos A2A2?", a: "Realizamos entregas refrigeradas semanais diretamente em residências nas cidades de Assis, Cândido Mota e Paraguaçu Paulista." },
+            { q: "Qual é o valor da taxa de frete para entregas?", a: "Entregas em Assis e Cândido Mota possuem frete de R$ 8,00. Em Paraguaçu Paulista é R$ 12,00. Você também pode escolher retirar diretamente na fazenda gratuitamente." },
+            { q: "Como é calculado o valor final do meu pedido no WhatsApp?", a: "Nosso sistema calcula automaticamente a somatória item a item (quantidade x valor unitário), adiciona o frete da cidade e aplica eventuais descontos do método de pagamento." },
+            { q: "Quais as formas de pagamento aceitas?", a: "Aceitamos Pix (com 5% de desconto automático na compra), Cartão de Crédito, Débito e Dinheiro." },
+            { q: "Como devo armazenar o Queijo Frescal e a Mozzarella?", a: "Devem ser mantidos sob refrigeração entre 1°C e 8°C. A mozzarella em bola deve ser mantida imersa em seu próprio soro até o consumo." },
+            { q: "A fazenda possui estacionamento próprio?", a: "Sim! Dispomos de estacionamento amplo, gratuito e fechado com capacidade para carros e ônibus de excursão." },
+            { q: "É necessário reservar o Passeio com Búfalas com antecedência?", a: "Sim, recomendamos a reserva prévia pelo WhatsApp para garantirmos a melhor recepção e limitar o número de visitantes por horário." },
+            { q: "O que está incluso no Café da Manhã Colonial?", a: "Inclui mesa farta com queijos A2A2 frescos e curados, requeijão de raspa, geleias, sucos naturais, bolos e café passado na hora no fogão a lenha." },
+            { q: "O Almoço Caipira oferece opções para vegetarianos?", a: "Sim! O buffet do fogão a lenha oferece ampla variedade de saladas orgânicas, pratos à base de legumes e queijos de búfala grelhados." },
+            { q: "Crianças pagam pelo passeio e refeições?", a: "Crianças até 5 anos não pagam. De 6 a 10 anos pagam meia-entrada nas refeições e passeios." },
+            { q: "Posso levar meu pet para a fazenda (Pet Friendly)?", a: "Sim, somos Pet Friendly! Pedimos apenas que cães fiquem na coleira nas áreas comuns e próximas aos animais da fazenda." },
+            { q: "Os produtos são inspecionados pelos órgãos de saúde?", a: "Sim! Todos os nossos laticínios possuem registro e inspeção sanitária oficial, seguindo rigorosos padrões de higiene." },
+            { q: "A fazenda tem espaço para eventos privados ou festas?", a: "Sim! Realizamos festas de aniversário, eventos corporativos e passeios escolares com agendamento prévio de data." },
+            { q: "O doce de leite de búfala é muito doce?", a: "Não, ele é conhecido pelo sabor suave e caramelizado sem ser enjoativo, pois o leite de búfala é naturalmente mais encorpado e cremoso." },
+            { q: "O que é o Requeijão de Raspa de Búfala?", a: "É um requeijão tradicionalíssimo feito com as raspas do tacho de cozimento, entregando um toque levemente defumado e textura incomparável." },
+            { q: "É possível comprar os produtos diretamente na fazenda?", a: "Sim! Nosso empório físico na fazenda funciona no mesmo horário de visitação para você levar produtos frescos para casa." },
+            { q: "Qual a durabilidade (validade) dos queijos frescos?", a: "Os queijos frescos duram em média 15 a 20 dias bem refrigerados. Queijos curados e doces possuem durabilidade maior de até 60 dias." },
+            { q: "Em quais dias são feitas as entregas nas cidades vizinhas?", a: "Fazemos entregas em Assis e Cândido Mota de terça a sábado. Em Paraguaçu Paulista, as entregas ocorrem às quartas e sextas-feiras." },
+            { q: "Existe quantidade mínima para fazer pedido para entrega?", a: "Apenas um pedido mínimo de R$ 30,00 para viabilizar a rota refrigerada de entregas." },
+            { q: "Como chegar na fazenda a partir de Assis?", a: "Basta seguir pela Rodovia Raposo Tavares sentido Cândido Mota/Paraguaçu por cerca de 15 min. Há placas sinalizadoras no acesso rural." },
+            { q: "A fazenda possui área coberta em caso de chuva?", a: "Sim! Toda a área do restaurante, empório, banheiros e deque de recepção é coberta e protegida do tempo." },
+            { q: "Posso encomendar tábuas de queijos personalizadas?", a: "Com certeza! Montamos tábuas de frios e queijos A2A2 personalizadas para eventos e reuniões sob encomenda prévia." },
+            { q: "Qual o benefício do soro da mozzarella de búfala?", a: "O soro conserva a umidade e o sal na medida certa, mantendo a bola de mozzarella macia por muito mais tempo na geladeira." },
+            { q: "Como entrar em contato diretamente com o proprietário?", a: "Você pode clicar em qualquer botão de WhatsApp deste site para falar diretamente com nossa equipe de atendimento familiar!" }
+        ];
+
+        // Shopping Cart State
+        let cart = [];
+
+        // Application Initialization
+        window.onload = function() {
+            renderProducts(products);
+            renderFAQs(faqList);
+            updateCartBadge();
+        };
+
+        // Render Product Cards
+        function renderProducts(items) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+
+            items.forEach(p => {
+                const fallbackAttr = p.fallbackImg ? `onerror="this.onerror=null; this.src='${p.fallbackImg}';"` : '';
+                const cardHtml = `
+                    <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                        <div class="relative cursor-pointer" onclick="openProductModal('${p.id}')">
+                            <span class="absolute top-3 left-3 z-10 bg-stone-900/80 backdrop-blur text-brand-gold text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                                ${p.badge}
+                            </span>
+                            <img src="${p.img}" ${fallbackAttr} alt="${p.name}" class="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-bold text-stone-900 text-base mb-1 cursor-pointer hover:text-brand-gold" onclick="openProductModal('${p.id}')">${p.name}</h3>
+                                <p class="text-stone-500 text-xs mb-3 line-clamp-2">${p.desc}</p>
+                            </div>
+                            <div>
+                                <div class="flex items-baseline justify-between mb-4">
+                                    <span class="text-lg font-bold text-brand-brown">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
+                                    <span class="text-[11px] text-stone-400 font-medium">${p.unit}</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="addToCart('${p.id}')" class="bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold py-2.5 px-3 rounded-xl transition-colors flex items-center justify-center space-x-1">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        <span>+ Carrinho</span>
+                                    </button>
+                                    <button onclick="quickWhatsAppOrder('${p.id}')" class="bg-green-600 hover:bg-green-700 text-white text-xs font-semibold py-2.5 px-3 rounded-xl transition-colors flex items-center justify-center space-x-1 shadow-sm">
+                                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                                        <span>Comprar</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHtml;
+            });
+        }
+
+        // Category Filtering
+        function filterCategory(cat) {
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-stone-900', 'text-white');
+                btn.classList.add('bg-stone-200', 'text-stone-800');
+            });
+            event.target.classList.remove('bg-stone-200', 'text-stone-800');
+            event.target.classList.add('bg-stone-900', 'text-white');
+
+            if (cat === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === cat);
+                renderProducts(filtered);
+            }
+        }
+
+        // Quick WhatsApp Direct Order for Single Product
+        function quickWhatsAppOrder(productId) {
+            const prod = products.find(p => p.id === productId);
+            if (!prod) return;
+
+            const message = `*NOVO PEDIDO RÁPIDO - BÚFALAS SÃO JOÃO*\n` +
+                `----------------------------------------\n` +
+                `• 1x ${prod.name} (R$ ${prod.price.toFixed(2).replace('.', ',')} un) = *R$ ${prod.price.toFixed(2).replace('.', ',')}*\n` +
+                `----------------------------------------\n` +
+                `*TOTAL DO ITEM: R$ ${prod.price.toFixed(2).replace('.', ',')}*\n\n` +
+                `Olá! Gostaria de pedir este item. Poderia me informar a taxa de entrega para a minha região?`;
+
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Direct WhatsApp Booking for Experiences (Buffalo Ride, Breakfast, Lunch)
+        function directReserveExperience(title, price) {
+            const message = `*RESERVA DE EXPERIÊNCIA - BÚFALAS SÃO JOÃO*\n` +
+                `----------------------------------------\n` +
+                `• 1x ${title} (R$ ${price.toFixed(2).replace('.', ',')} por pessoa) = *R$ ${price.toFixed(2).replace('.', ',')}*\n` +
+                `----------------------------------------\n` +
+                `*TOTAL DA RESERVA (1 PESSOA): R$ ${price.toFixed(2).replace('.', ',')}*\n\n` +
+                `Olá! Gostaria de agendar esta experiência para a minha família. Como funcionam os horários para este fim de semana?`;
+
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Modal View for Product Details
+        function openProductModal(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+
+            const fallbackAttr = p.fallbackImg ? `onerror="this.onerror=null; this.src='${p.fallbackImg}';"` : '';
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <img src="${p.img}" ${fallbackAttr} alt="${p.name}" class="h-56 w-full object-cover">
+                <div class="p-6">
+                    <span class="bg-brand-gold/20 text-stone-900 border border-brand-gold/40 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2 inline-block">
+                        ${p.badge} • Leite A2A2
+                    </span>
+                    <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2">${p.name}</h3>
+                    <p class="text-stone-600 text-sm mb-4 leading-relaxed">${p.desc}</p>
+                    <div class="flex items-center justify-between border-t border-stone-200 pt-4 mb-6">
+                        <div>
+                            <span class="text-xs text-stone-400 block">Preço Unitário</span>
+                            <span class="text-2xl font-bold text-brand-brown">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                        <span class="text-xs font-semibold text-stone-500 bg-stone-100 px-3 py-1 rounded-full">${p.unit}</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="addToCart('${p.id}'); closeProductModal();" class="bg-stone-900 hover:bg-stone-800 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center space-x-2 text-sm">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                            <span>Adicionar ao Carrinho</span>
+                        </button>
+                        <button onclick="quickWhatsAppOrder('${p.id}')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center space-x-2 text-sm shadow">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>Comprar Direto</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
+
+        // Cart Drawer Logic
+        function toggleCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('hidden');
+            renderCartItems();
+        }
+
+        function addToCart(productId) {
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty++;
+            } else {
+                const prod = products.find(p => p.id === productId);
+                if (prod) {
+                    cart.push({ ...prod, qty: 1 });
+                }
+            }
+            updateCartBadge();
+            
+            // Toast notification feedback
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-4 right-4 z-50 bg-stone-900 text-white px-4 py-3 rounded-xl shadow-lg border border-brand-gold text-xs font-medium flex items-center space-x-2';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-brand-gold"></i><span>Produto adicionado ao carrinho!</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        function updateQuantity(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+
+            item.qty += change;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+            renderCartItems();
+            updateCartBadge();
+        }
+
+        function updateCartBadge() {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            const badge = document.getElementById('cartCountBadge');
+            if (totalQty > 0) {
+                badge.innerText = totalQty;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cartItemsList');
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-stone-400 space-y-3">
+                        <i class="fa-solid fa-basket-shopping text-4xl text-stone-300"></i>
+                        <p class="text-sm">Seu carrinho está vazio.</p>
+                        <button onclick="toggleCartModal()" class="text-xs text-brand-gold font-bold underline">Explorar Nossos Queijos A2A2</button>
+                    </div>
+                `;
+                calculateCartTotal();
+                return;
+            }
+
+            container.innerHTML = '';
+            cart.forEach(item => {
+                const itemSum = item.price * item.qty;
+                container.innerHTML += `
+                    <div class="flex items-center justify-between bg-stone-50 p-3 rounded-xl border border-stone-200">
+                        <img src="${item.img}" alt="${item.name}" class="w-12 h-12 rounded-lg object-cover">
+                        <div class="flex-1 px-3">
+                            <h4 class="font-bold text-xs text-stone-900 line-clamp-1">${item.name}</h4>
+                            <p class="text-[11px] text-stone-500">R$ ${item.price.toFixed(2).replace('.', ',')} un</p>
+                            <span class="text-xs font-bold text-brand-brown">Subtotal: R$ ${itemSum.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white border border-stone-300 rounded-lg p-1">
+                            <button onclick="updateQuantity('${item.id}', -1)" class="w-6 h-6 flex items-center justify-center text-stone-600 hover:bg-stone-100 rounded">-</button>
+                            <span class="text-xs font-bold text-stone-800 px-1">${item.qty}</span>
+                            <button onclick="updateQuantity('${item.id}', 1)" class="w-6 h-6 flex items-center justify-center text-stone-600 hover:bg-stone-100 rounded">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            calculateCartTotal();
+        }
+
+        function calculateCartTotal() {
+            const city = document.getElementById('custCity')?.value || 'Assis';
+            const payment = document.getElementById('custPayment')?.value || '';
+
+            let subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+            let freight = 8.00;
+            if (city === 'Paraguaçu Paulista') freight = 12.00;
+            if (city === 'Retirada') freight = 0.00;
+
+            let discount = 0;
+            if (payment === 'Pix') {
+                discount = subtotal * 0.05; // 5% discount
+            }
+
+            const total = subtotal + freight - discount;
+
+            const summaryEl = document.getElementById('cartSummary');
+            if (summaryEl) {
+                summaryEl.innerHTML = `
+                    <div class="flex justify-between text-stone-600">
+                        <span>Subtotal dos Produtos:</span>
+                        <span>R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+                    </div>
+                    <div class="flex justify-between text-stone-600">
+                        <span>Frete (${city}):</span>
+                        <span>${freight === 0 ? 'GRÁTIS' : 'R$ ' + freight.toFixed(2).replace('.', ',')}</span>
+                    </div>
+                    ${discount > 0 ? `
+                    <div class="flex justify-between text-green-700 font-medium">
+                        <span>Desconto Pix (5%):</span>
+                        <span>- R$ ${discount.toFixed(2).replace('.', ',')}</span>
+                    </div>` : ''}
+                    <div class="flex justify-between text-stone-900 font-bold text-sm pt-2 border-t border-stone-200">
+                        <span>VALOR TOTAL DO PEDIDO:</span>
+                        <span class="text-brand-brown">R$ ${total.toFixed(2).replace('.', ',')}</span>
+                    </div>
+                `;
+            }
+
+            return { subtotal, freight, discount, total };
+        }
+
+        // WhatsApp Order Dispatch with Line-by-Line Sum Calculation
+        function sendCartToWhatsApp() {
+            if (cart.length === 0) {
+                alert('Seu carrinho está vazio! Adicione produtos antes de finalizar.');
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim();
+            const city = document.getElementById('custCity').value;
+            const bairro = document.getElementById('custBairro').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const payment = document.getElementById('custPayment').value;
+            const notes = document.getElementById('custNotes').value.trim();
+
+            if (!name || !bairro || !address) {
+                alert('Por favor, preencha seu Nome Completo, Bairro e Endereço com número.');
+                return;
+            }
+
+            const { subtotal, freight, discount, total } = calculateCartTotal();
+
+            // Construct Itemized Message with individual total calculations
+            let msg = `*NOVO PEDIDO COMPLETO - BÚFALAS SÃO JOÃO*\n`;
+            msg += `----------------------------------------\n`;
+            msg += `*ITENS DO PEDIDO (SOMATÓRIA DETALHADA):*\n\n`;
+
+            cart.forEach((item, idx) => {
+                const itemTotal = item.price * item.qty;
+                msg += `• ${item.qty}x ${item.name}\n`;
+                msg += `   (R$ ${item.price.toFixed(2).replace('.', ',')} un) = *R$ ${itemTotal.toFixed(2).replace('.', ',')}*\n`;
+            });
+
+            msg += `----------------------------------------\n`;
+            msg += `*RESUMO DA SOMATÓRIA:*\n`;
+            msg += `• Subtotal Produtos: R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+            msg += `• Taxa de Entrega (${city}): ${freight === 0 ? 'GRÁTIS' : 'R$ ' + freight.toFixed(2).replace('.', ',')}\n`;
+            if (discount > 0) {
+                msg += `• Desconto Pix (5%): - R$ ${discount.toFixed(2).replace('.', ',')}\n`;
+            }
+            msg += `----------------------------------------\n`;
+            msg += `*VALOR TOTAL A PAGAR: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
+            msg += `----------------------------------------\n\n`;
+
+            msg += `*DADOS DE ENTREGA:* \n`;
+            msg += `👤 *Nome:* ${name}\n`;
+            msg += `📍 *Cidade:* ${city}\n`;
+            msg += `🏡 *Bairro:* ${bairro}\n`;
+            msg += `🏠 *Endereço:* ${address}\n`;
+            msg += `💳 *Forma de Pagamento:* ${payment}\n`;
+            if (notes) {
+                msg += `📝 *Observações:* ${notes}\n`;
+            }
+
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // Render FAQs
+        function renderFAQs(faqs) {
+            const container = document.getElementById('faqContainer');
+            container.innerHTML = '';
+
+            faqs.forEach((faq, index) => {
+                container.innerHTML += `
+                    <div class="faq-item bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
+                        <button onclick="toggleFAQ(${index})" class="w-full text-left p-4 sm:p-5 font-semibold text-stone-900 text-sm flex items-center justify-between hover:bg-stone-50 transition-colors">
+                            <span class="pr-2"><span class="text-brand-gold font-bold mr-2">Q${index + 1}.</span>${faq.q}</span>
+                            <i id="faqIcon-${index}" class="fa-solid fa-chevron-down text-stone-400 transition-transform"></i>
+                        </button>
+                        <div id="faqAns-${index}" class="hidden p-4 sm:p-5 pt-0 text-stone-600 text-xs sm:text-sm border-t border-stone-100 bg-stone-50/50 leading-relaxed">
+                            ${faq.a}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function toggleFAQ(index) {
+            const ans = document.getElementById(`faqAns-${index}`);
+            const icon = document.getElementById(`faqIcon-${index}`);
+
+            if (ans.classList.contains('hidden')) {
+                ans.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                ans.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        function filterFAQs() {
+            const query = document.getElementById('faqSearchInput').value.toLowerCase();
+            const filtered = faqList.filter(item => 
+                item.q.toLowerCase().includes(query) || item.a.toLowerCase().includes(query)
+            );
+            renderFAQs(filtered);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
