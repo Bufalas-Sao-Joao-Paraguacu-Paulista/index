@@ -177,6 +177,23 @@ nav.open{display:flex}
 section{padding-block:3.5rem}
 .two{grid-template-columns:1fr}
 }
+.admin-open{border:0;background:none;color:#bdb59c;text-decoration:underline;font:inherit;cursor:pointer;padding:0}
+.admin-dialog{width:min(92vw,600px);max-width:600px;max-height:90vh;padding:1.5rem;background:var(--paper);color:var(--ink);overflow-y:auto}
+.admin-dialog>div{display:block;padding:0}
+.admin-dialog [hidden]{display:none!important}
+.admin-header{display:flex!important;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem}
+.admin-header h2{font-size:1.6rem;margin:0}
+.admin-dialog form{margin:0 0 1rem}
+.admin-dialog form h3{margin-bottom:1rem}
+.admin-dialog .password-control{display:flex;align-items:center;gap:.4rem}
+.admin-dialog .password-control input{flex:1;min-width:0}
+.password-toggle{display:grid;place-items:center;flex:0 0 2.8rem;width:2.8rem;height:2.8rem;margin-top:.35rem;border:1px solid #cfc4a2;border-radius:6px;background:#fff;color:var(--ink);cursor:pointer}
+.password-toggle svg{width:1.25rem;height:1.25rem}
+.admin-note{font-size:.88rem;color:var(--muted)}
+.admin-message{min-height:1.5em;color:var(--brown);font-weight:600}
+.admin-dialog .admin-image-preview{display:inline-block;width:110px;margin:.3rem;vertical-align:top}
+.admin-dialog .admin-image-preview img{width:100%;height:90px;max-height:none;object-fit:cover;border-radius:6px}
+.admin-remove-image{display:block;margin:.3rem auto .5rem;border:0;background:none;color:#8b2f20;text-decoration:underline;font:500 .85rem var(--sans);cursor:pointer}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -359,10 +376,49 @@ section{padding-block:3.5rem}
 <p><strong>Búfalas São João</strong> · Queijos artesanais e turismo rural · Lary Barbaresco (18) 99643-8262 · Juliano Barbaresco (18) 99623-2661</p>
 <p>Seus dados são usados apenas para responder ao seu contato, conforme a LGPD (Lei 13.709/2018).</p>
 <p>© <span id="y"></span> Búfalas São João</p>
+<button class="admin-open" id="admin-open" type="button">Área administrativa</button>
 </div></footer>
 <a class="fab" data-wa="Olá! Gostaria de falar com a Búfalas São João." href="#">WhatsApp</a>
 <dialog id="cart" class="cart" aria-label="Carrinho de compras"><div class="ch"><h2>Carrinho</h2><button type="button" id="cx">Fechar</button></div><div id="cb"></div></dialog>
 <dialog id="lb"><img alt=""><div><span id="lc"></span><button type="button" id="lx">Fechar</button></div></dialog>
+<dialog id="admin" class="admin-dialog" aria-labelledby="admin-title">
+<div class="admin-header"><h2 id="admin-title">Área administrativa</h2><button id="admin-close" type="button">Fechar</button></div>
+<div id="admin-login-area">
+<form id="admin-login">
+<h3>Entrar</h3>
+<label>Login<input id="admin-username" name="username" autocomplete="username" required></label>
+<label>Senha
+<span class="password-control"><input id="admin-password" name="password" type="password" autocomplete="current-password" required><button class="password-toggle" type="button" data-password-toggle="admin-password" aria-label="Mostrar senha" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></span>
+</label>
+<button class="btn btn-dark" type="submit">Entrar</button>
+<p id="admin-login-message" class="admin-message" role="status" aria-live="polite"></p>
+</form>
+</div>
+<div id="admin-panel" hidden>
+<form id="admin-password-form">
+<h3>Alterar senha</h3>
+<label>Senha atual
+<span class="password-control"><input id="admin-current-password" type="password" autocomplete="current-password" required><button class="password-toggle" type="button" data-password-toggle="admin-current-password" aria-label="Mostrar senha" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></span>
+</label>
+<label>Nova senha
+<span class="password-control"><input id="admin-new-password" type="password" autocomplete="new-password" minlength="8" required><button class="password-toggle" type="button" data-password-toggle="admin-new-password" aria-label="Mostrar senha" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></span>
+</label>
+<label>Confirme a nova senha
+<span class="password-control"><input id="admin-confirm-password" type="password" autocomplete="new-password" minlength="8" required><button class="password-toggle" type="button" data-password-toggle="admin-confirm-password" aria-label="Mostrar senha" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></span>
+</label>
+<button class="btn btn-dark" type="submit">Salvar nova senha</button>
+<p id="admin-password-message" class="admin-message" role="status" aria-live="polite"></p>
+</form>
+<form id="admin-upload-form">
+<h3>Adicionar imagens à galeria</h3>
+<label>Selecione uma ou mais imagens<input id="admin-images" type="file" accept="image/*" multiple required></label>
+<button class="btn btn-dark" type="submit">Adicionar à galeria</button>
+<p id="admin-upload-message" class="admin-message" role="status" aria-live="polite"></p>
+<p class="admin-note">As imagens aparecem nesta página durante esta sessão. Para publicá-las para todos os visitantes, é necessário configurar armazenamento no servidor.</p>
+</form>
+<button class="btn btn-line" id="admin-logout" type="button">Sair da área administrativa</button>
+</div>
+</dialog>
 <script>
 var PH="5518996438262";
 function wa(t,p){return"https://wa.me/"+(p||PH)+"?text="+encodeURIComponent(t)}
@@ -399,6 +455,43 @@ document.getElementById("of").addEventListener("submit",function(e){e.preventDef
 for(k in Q){if(!Q[k])continue;var p=PRECOS[k];if(p==null){pend=true;l.push("- "+Q[k]+" × "+k+" (valor a confirmar)")}else{t+=p*Q[k];l.push("- "+Q[k]+" × "+k+" ("+R(p)+" cada) = "+R(p*Q[k]))}}
 if(!l.length){er.textContent="Adicione ao menos um produto ao pedido.";return}er.textContent="";
 window.open(wa("Olá! Gostaria de fazer um pedido:\n\nItens:\n"+l.join("\n")+"\n\nTotal dos produtos: "+(pend?(t?R(t)+" + itens a confirmar":"a confirmar"):R(t))+"\nFrete: a confirmar\n\nNome: "+d.get("n")+"\nCidade: "+d.get("c")+"\nEndereço completo: "+d.get("e")+"\nLocal da entrega: "+d.get("l")+"\nPagamento: "+d.get("p")),"_blank","noopener")});
+var admin=document.getElementById("admin"),adminLoginArea=document.getElementById("admin-login-area"),adminPanel=document.getElementById("admin-panel"),loginMessage=document.getElementById("admin-login-message"),passwordMessage=document.getElementById("admin-password-message"),uploadMessage=document.getElementById("admin-upload-message"),gallery=document.querySelector(".gal");
+function getAdminPassword(){return localStorage.getItem("bufalas-admin-password")||"12345678"}
+document.getElementById("admin-open").addEventListener("click",function(){admin.showModal()});
+document.getElementById("admin-close").addEventListener("click",function(){admin.close()});
+admin.addEventListener("click",function(e){if(e.target===admin)admin.close()});
+document.querySelectorAll("[data-password-toggle]").forEach(function(button){button.addEventListener("click",function(){
+var field=document.getElementById(button.dataset.passwordToggle),show=field.type==="password";
+field.type=show?"text":"password";button.setAttribute("aria-label",show?"Ocultar senha":"Mostrar senha");button.setAttribute("aria-pressed",String(show))
+})});
+document.getElementById("admin-login").addEventListener("submit",function(e){e.preventDefault();loginMessage.textContent="";
+var username=document.getElementById("admin-username").value.trim(),password=document.getElementById("admin-password").value;
+try{if(username.toLowerCase()!=="lary"||password!==getAdminPassword()){loginMessage.textContent="Login ou senha incorretos.";return}}
+catch(error){loginMessage.textContent="Não foi possível acessar o armazenamento do navegador.";return}
+adminLoginArea.hidden=true;adminPanel.hidden=false;document.getElementById("admin-login").reset()
+});
+document.getElementById("admin-password-form").addEventListener("submit",function(e){e.preventDefault();passwordMessage.textContent="";
+var current=document.getElementById("admin-current-password").value,next=document.getElementById("admin-new-password").value,confirm=document.getElementById("admin-confirm-password").value;
+try{if(current!==getAdminPassword()){passwordMessage.textContent="A senha atual está incorreta.";return}}
+catch(error){passwordMessage.textContent="Não foi possível acessar o armazenamento do navegador.";return}
+if(next.length<8){passwordMessage.textContent="A nova senha precisa ter pelo menos 8 caracteres.";return}
+if(next!==confirm){passwordMessage.textContent="A confirmação não corresponde à nova senha.";return}
+try{localStorage.setItem("bufalas-admin-password",next)}
+catch(error){passwordMessage.textContent="Não foi possível salvar a nova senha neste navegador.";return}
+e.target.reset();passwordMessage.textContent="Senha alterada neste navegador."
+});
+document.getElementById("admin-upload-form").addEventListener("submit",function(e){e.preventDefault();uploadMessage.textContent="";
+var files=Array.from(document.getElementById("admin-images").files||[]),invalid=files.filter(function(file){return !file.type.startsWith("image/")});
+if(!files.length){uploadMessage.textContent="Selecione ao menos uma imagem.";return}
+if(invalid.length){uploadMessage.textContent="Selecione somente arquivos de imagem.";return}
+files.forEach(function(file){var url=URL.createObjectURL(file),figure=document.createElement("figure"),button=document.createElement("button"),image=document.createElement("img"),caption=document.createElement("figcaption"),remove=document.createElement("button");
+figure.className="admin-uploaded-image";button.type="button";button.className="gb";button.dataset.cap=file.name;image.src=url;image.alt=file.name;image.loading="lazy";caption.textContent=file.name;
+remove.type="button";remove.className="admin-remove-image";remove.textContent="Remover imagem";remove.addEventListener("click",function(){URL.revokeObjectURL(url);figure.remove()});
+button.appendChild(image);figure.appendChild(button);figure.appendChild(caption);figure.appendChild(remove);gallery.appendChild(figure)
+});
+document.getElementById("admin-upload-form").reset();uploadMessage.textContent=files.length+" imagem(ns) adicionada(s) à galeria."
+});
+document.getElementById("admin-logout").addEventListener("click",function(){adminPanel.hidden=true;adminLoginArea.hidden=false;passwordMessage.textContent="";uploadMessage.textContent="";admin.close()});
 document.getElementById("y").textContent=new Date().getFullYear();
 </script>
 </body>
