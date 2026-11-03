@@ -202,6 +202,7 @@ section{padding-block:3.5rem}
 .admin-gallery-item button{margin-top:.4rem}
 .event-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
 .event-card{padding:1.2rem;background:var(--paper);border:1px solid var(--line);border-radius:8px}
+.event-card img{width:100%;max-height:300px;object-fit:cover;border-radius:6px;margin-bottom:.8rem}
 .event-card time{display:block;color:var(--brown);font-weight:700;margin-bottom:.4rem}
 .event-card p{margin-bottom:0;color:var(--muted)}
 .admin-remove-image{display:block;margin:.3rem auto .5rem;border:0;background:none;color:#8b2f20;text-decoration:underline;font:500 .85rem var(--sans);cursor:pointer}
@@ -404,13 +405,16 @@ section{padding-block:3.5rem}
 <div id="admin-login-area">
 <form id="admin-login">
 <h3>Entrar</h3>
-<label>Login<input id="admin-username" name="username" autocomplete="username" required></label>
-<label>Senha
+<label>Login<input id="admin-username" name="username" value="Lary" autocomplete="username" readonly required></label>
+<label id="admin-password-label">Senha
 <span class="password-control"><input id="admin-password" name="password" type="password" autocomplete="current-password" required><button class="password-toggle" type="button" data-password-toggle="admin-password" aria-label="Mostrar senha" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></span>
+</label>
+<label id="admin-confirm-label" hidden>Confirme a senha
+<input id="admin-password-confirm" type="password" autocomplete="new-password">
 </label>
 <button class="btn btn-dark" type="submit">Entrar</button>
 <p id="admin-login-message" class="admin-message" role="status" aria-live="polite"></p>
-<p class="admin-note">O acesso é validado pelo serviço administrativo. A senha não fica no código público do site.</p>
+<p id="admin-login-note" class="admin-note">A senha e os dados ficam neste navegador; o bloqueio é local e não protege o site público. Na primeira vez, crie sua senha.</p>
 </form>
 </div>
 <div id="admin-panel" hidden>
@@ -425,7 +429,8 @@ section{padding-block:3.5rem}
 <label>Nome do evento<input id="admin-event-title" maxlength="120" required></label>
 <label>Data<input id="admin-event-date" type="date" required></label>
 <label>Informações adicionais<textarea id="admin-event-details" maxlength="600" rows="3"></textarea></label>
-<button class="btn btn-dark" type="submit">Publicar evento</button>
+<label>Imagem do evento (opcional, JPEG, PNG, GIF ou WebP; até 5 MB)<input id="admin-event-image" type="file" accept="image/jpeg,image/png,image/gif,image/webp"></label>
+<button class="btn btn-dark" type="submit">Salvar evento neste navegador</button>
 <p id="admin-event-message" class="admin-message" role="status" aria-live="polite"></p>
 </form>
 <h3>Eventos cadastrados</h3>
@@ -433,11 +438,12 @@ section{padding-block:3.5rem}
 <form id="admin-upload-form">
 <h3>Fotos da galeria</h3>
 <label>Enviar imagens JPEG, PNG, GIF ou WebP (até 5 MB cada)<input id="admin-images" type="file" accept="image/jpeg,image/png,image/gif,image/webp" multiple></label>
-<button class="btn btn-dark" type="submit">Enviar imagens</button>
+<button class="btn btn-dark" type="submit">Adicionar imagens</button>
 <p id="admin-upload-message" class="admin-message" role="status" aria-live="polite"></p>
 </form>
-<p class="admin-note">Use os botões nas fotos abaixo para remover ou restaurar imagens antigas. As mudanças são publicadas no GitHub Pages.</p>
+<p class="admin-note">Use os botões nas fotos abaixo para remover ou restaurar imagens antigas.</p>
 <div id="admin-gallery-list" class="admin-gallery-list"></div>
+<p class="admin-note">As alterações são salvas apenas neste navegador e não são publicadas no site para os visitantes. O bloqueio por senha é local, não uma proteção do site público.</p>
 <button class="btn btn-line" id="admin-logout" type="button">Sair da área administrativa</button>
 </div>
 </dialog>
@@ -477,31 +483,61 @@ document.getElementById("of").addEventListener("submit",function(e){e.preventDef
 for(k in Q){if(!Q[k])continue;var p=PRECOS[k];if(p==null){pend=true;l.push("- "+Q[k]+" × "+k+" (valor a confirmar)")}else{t+=p*Q[k];l.push("- "+Q[k]+" × "+k+" ("+R(p)+" cada) = "+R(p*Q[k]))}}
 if(!l.length){er.textContent="Adicione ao menos um produto ao pedido.";return}er.textContent="";
 window.open(wa("Olá! Gostaria de fazer um pedido:\n\nItens:\n"+l.join("\n")+"\n\nTotal dos produtos: "+(pend?(t?R(t)+" + itens a confirmar":"a confirmar"):R(t))+"\nFrete: a confirmar\n\nNome: "+d.get("n")+"\nCidade: "+d.get("c")+"\nEndereço completo: "+d.get("e")+"\nLocal da entrega: "+d.get("l")+"\nPagamento: "+d.get("p")),"_blank","noopener")});
-var ADMIN_USERNAME="Lary",ADMIN_API_URL="",ADMIN_SESSION_KEY="bufalas-admin-session";
-var admin=document.getElementById("admin"),adminLoginArea=document.getElementById("admin-login-area"),adminPanel=document.getElementById("admin-panel"),loginMessage=document.getElementById("admin-login-message"),gallery=document.querySelector(".gal"),legacyFigures=Array.from(document.querySelectorAll(".gal figure")),adminEvents=[],galleryImages=[],hiddenLegacyIds=[];
+var ADMIN_USERNAME="Lary",ADMIN_STATE_KEY="bufalas-admin-local-state",ADMIN_CREDENTIAL_KEY="bufalas-admin-local-credential",ADMIN_SESSION_KEY="bufalas-admin-local-session",GALLERY_DB_NAME="bufalas-admin-gallery",GALLERY_STORE_NAME="images";
+var admin=document.getElementById("admin"),adminLoginArea=document.getElementById("admin-login-area"),adminPanel=document.getElementById("admin-panel"),loginMessage=document.getElementById("admin-login-message"),gallery=document.querySelector(".gal"),legacyFigures=Array.from(document.querySelectorAll(".gal figure")),adminEvents=[],galleryImages=[],hiddenLegacyIds=[],localState={prices:{},events:[],hiddenLegacyIds:[]},galleryObjectUrls={},galleryDatabasePromise=null;
 legacyFigures.forEach(function(figure,index){figure.dataset.legacyId="legacy-"+index;figure.dataset.legacyName=figure.querySelector("figcaption")?figure.querySelector("figcaption").textContent.trim():figure.querySelector("img").alt||"Imagem da galeria"});
-async function adminApi(path,payload,authenticated){
-if(!ADMIN_API_URL)throw new Error("Configure a URL da Netlify Function em ADMIN_API_URL para ativar a administração.");
-var headers={};
-var uploadFile=typeof File!=="undefined"&&payload instanceof File;
-if(payload&&!uploadFile)headers["Content-Type"]="application/json";
-if(uploadFile){headers["Content-Type"]=payload.type;headers["X-File-Name"]=encodeURIComponent(payload.name)}
-if(authenticated){var token=sessionStorage.getItem(ADMIN_SESSION_KEY);if(!token)throw new Error("Sua sessão expirou. Entre novamente.");headers.Authorization="Bearer "+token}
-var endpoint=new URL(ADMIN_API_URL.replace(/\/+$/g,""));endpoint.searchParams.set("route",path);
-var response=await fetch(endpoint.toString(),{method:payload?"POST":"GET",headers:headers,body:uploadFile?payload:payload?JSON.stringify(payload):undefined});
-var data;
-try{data=await response.json()}catch(error){throw new Error("O serviço administrativo retornou uma resposta inválida.")}
-if(!response.ok)throw new Error(data.error||"Não foi possível concluir a operação.");
-return data
-}
 function updatePriceDisplay(){
 document.querySelectorAll(".qty").forEach(function(qty){var price=qty.parentElement.querySelector(".pr"),value=PRECOS[qty.dataset.p];if(price)price.textContent=value==null?"a confirmar":R(value)});
 ol()
 }
 function applyPrices(prices){
-if(!prices||typeof prices!=="object"||Array.isArray(prices))throw new Error("A resposta dos preços tem formato inválido.");
-Object.keys(prices).forEach(function(name){if(!Object.prototype.hasOwnProperty.call(PRECOS,name))throw new Error("O serviço retornou um produto desconhecido.");var value=prices[name];if(value!==null&&(typeof value!=="number"||!Number.isFinite(value)||value<0))throw new Error("O serviço retornou um preço inválido.");PRECOS[name]=value});
+if(!prices||typeof prices!=="object"||Array.isArray(prices))throw new Error("Os preços salvos têm formato inválido.");
+Object.keys(prices).forEach(function(name){if(!Object.prototype.hasOwnProperty.call(PRECOS,name))throw new Error("Os dados locais incluem um produto desconhecido.");var value=prices[name];if(value!==null&&(typeof value!=="number"||!Number.isFinite(value)||value<0))throw new Error("O preço salvo para "+name+" é inválido.");});
+Object.keys(prices).forEach(function(name){PRECOS[name]=prices[name]});
 updatePriceDisplay()
+}
+function readLocalState(){
+var raw=localStorage.getItem(ADMIN_STATE_KEY);if(!raw)return{prices:{},events:[],hiddenLegacyIds:[]};
+var state;try{state=JSON.parse(raw)}catch(error){throw new Error("Os dados administrativos locais estão corrompidos.")}
+if(!state||typeof state!=="object"||Array.isArray(state))throw new Error("Os dados administrativos locais têm formato inválido.");
+var prices=state.prices||{},events=state.events||[],hidden=state.hiddenLegacyIds||[];
+if(!prices||typeof prices!=="object"||Array.isArray(prices)||!Array.isArray(events)||!Array.isArray(hidden)||hidden.some(function(id){return typeof id!=="string"}))throw new Error("Os dados administrativos locais têm formato inválido.");
+applyPrices(prices);
+events.forEach(function(event){if(!event||typeof event.id!=="string"||typeof event.title!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(event.date)||typeof event.details!=="string"||(event.imageId!==undefined&&typeof event.imageId!=="string"))throw new Error("A lista de eventos locais contém dados inválidos.")});
+return{prices:prices,events:events,hiddenLegacyIds:hidden}
+}
+function saveLocalState(nextState){
+try{localStorage.setItem(ADMIN_STATE_KEY,JSON.stringify(nextState))}catch(error){throw new Error("Não foi possível salvar neste navegador. Verifique o espaço disponível e as permissões de armazenamento.")}
+localState=nextState
+}
+function openGalleryDatabase(){
+if(!("indexedDB" in window))return Promise.reject(new Error("Este navegador não oferece armazenamento local de imagens."));
+if(!galleryDatabasePromise)galleryDatabasePromise=new Promise(function(resolve,reject){var request=indexedDB.open(GALLERY_DB_NAME,1);request.onupgradeneeded=function(){var db=request.result;if(!db.objectStoreNames.contains(GALLERY_STORE_NAME))db.createObjectStore(GALLERY_STORE_NAME,{keyPath:"id"})};request.onsuccess=function(){resolve(request.result)};request.onerror=function(){reject(new Error("Não foi possível abrir o armazenamento local das imagens."))}});
+return galleryDatabasePromise
+}
+function galleryStoreRequest(mode,operation){
+return openGalleryDatabase().then(function(db){return new Promise(function(resolve,reject){var transaction=db.transaction(GALLERY_STORE_NAME,mode),request,result;try{request=operation(transaction.objectStore(GALLERY_STORE_NAME))}catch(error){reject(error);return}if(request){request.onsuccess=function(){result=request.result};request.onerror=function(){reject(new Error("Não foi possível acessar as imagens salvas neste navegador."))}}transaction.oncomplete=function(){resolve(result)};transaction.onerror=function(){reject(new Error("Não foi possível concluir a operação local das imagens."))};transaction.onabort=function(){reject(new Error("A operação local das imagens foi cancelada."))}})})
+}
+function saveLocalImage(file,purpose){
+var id=Date.now().toString(36)+"-"+Math.random().toString(36).slice(2);
+return galleryStoreRequest("readwrite",function(store){return store.put({id:id,name:file.name,blob:file,purpose:purpose||"gallery"})}).then(function(){return id})
+}
+function deleteLocalImage(id){return galleryStoreRequest("readwrite",function(store){return store.delete(id)})}
+function loadLocalImages(){return galleryStoreRequest("readonly",function(store){return store.getAll()})}
+function clearGalleryObjectUrls(){Object.keys(galleryObjectUrls).forEach(function(id){URL.revokeObjectURL(galleryObjectUrls[id])});galleryObjectUrls={}}
+function hexBytes(hex){var bytes=new Uint8Array(hex.length/2);for(var i=0;i<bytes.length;i++)bytes[i]=parseInt(hex.slice(i*2,i*2+2),16);return bytes}
+function bytesHex(bytes){return Array.from(bytes).map(function(byte){return byte.toString(16).padStart(2,"0")}).join("")}
+async function hashAdminPassword(password,salt){
+if(!window.crypto||!crypto.subtle)throw new Error("A senha local exige um navegador atualizado em uma conexão segura HTTPS.");
+var key=await crypto.subtle.importKey("raw",new TextEncoder().encode(password),"PBKDF2",false,["deriveBits"]),bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:hexBytes(salt),iterations:120000,hash:"SHA-256"},key,256);
+return bytesHex(new Uint8Array(bits))
+}
+function loadAdminCredential(){
+var raw=localStorage.getItem(ADMIN_CREDENTIAL_KEY);if(!raw)return null;
+try{var credential=JSON.parse(raw);if(typeof credential.salt!=="string"||!/^[a-f0-9]{32}$/.test(credential.salt)||typeof credential.hash!=="string"||!/^[a-f0-9]{64}$/.test(credential.hash))throw new Error();return credential}catch(error){throw new Error("A senha local está inválida. Limpe os dados do site neste navegador para configurá-la novamente.")}
+}
+function prepareAdminLogin(){
+try{var first=!loadAdminCredential();document.getElementById("admin-confirm-label").hidden=!first;document.getElementById("admin-password-label").firstChild.textContent=first?"Crie sua senha (mínimo 8 caracteres)":"Senha";document.getElementById("admin-password").autocomplete=first?"new-password":"current-password";document.querySelector("#admin-login button[type=submit]").textContent=first?"Criar senha local":"Entrar";document.getElementById("admin-login-note").textContent=first?"A senha e os dados ficam neste navegador; o bloqueio é local e não protege o site público. Na primeira vez, crie sua senha.":"O acesso e os dados ficam somente neste navegador; o bloqueio é local."}catch(error){loginMessage.textContent=error.message}
 }
 function renderAdminPrices(){
 var container=document.getElementById("admin-price-fields");container.replaceChildren();
@@ -511,7 +547,7 @@ function renderPublicEvents(){
 var list=document.getElementById("event-list"),status=document.getElementById("events-status"),today=new Date(),todayKey=[today.getFullYear(),String(today.getMonth()+1).padStart(2,"0"),String(today.getDate()).padStart(2,"0")].join("-");
 list.replaceChildren();var upcoming=adminEvents.filter(function(event){return event.date>=todayKey}).sort(function(a,b){return a.date.localeCompare(b.date)});
 if(!upcoming.length){status.textContent="Nenhum evento anunciado no momento.";return}
-status.textContent="";upcoming.forEach(function(event){var card=document.createElement("article"),date=document.createElement("time"),title=document.createElement("h3"),details=document.createElement("p");card.className="event-card";date.dateTime=event.date;date.textContent=event.date.split("-").reverse().join("/");title.textContent=event.title;details.textContent=event.details||"";card.append(date,title);if(event.details)card.append(details);list.appendChild(card)})
+status.textContent="";upcoming.forEach(function(event){var card=document.createElement("article"),date=document.createElement("time"),title=document.createElement("h3"),details=document.createElement("p");card.className="event-card";date.dateTime=event.date;date.textContent=event.date.split("-").reverse().join("/");title.textContent=event.title;details.textContent=event.details||"";if(event.imageId&&galleryObjectUrls[event.imageId]){var image=document.createElement("img");image.src=galleryObjectUrls[event.imageId];image.alt="Imagem do evento: "+event.title;image.loading="lazy";card.appendChild(image)}card.append(date,title);if(event.details)card.append(details);list.appendChild(card)})
 }
 function renderAdminEvents(){
 var list=document.getElementById("admin-event-list");list.replaceChildren();
@@ -519,63 +555,69 @@ if(!adminEvents.length){var empty=document.createElement("p");empty.className="a
 adminEvents.slice().sort(function(a,b){return a.date.localeCompare(b.date)}).forEach(function(event){var row=document.createElement("p"),label=document.createElement("span"),button=document.createElement("button");label.textContent=event.date.split("-").reverse().join("/")+" — "+event.title;button.type="button";button.className="btn btn-line sm";button.dataset.eventId=event.id;button.textContent="Remover";row.append(label,button);list.appendChild(row)})
 }
 function appendGalleryImage(image){
-if(!image||typeof image.path!=="string"||!/^uploads\/[a-z0-9._-]+\.(?:jpe?g|png|gif|webp)$/i.test(image.path))throw new Error("O serviço retornou o caminho de uma imagem inválida.");
+if(!image||typeof image.id!=="string"||!galleryObjectUrls[image.id])throw new Error("Uma imagem local não pôde ser carregada.");
 var figure=document.createElement("figure"),button=document.createElement("button"),photo=document.createElement("img"),caption=document.createElement("figcaption"),name=image.name||"Imagem da galeria";
-figure.className="uploaded-gallery-image";figure.dataset.uploadPath=image.path;button.type="button";button.className="gb";button.dataset.cap=name;photo.src=new URL("./"+image.path,document.baseURI).href;photo.alt=name;photo.loading="lazy";caption.textContent=name;button.appendChild(photo);figure.append(button,caption);gallery.appendChild(figure)
+figure.className="uploaded-gallery-image";figure.dataset.uploadId=image.id;button.type="button";button.className="gb";button.dataset.cap=name;photo.src=galleryObjectUrls[image.id];photo.alt=name;photo.loading="lazy";caption.textContent=name;button.appendChild(photo);figure.append(button,caption);gallery.appendChild(figure)
 }
 function renderAdminGallery(){
 var list=document.getElementById("admin-gallery-list");list.replaceChildren();
 legacyFigures.forEach(function(figure){var id=figure.dataset.legacyId,item=document.createElement("div"),photo=document.createElement("img"),name=document.createElement("p"),button=document.createElement("button"),image=figure.querySelector("img");item.className="admin-gallery-item";photo.src=image.src;photo.alt=figure.dataset.legacyName;name.textContent=figure.dataset.legacyName;button.type="button";button.className="btn btn-line sm";button.dataset.legacyId=id;button.dataset.hidden=String(hiddenLegacyIds.includes(id));button.textContent=hiddenLegacyIds.includes(id)?"Restaurar":"Remover";item.append(photo,name,button);list.appendChild(item)});
-galleryImages.forEach(function(image){var item=document.createElement("div"),photo=document.createElement("img"),name=document.createElement("p"),button=document.createElement("button");item.className="admin-gallery-item";photo.src=new URL("./"+image.path,document.baseURI).href;photo.alt=image.name;name.textContent=image.name;button.type="button";button.className="btn btn-line sm";button.dataset.uploadPath=image.path;button.textContent="Remover";item.append(photo,name,button);list.appendChild(item)})
+galleryImages.forEach(function(image){var item=document.createElement("div"),photo=document.createElement("img"),name=document.createElement("p"),button=document.createElement("button");item.className="admin-gallery-item";photo.src=galleryObjectUrls[image.id];photo.alt=image.name;name.textContent=image.name;button.type="button";button.className="btn btn-line sm";button.dataset.uploadId=image.id;button.textContent="Remover";item.append(photo,name,button);list.appendChild(item)})
 }
 async function refreshGallery(){
-var data=await adminApi("gallery");if(!Array.isArray(data.images)||!Array.isArray(data.hiddenLegacyIds))throw new Error("A lista de imagens retornou dados inválidos.");
-hiddenLegacyIds=data.hiddenLegacyIds;galleryImages=data.images;legacyFigures.forEach(function(figure){figure.hidden=hiddenLegacyIds.includes(figure.dataset.legacyId)});gallery.querySelectorAll(".uploaded-gallery-image").forEach(function(figure){figure.remove()});galleryImages.forEach(appendGalleryImage);renderAdminGallery();document.getElementById("gallery-sync-message").textContent=""
+clearGalleryObjectUrls();var images=await loadLocalImages();if(!Array.isArray(images))throw new Error("A lista local de imagens tem formato inválido.");
+galleryImages=images.filter(function(image){return image&&typeof image.id==="string"&&image.blob instanceof Blob}).sort(function(a,b){return a.name.localeCompare(b.name)});
+galleryImages.forEach(function(image){galleryObjectUrls[image.id]=URL.createObjectURL(image.blob)});
+galleryImages=galleryImages.filter(function(image){return image.purpose!=="event"});
+hiddenLegacyIds=localState.hiddenLegacyIds;legacyFigures.forEach(function(figure){figure.hidden=hiddenLegacyIds.includes(figure.dataset.legacyId)});gallery.querySelectorAll(".uploaded-gallery-image").forEach(function(figure){figure.remove()});galleryImages.forEach(appendGalleryImage);renderAdminGallery();document.getElementById("gallery-sync-message").textContent=""
+renderPublicEvents()
 }
 async function loadPublicData(){
-if(!ADMIN_API_URL){document.getElementById("public-menu-message").textContent="Os preços exibidos são os valores locais; configure a API para sincronizar atualizações.";document.getElementById("events-status").textContent="As datas de eventos serão divulgadas aqui após configurar a API administrativa.";document.getElementById("gallery-sync-message").textContent="A galeria ainda não está conectada à administração.";renderPublicEvents();return}
-try{var menu=await adminApi("menu");applyPrices(menu.prices);document.getElementById("public-menu-message").textContent=""}catch(error){document.getElementById("public-menu-message").textContent="Não foi possível atualizar os preços: "+error.message}
-try{var events=await adminApi("events");if(!Array.isArray(events.events))throw new Error("A agenda retornou dados inválidos.");adminEvents=events.events;renderPublicEvents()}catch(error){document.getElementById("events-status").textContent="Não foi possível carregar a agenda: "+error.message}
-try{await refreshGallery()}catch(error){document.getElementById("gallery-sync-message").textContent="Não foi possível atualizar a galeria: "+error.message}
+try{localState=readLocalState();adminEvents=localState.events;hiddenLegacyIds=localState.hiddenLegacyIds;renderPublicEvents();document.getElementById("public-menu-message").textContent="";await refreshGallery()}catch(error){document.getElementById("public-menu-message").textContent="Não foi possível carregar os dados deste navegador: "+error.message;document.getElementById("gallery-sync-message").textContent=error.message}
 }
-async function loadAdminData(){
-try{await adminApi("session",null,true)}catch(error){sessionStorage.removeItem(ADMIN_SESSION_KEY);adminPanel.hidden=true;adminLoginArea.hidden=false;loginMessage.textContent=error.message;return}
-try{var menu=await adminApi("menu");applyPrices(menu.prices);renderAdminPrices();document.getElementById("admin-menu-message").textContent=""}catch(error){document.getElementById("admin-menu-message").textContent="Não foi possível carregar os preços: "+error.message}
-try{var events=await adminApi("events");adminEvents=events.events;renderPublicEvents();renderAdminEvents()}catch(error){document.getElementById("admin-event-message").textContent="Não foi possível carregar os eventos: "+error.message}
-try{await refreshGallery()}catch(error){document.getElementById("admin-upload-message").textContent="Não foi possível carregar as imagens: "+error.message}
+function loadAdminData(){
+renderAdminPrices();renderAdminEvents();document.getElementById("admin-menu-message").textContent="";document.getElementById("admin-event-message").textContent="";document.getElementById("admin-upload-message").textContent=""
 }
-document.getElementById("admin-open").addEventListener("click",function(){admin.showModal()});
+document.getElementById("admin-open").addEventListener("click",function(){prepareAdminLogin();admin.showModal()});
 document.getElementById("admin-close").addEventListener("click",function(){admin.close()});
 admin.addEventListener("click",function(e){if(e.target===admin)admin.close()});
 document.getElementById("admin-login").addEventListener("submit",async function(e){e.preventDefault();loginMessage.textContent="";
-try{var result=await adminApi("login",{username:document.getElementById("admin-username").value.trim(),password:document.getElementById("admin-password").value});if(typeof result.token!=="string")throw new Error("O serviço não retornou uma sessão válida.");sessionStorage.setItem(ADMIN_SESSION_KEY,result.token);adminLoginArea.hidden=true;adminPanel.hidden=false;e.target.reset();await loadAdminData()}
-catch(error){loginMessage.textContent=error.message}
+try{
+if(document.getElementById("admin-username").value.trim().toLocaleLowerCase("pt-BR")!==ADMIN_USERNAME.toLocaleLowerCase("pt-BR"))throw new Error("O login de administração é Lary.");
+var password=document.getElementById("admin-password").value,credential=loadAdminCredential();
+if(!credential){if(password.length<8)throw new Error("Crie uma senha com pelo menos 8 caracteres.");if(password!==document.getElementById("admin-password-confirm").value)throw new Error("As senhas não conferem.");var salt=bytesHex(crypto.getRandomValues(new Uint8Array(16)));credential={salt:salt,hash:await hashAdminPassword(password,salt)};localStorage.setItem(ADMIN_CREDENTIAL_KEY,JSON.stringify(credential))}
+else if(await hashAdminPassword(password,credential.salt)!==credential.hash)throw new Error("Senha incorreta.");
+sessionStorage.setItem(ADMIN_SESSION_KEY,"1");adminLoginArea.hidden=true;adminPanel.hidden=false;e.target.reset();loadAdminData()
+}catch(error){loginMessage.textContent=error.message}
 });
-document.getElementById("admin-menu-form").addEventListener("submit",async function(e){e.preventDefault();var prices={};document.querySelectorAll("#admin-price-fields input[data-product]").forEach(function(input){prices[input.dataset.product]=input.value===""?null:Number(input.value)});var message=document.getElementById("admin-menu-message");message.textContent="Salvando preços...";
-try{var result=await adminApi("menu",{prices},true);applyPrices(result.prices);message.textContent=result.message;document.getElementById("public-menu-message").textContent=""}
-catch(error){message.textContent=error.message}
+document.getElementById("admin-menu-form").addEventListener("submit",function(e){e.preventDefault();var prices={};document.querySelectorAll("#admin-price-fields input[data-product]").forEach(function(input){prices[input.dataset.product]=input.value===""?null:Number(input.value)});var message=document.getElementById("admin-menu-message");
+try{applyPrices(prices);saveLocalState(Object.assign({},localState,{prices:prices}));message.textContent="Preços salvos neste navegador.";document.getElementById("public-menu-message").textContent=""}
+catch(error){message.textContent=error.message;applyPrices(localState.prices)}
 });
-document.getElementById("admin-event-form").addEventListener("submit",async function(e){e.preventDefault();var message=document.getElementById("admin-event-message"),id=Date.now().toString(36)+"-"+Math.random().toString(36).slice(2),event={id:id,title:document.getElementById("admin-event-title").value.trim(),date:document.getElementById("admin-event-date").value,details:document.getElementById("admin-event-details").value.trim()};message.textContent="Publicando evento...";
-try{var result=await adminApi("events",{events:adminEvents.concat(event)},true);adminEvents=result.events;renderPublicEvents();renderAdminEvents();e.target.reset();message.textContent=result.message}
-catch(error){message.textContent=error.message}
+document.getElementById("admin-event-form").addEventListener("submit",async function(e){e.preventDefault();var message=document.getElementById("admin-event-message"),id=Date.now().toString(36)+"-"+Math.random().toString(36).slice(2),file=document.getElementById("admin-event-image").files[0],allowed=["image/jpeg","image/png","image/gif","image/webp"];
+if(file&&(!allowed.includes(file.type)||file.size>5*1024*1024)){message.textContent="Use uma imagem JPEG, PNG, GIF ou WebP com até 5 MB.";return}
+var event={id:id,title:document.getElementById("admin-event-title").value.trim(),date:document.getElementById("admin-event-date").value,details:document.getElementById("admin-event-details").value.trim()},imageId=null;
+var saved=false;
+try{if(file)imageId=await saveLocalImage(file,"event");if(imageId)event.imageId=imageId;var events=adminEvents.concat(event),next=Object.assign({},localState,{events:events});saveLocalState(next);adminEvents=events;saved=true;renderPublicEvents();renderAdminEvents();await refreshGallery();e.target.reset();message.textContent="Evento salvo neste navegador."}
+catch(error){if(imageId&&!saved){try{await deleteLocalImage(imageId)}catch(cleanupError){message.textContent=error.message+" A imagem temporária não pôde ser removida.";return}}message.textContent=saved?"Evento salvo, mas não foi possível atualizar a imagem: "+error.message:error.message}
 });
-document.getElementById("admin-event-list").addEventListener("click",async function(e){var button=e.target.closest("button[data-event-id]");if(!button)return;button.disabled=true;
-try{var result=await adminApi("events-delete",{id:button.dataset.eventId},true);adminEvents=result.events;renderPublicEvents();renderAdminEvents();document.getElementById("admin-event-message").textContent=result.message}
-catch(error){button.disabled=false;document.getElementById("admin-event-message").textContent=error.message}
+document.getElementById("admin-event-list").addEventListener("click",async function(e){var button=e.target.closest("button[data-event-id]");if(!button)return;
+try{var removed=adminEvents.find(function(event){return event.id===button.dataset.eventId}),events=adminEvents.filter(function(event){return event.id!==button.dataset.eventId});saveLocalState(Object.assign({},localState,{events:events}));adminEvents=events;renderPublicEvents();renderAdminEvents();if(removed&&removed.imageId){try{await deleteLocalImage(removed.imageId);await refreshGallery()}catch(error){document.getElementById("admin-event-message").textContent="Evento removido, mas não foi possível apagar a imagem: "+error.message;return}}document.getElementById("admin-event-message").textContent="Evento removido deste navegador."}
+catch(error){document.getElementById("admin-event-message").textContent=error.message}
 });
 document.getElementById("admin-upload-form").addEventListener("submit",async function(e){e.preventDefault();var message=document.getElementById("admin-upload-message"),files=Array.from(document.getElementById("admin-images").files||[]),allowed=["image/jpeg","image/png","image/gif","image/webp"],invalid=files.some(function(file){return !allowed.includes(file.type)||file.size>5*1024*1024});
 if(!files.length){message.textContent="Selecione ao menos uma imagem.";return}if(invalid){message.textContent="Use imagens JPEG, PNG, GIF ou WebP com até 5 MB cada.";return}
-for(var index=0;index<files.length;index++){message.textContent="Enviando imagem "+(index+1)+" de "+files.length+"...";try{await adminApi("upload",files[index],true)}catch(error){message.textContent=error.message;return}}
-e.target.reset();try{await refreshGallery();message.textContent=files.length+" imagem(ns) publicada(s) no GitHub."}catch(error){message.textContent="O envio foi concluído, mas não foi possível atualizar a galeria: "+error.message}
+var saved=0;for(var index=0;index<files.length;index++){message.textContent="Salvando imagem "+(index+1)+" de "+files.length+" neste navegador...";try{await saveLocalImage(files[index]);saved++}catch(error){message.textContent=saved+" imagem(ns) salva(s). "+error.message;break}}
+e.target.reset();try{await refreshGallery();if(saved===files.length)message.textContent=saved+" imagem(ns) salva(s) neste navegador."}catch(error){message.textContent="As imagens foram salvas, mas não foi possível atualizar a galeria: "+error.message}
 });
-document.getElementById("admin-gallery-list").addEventListener("click",async function(e){var legacy=e.target.closest("button[data-legacy-id]"),uploaded=e.target.closest("button[data-upload-path]");if(!legacy&&!uploaded)return;var button=legacy||uploaded,wasHidden=button.dataset.hidden==="true";button.disabled=true;
-try{if(legacy){var result=await adminApi("gallery-legacy",{id:legacy.dataset.legacyId,hidden:!wasHidden},true);hiddenLegacyIds=result.hiddenLegacyIds;legacyFigures.forEach(function(figure){figure.hidden=hiddenLegacyIds.includes(figure.dataset.legacyId)});renderAdminGallery();document.getElementById("gallery-sync-message").textContent=result.message}
-else{var removed=await adminApi("gallery-delete",{path:uploaded.dataset.uploadPath},true);await refreshGallery();document.getElementById("admin-upload-message").textContent=removed.message;document.getElementById("gallery-sync-message").textContent=removed.message}}
+document.getElementById("admin-gallery-list").addEventListener("click",async function(e){var legacy=e.target.closest("button[data-legacy-id]"),uploaded=e.target.closest("button[data-upload-id]");if(!legacy&&!uploaded)return;var button=legacy||uploaded,wasHidden=button.dataset.hidden==="true";button.disabled=true;
+try{if(legacy){var nextHidden=wasHidden?hiddenLegacyIds.filter(function(id){return id!==legacy.dataset.legacyId}):hiddenLegacyIds.concat(legacy.dataset.legacyId);saveLocalState(Object.assign({},localState,{hiddenLegacyIds:nextHidden}));hiddenLegacyIds=nextHidden;legacyFigures.forEach(function(figure){figure.hidden=hiddenLegacyIds.includes(figure.dataset.legacyId)});renderAdminGallery();document.getElementById("gallery-sync-message").textContent="Galeria atualizada neste navegador."}
+else{await deleteLocalImage(uploaded.dataset.uploadId);await refreshGallery();document.getElementById("admin-upload-message").textContent="Imagem removida deste navegador."}}
 catch(error){button.disabled=false;document.getElementById("admin-upload-message").textContent=error.message}
 });
-document.getElementById("admin-logout").addEventListener("click",function(){sessionStorage.removeItem(ADMIN_SESSION_KEY);adminPanel.hidden=true;adminLoginArea.hidden=false;loginMessage.textContent="";admin.close()});
-if(sessionStorage.getItem(ADMIN_SESSION_KEY)){adminLoginArea.hidden=true;adminPanel.hidden=false;loadAdminData()}
-loadPublicData();
+document.getElementById("admin-logout").addEventListener("click",function(){sessionStorage.removeItem(ADMIN_SESSION_KEY);adminPanel.hidden=true;adminLoginArea.hidden=false;loginMessage.textContent="";prepareAdminLogin();admin.close()});
+if(sessionStorage.getItem(ADMIN_SESSION_KEY)==="1"){adminLoginArea.hidden=true;adminPanel.hidden=false}
+loadPublicData().then(function(){if(sessionStorage.getItem(ADMIN_SESSION_KEY)==="1")loadAdminData()});
 document.getElementById("y").textContent=new Date().getFullYear();
 </script>
 </body>
